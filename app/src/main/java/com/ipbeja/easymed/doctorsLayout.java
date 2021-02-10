@@ -1,4 +1,4 @@
-package com.example.pdm;
+package com.ipbeja.easymed;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -7,9 +7,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 /**
- * The type Pharmacy layout.
+ * The type Doctors layout.
  */
-public class pharmacyLayout extends AppCompatActivity {
+public class doctorsLayout extends AppCompatActivity {
 
     /**
      * On create.
@@ -19,13 +19,12 @@ public class pharmacyLayout extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pharmacy_layout);
+        setContentView(R.layout.activity_doctors_layout);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Order medicines");
+        getSupportActionBar().setTitle("Find Doctors");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
     }
 
     /**

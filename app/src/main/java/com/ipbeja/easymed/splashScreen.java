@@ -1,4 +1,4 @@
-package com.example.pdm;
+package com.ipbeja.easymed;
 
 import android.content.Intent;
 import android.os.Bundle;
