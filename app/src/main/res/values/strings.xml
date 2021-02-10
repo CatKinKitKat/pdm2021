@@ -1,3 +1,11 @@
 <resources>
-    <string name="app_name">PDM</string>
+    <string name="app_name" translatable="false">EasyMed</string>
+    <string name="title" translatable="false">EasyMed</string>
+    <string name="logo" translatable="false">EasyMed</string>
+    <string name="img_context_1" translatable="false">menu_item</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign up</string>
+    <string name="img_context_2" translatable="false">header_img</string>
 </resources>

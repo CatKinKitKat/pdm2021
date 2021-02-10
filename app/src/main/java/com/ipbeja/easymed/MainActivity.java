@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
      * The Recycler view.
      */
     RecyclerView recyclerView;
+
     /**
      * The Covers.
      */
