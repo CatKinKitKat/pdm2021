@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
     /**
      * The Covers.
      */
-//Array of images
     int[] covers = new int[]{
             R.drawable.aaa,
             R.drawable.bbb,
@@ -35,22 +34,27 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.eee,
             R.drawable.fff
     };
+
     /**
      * The Slider view.
      */
     SliderView sliderView;
+
     /**
      * The Image slider model list.
      */
     List<ImageSliderModel> imageSliderModelList;
+
     /**
      * The Adapter.
      */
     private RecyclerViewAdapter adapter;
+
     /**
      * The Manager.
      */
     private StaggeredGridLayoutManager manager;
+
     /**
      * The App list.
      */
@@ -71,7 +75,6 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         //Making the home button in toolbar
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.menu);
 
@@ -92,7 +95,6 @@ public class MainActivity extends AppCompatActivity {
         //Putting Data into recyclerView
         InitializeDataIntoRecyclerView();
 
-
         imageSliderModelList = new ArrayList<>();
         sliderView = findViewById(R.id.imageSlider);
 
@@ -101,14 +103,12 @@ public class MainActivity extends AppCompatActivity {
         imageSliderModelList.add(new ImageSliderModel(R.drawable.image_c));
 
         sliderView.setSliderAdapter(new ImageSliderAdapter(this, imageSliderModelList));
-
     }
 
     /**
      * Initialize data into recycler view.
      */
     private void InitializeDataIntoRecyclerView() {
-
         row a = new row(covers[0]);
         appList.add(a);
 
@@ -128,10 +128,7 @@ public class MainActivity extends AppCompatActivity {
         appList.add(a);
 
         adapter.notifyDataSetChanged();
-
     }
-
-    //Adding buttons to toolbar
 
     /**
      * On create options menu boolean.
@@ -151,23 +148,13 @@ public class MainActivity extends AppCompatActivity {
      * @param item the item
      * @return the boolean
      */
-//Handling click on toolbar buttons
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         int id = item.getItemId();
-
         if (id == R.id.action_settings) {
-
             return true;
-
         }
-
-
         return super.onOptionsItemSelected(item);
-
     }
-
-
 }
 

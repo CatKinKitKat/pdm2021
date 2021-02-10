@@ -25,7 +25,6 @@ public class hospitalLayout extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Hospitals");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
     }
 
     /**

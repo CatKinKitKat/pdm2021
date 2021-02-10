@@ -25,7 +25,6 @@ public class doctorsLayout extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Find Doctors");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
     }
 
     /**

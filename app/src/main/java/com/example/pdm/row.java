@@ -8,7 +8,6 @@ public class row {
     /**
      * The Img.
      */
-//Creating row class as a model class
     private int img;
 
     /**
@@ -16,13 +15,9 @@ public class row {
      *
      * @param img the img
      */
-//constructor
     public row(int img) {
         this.img = img;
     }
-
-    //Getters & Setters
-
     /**
      * Gets img.
      *
