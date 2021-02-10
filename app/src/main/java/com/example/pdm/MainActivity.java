@@ -1,28 +1,32 @@
 package com.example.pdm;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
-
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.smarteist.autoimageslider.SliderView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Main activity.
+ */
 public class MainActivity extends AppCompatActivity {
 
+    /**
+     * The Recycler view.
+     */
     RecyclerView recyclerView;
-    private RecyclerViewAdapter adapter;
-    private StaggeredGridLayoutManager manager;
-    private List<row> appList;
-
-    //Array of images
+    /**
+     * The Covers.
+     */
+//Array of images
     int[] covers = new int[]{
             R.drawable.aaa,
             R.drawable.bbb,
@@ -31,10 +35,32 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.eee,
             R.drawable.fff
     };
-
+    /**
+     * The Slider view.
+     */
     SliderView sliderView;
-    List<ImageSliderModel>imageSliderModelList;
+    /**
+     * The Image slider model list.
+     */
+    List<ImageSliderModel> imageSliderModelList;
+    /**
+     * The Adapter.
+     */
+    private RecyclerViewAdapter adapter;
+    /**
+     * The Manager.
+     */
+    private StaggeredGridLayoutManager manager;
+    /**
+     * The App list.
+     */
+    private List<row> appList;
 
+    /**
+     * On create.
+     *
+     * @param savedInstanceState the saved instance state
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,7 +93,6 @@ public class MainActivity extends AppCompatActivity {
         InitializeDataIntoRecyclerView();
 
 
-
         imageSliderModelList = new ArrayList<>();
         sliderView = findViewById(R.id.imageSlider);
 
@@ -79,6 +104,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Initialize data into recycler view.
+     */
     private void InitializeDataIntoRecyclerView() {
 
         row a = new row(covers[0]);
@@ -105,19 +133,31 @@ public class MainActivity extends AppCompatActivity {
 
     //Adding buttons to toolbar
 
+    /**
+     * On create options menu boolean.
+     *
+     * @param menu the menu
+     * @return the boolean
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
-    //Handling click on toolbar buttons
+    /**
+     * On options item selected boolean.
+     *
+     * @param item the item
+     * @return the boolean
+     */
+//Handling click on toolbar buttons
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
         int id = item.getItemId();
 
-        if (id == R.id.action_settings){
+        if (id == R.id.action_settings) {
 
             return true;
 
