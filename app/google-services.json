@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "371585470428",
+    "project_id": "pharmatec-83023",
+    "storage_bucket": "pharmatec-83023.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:371585470428:android:6148492e9b2c46eebc4919",
+        "android_client_info": {
+          "package_name": "com.example.pdm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "371585470428-rfia60473mdip3opkhdkc4eecu10h7i1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzbFlQlxQUkDuOYGObUk-BiUaJL2AdVI0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "371585470428-rfia60473mdip3opkhdkc4eecu10h7i1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
