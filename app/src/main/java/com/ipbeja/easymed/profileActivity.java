@@ -27,7 +27,7 @@ public class profileActivity extends AppCompatActivity {
     /**
      * The Verify email btn.
      */
-    Button verifyEmailBtn;
+    Button verifyEmailBtn, resetBtn;
 
     /**
      * The Auth.
@@ -46,6 +46,7 @@ public class profileActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         verifyMsg = findViewById(R.id.verifyEmailMsg);
         verifyEmailBtn = findViewById(R.id.verifyEmailBtn);
+        resetBtn = findViewById(R.id.resetBtn);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -66,9 +67,16 @@ public class profileActivity extends AppCompatActivity {
                 verifyEmailBtn.setVisibility(View.GONE);
                 verifyMsg.setVisibility(View.GONE);
                 FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(getApplicationContext(), loginActivity.class));
-                finish();
+                profileActivity.this.startActivity(new Intent(profileActivity.this.getApplicationContext(), loginActivity.class));
+                profileActivity.this.finish();
             });
+        });
+
+        resetBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), resetPassword.class));
+            }
         });
 
     }

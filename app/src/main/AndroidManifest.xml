@@ -9,15 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PDM">
-        <activity android:name="com.ipbeja.easymed.reminderActivity" />
-        <activity android:name="com.ipbeja.easymed.pharmacyLayout" />
-        <activity android:name="com.ipbeja.easymed.hospitalLayout" />
-        <activity android:name="com.ipbeja.easymed.doctorsLayout" />
-        <activity android:name="com.ipbeja.easymed.MainActivity" />
-        <activity android:name="com.ipbeja.easymed.loginActivity"/>
-        <activity android:name="com.ipbeja.easymed.registerActivity"/>
-        <activity android:name="com.ipbeja.easymed.profileActivity"/>
-        <activity android:name="com.ipbeja.easymed.splashScreen">
+        <activity android:name=".resetPassword"></activity>
+        <activity android:name=".reminderActivity" />
+        <activity android:name=".pharmacyLayout" />
+        <activity android:name=".hospitalLayout" />
+        <activity android:name=".doctorsLayout" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".loginActivity" />
+        <activity android:name=".registerActivity" />
+        <activity android:name=".profileActivity" />
+        <activity android:name=".splashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
