@@ -52,6 +52,9 @@ public class profileActivity extends AppCompatActivity {
                         Toast.makeText(profileActivity.this,"Verification Email Sent", Toast.LENGTH_SHORT).show();
                         verifyEmailBtn.setVisibility(View.GONE);
                         verifyMsg.setVisibility(View.GONE);
+                        FirebaseAuth.getInstance().signOut();
+                        startActivity(new Intent(getApplicationContext(),loginActivity.class));
+                        finish();
                     }
                 });
             }
