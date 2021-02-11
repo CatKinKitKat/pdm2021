@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "274784804404",
+    "project_id": "easymed-pdm",
+    "storage_bucket": "easymed-pdm.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:274784804404:android:07ced031b62560cdf23461",
+        "android_client_info": {
+          "package_name": "com.exemple.easymed"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "274784804404-vm0a2s1js1eijkh0q08tqr05ko8q37jf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4Rh1Ir2kW-VMwSa0xjxEVGVSakhLboLQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "274784804404-vm0a2s1js1eijkh0q08tqr05ko8q37jf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
