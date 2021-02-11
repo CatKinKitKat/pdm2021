@@ -52,11 +52,6 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerViewAdapter adapter;
 
     /**
-     * The Manager.
-     */
-    private StaggeredGridLayoutManager manager;
-
-    /**
      * The App list.
      */
     private List<row> appList;
@@ -85,7 +80,8 @@ public class MainActivity extends AppCompatActivity {
 
         //Adapter
         adapter = new RecyclerViewAdapter(this, appList);
-        manager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        StaggeredGridLayoutManager manager =
+                new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
 
         //Layout Manager
         recyclerView.setLayoutManager(manager);
