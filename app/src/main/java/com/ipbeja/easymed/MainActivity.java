@@ -33,9 +33,7 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.aaa,
             R.drawable.bbb,
             R.drawable.ccc,
-            R.drawable.ddd,
-            R.drawable.eee,
-            R.drawable.fff
+            R.drawable.ddd
     };
 
     /**
@@ -96,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         //Putting Data into recyclerView
-        InitializeDataIntoRecyclerView();
+        InitializeDataIntoRecyclerView(this.covers);
 
         imageSliderModelList = new ArrayList<>();
         sliderView = findViewById(R.id.imageSlider);
@@ -111,24 +109,15 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Initialize data into recycler view.
      */
-    private void InitializeDataIntoRecyclerView() {
-        row a = new row(covers[0]);
-        appList.add(a);
+    private void InitializeDataIntoRecyclerView(int[] covers) {
 
-        a = new row(covers[1]);
-        appList.add(a);
+        covers = this.covers;
+        row a;
 
-        a = new row(covers[2]);
-        appList.add(a);
-
-        a = new row(covers[3]);
-        appList.add(a);
-
-        a = new row(covers[4]);
-        appList.add(a);
-
-        a = new row(covers[5]);
-        appList.add(a);
+        for (int cover : covers) {
+            a = new row(cover);
+            appList.add(a);
+        }
 
         adapter.notifyDataSetChanged();
     }
@@ -157,12 +146,12 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.logout) {
 
             FirebaseAuth.getInstance().signOut();
-            startActivity(new Intent(getApplicationContext(),loginActivity.class));
+            startActivity(new Intent(getApplicationContext(), loginActivity.class));
             finish();
 
-        }else if (id == R.id.profile) {
+        } else if (id == R.id.profile) {
 
-            startActivity(new Intent(getApplicationContext(),profileActivity.class));
+            startActivity(new Intent(getApplicationContext(), profileActivity.class));
             finish();
 
         }

@@ -4,4 +4,6 @@
     <string name="password">Password</string>
     <string name="sign_in">Já está registado? Entre aqui</string>
     <string name="sign_up">Registar</string>
+    <string name="sign_out">Sair</string>
+    <string name="profile">Perfil</string>
 </resources>

@@ -6,7 +6,7 @@
 
     <item
         android:id="@+id/logout"
-        android:title="Logout"
+        android:title="@string/sign_out"
         android:icon="@drawable/logout"
         app:showAsAction="always"/>
 

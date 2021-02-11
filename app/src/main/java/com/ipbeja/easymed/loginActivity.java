@@ -2,31 +2,51 @@ package com.ipbeja.easymed;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthException;
 
 /**
  * The type Login activity.
  */
 public class loginActivity extends AppCompatActivity {
 
-    Button createAccountBtn, loginBtn;
-    EditText loginEmail, password;
+    /**
+     * The Create account btn.
+     */
+    Button createAccountBtn,
+
+    /**
+     * The Login btn.
+     */
+    loginBtn;
+
+    /**
+     * The Login email.
+     */
+    EditText loginEmail,
+
+    /**
+     * The Password.
+     */
+    password;
+
+    /**
+     * The Firebase auth.
+     */
     FirebaseAuth firebaseAuth;
 
+    /**
+     * On create.
+     *
+     * @param savedInstanceState the saved instance state
+     */
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
@@ -34,69 +54,51 @@ public class loginActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
 
         createAccountBtn = findViewById(R.id.createAccountBtn);
-        createAccountBtn.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(),registerActivity.class)));
+        createAccountBtn.setOnClickListener(v -> startActivity(
+                new Intent(getApplicationContext(), registerActivity.class))
+        );
 
         loginEmail = findViewById(R.id.loginEmail);
         password = findViewById(R.id.loginPassword);
         loginBtn = findViewById(R.id.loginBtn);
 
-        loginBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //extract and validate
+        loginBtn.setOnClickListener(v -> {
 
-                if(loginEmail.getText().toString().isEmpty()){
-
-                    loginEmail.setError("Email is Missing");
-                    return;
-
-                }
-
-                if(password.getText().toString().isEmpty()){
-
-                    password.setError("Password is Missing");
-                    return;
-
-                }
-
-
-                //data is valid
-                //login user
-
-                firebaseAuth.signInWithEmailAndPassword(loginEmail.getText().toString(),password.getText().toString()).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                    @Override
-                    public void onSuccess(AuthResult authResult) {
-                        //login is successful
-                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                        finish();
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(loginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
-
+            //extract and validate
+            if (loginEmail.getText().toString().isEmpty()) {
+                loginEmail.setError("Email is Missing");
+                return;
             }
+
+            if (password.getText().toString().isEmpty()) {
+                password.setError("Password is Missing");
+                return;
+            }
+
+            //data is valid
+            //login user
+            firebaseAuth.signInWithEmailAndPassword(
+                    loginEmail.getText().toString(),
+                    password.getText().toString()).addOnSuccessListener(authResult -> {
+                //login is successful
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                finish();
+            }).addOnFailureListener(e -> Toast.makeText(
+                    loginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show()
+            );
         });
-
-
-
-
     }
 
+    /**
+     * On start.
+     */
     @Override
-    protected void onStart(){
-
+    protected void onStart() {
         super.onStart();
-        if(FirebaseAuth.getInstance().getCurrentUser() != null){
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
 
-            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
             finish();
-
         }
-
-
     }
-
 }

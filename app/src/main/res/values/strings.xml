@@ -6,6 +6,8 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="sign_in">Sign In</string>
-    <string name="sign_up">Sign up</string>
+    <string name="sign_up">Sign Up</string>
     <string name="img_context_2" translatable="false">header_img</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="profile">Profile</string>
 </resources>

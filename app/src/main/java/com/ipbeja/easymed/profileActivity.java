@@ -6,22 +6,39 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 
+/**
+ * The type Profile activity.
+ */
 public class profileActivity extends AppCompatActivity {
 
+    /**
+     * The Verify msg.
+     */
     TextView verifyMsg;
+
+    /**
+     * The Verify email btn.
+     */
     Button verifyEmailBtn;
+
+    /**
+     * The Auth.
+     */
     FirebaseAuth auth;
 
+    /**
+     * On create.
+     *
+     * @param savedInstanceState the saved instance state
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,49 +52,55 @@ public class profileActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Profile");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        if(!auth.getCurrentUser().isEmailVerified()){
+        if (!auth.getCurrentUser().isEmailVerified()) {
 
             verifyEmailBtn.setVisibility(View.VISIBLE);
             verifyMsg.setVisibility(View.VISIBLE);
 
         }
 
-        verifyEmailBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //send verification email
-                auth.getCurrentUser().sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Toast.makeText(profileActivity.this,"Verification Email Sent", Toast.LENGTH_SHORT).show();
-                        verifyEmailBtn.setVisibility(View.GONE);
-                        verifyMsg.setVisibility(View.GONE);
-                        FirebaseAuth.getInstance().signOut();
-                        startActivity(new Intent(getApplicationContext(),loginActivity.class));
-                        finish();
-                    }
-                });
-            }
+        verifyEmailBtn.setOnClickListener(v -> {
+            //send verification email
+            auth.getCurrentUser().sendEmailVerification().addOnSuccessListener(aVoid -> {
+                Toast.makeText(profileActivity.this, "Verification Email Sent", Toast.LENGTH_SHORT).show();
+                verifyEmailBtn.setVisibility(View.GONE);
+                verifyMsg.setVisibility(View.GONE);
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(getApplicationContext(), loginActivity.class));
+                finish();
+            });
         });
 
     }
 
+    /**
+     * On create options menu boolean.
+     *
+     * @param menu the menu
+     * @return the boolean
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_profile, menu);
         return true;
     }
 
+    /**
+     * On options item selected boolean.
+     *
+     * @param item the item
+     * @return the boolean
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.logout) {
 
             FirebaseAuth.getInstance().signOut();
-            startActivity(new Intent(getApplicationContext(),loginActivity.class));
+            startActivity(new Intent(getApplicationContext(), loginActivity.class));
             finish();
 
-        }else if (id == android.R.id.home) {
+        } else if (id == android.R.id.home) {
 
             startActivity(new Intent(getApplicationContext(),MainActivity.class));
             finish();
