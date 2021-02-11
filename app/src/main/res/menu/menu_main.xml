@@ -5,10 +5,16 @@
     tools:context=".MainActivity">
 
     <item
-        android:id="@+id/action_settings"
-        android:icon="@drawable/menu"
-        android:orderInCategory="1"
-        android:title="settings"
-        app:showAsAction="ifRoom" />
+        android:id="@+id/profile"
+        android:title="Profile"
+        android:icon="@drawable/profile"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/logout"
+        android:title="Logout"
+        android:icon="@drawable/logout"
+        app:showAsAction="always"/>
+
 
 </menu>

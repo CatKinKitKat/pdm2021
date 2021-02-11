@@ -1,5 +1,6 @@
 package com.ipbeja.easymed;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -9,6 +10,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.smarteist.autoimageslider.SliderView;
 
 import java.util.ArrayList;
@@ -139,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        return super.onCreateOptionsMenu(menu);
+        return true;
     }
 
     /**
@@ -151,8 +153,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.logout) {
+
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(getApplicationContext(),loginActivity.class));
+            finish();
+
+        }else if (id == R.id.profile) {
+
+            startActivity(new Intent(getApplicationContext(),profileActivity.class));
+            finish();
+
         }
         return super.onOptionsItemSelected(item);
     }

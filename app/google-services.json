@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "371585470428",
-    "project_id": "pharmatec-83023",
-    "storage_bucket": "pharmatec-83023.appspot.com"
+    "project_number": "439661424238",
+    "project_id": "easymed-8c0ce",
+    "storage_bucket": "easymed-8c0ce.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:371585470428:android:6148492e9b2c46eebc4919",
+        "mobilesdk_app_id": "1:439661424238:android:31a76e660de3564582407f",
         "android_client_info": {
-          "package_name": "com.example.pdm"
+          "package_name": "com.example.easymed"
         }
       },
       "oauth_client": [
         {
-          "client_id": "371585470428-rfia60473mdip3opkhdkc4eecu10h7i1.apps.googleusercontent.com",
+          "client_id": "439661424238-0d6ohrh19a8gcdq3i95umsdqe9i3ft42.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCzbFlQlxQUkDuOYGObUk-BiUaJL2AdVI0"
+          "current_key": "AIzaSyDOStyVk0oWhdbeH3eOwMDGeaUQZeGppuM"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "371585470428-rfia60473mdip3opkhdkc4eecu10h7i1.apps.googleusercontent.com",
+              "client_id": "439661424238-0d6ohrh19a8gcdq3i95umsdqe9i3ft42.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
