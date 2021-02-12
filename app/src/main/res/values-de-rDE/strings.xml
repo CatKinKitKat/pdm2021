@@ -36,5 +36,5 @@
     <string name="verify_now_logout">Verify Now and Logout</string>
     <string name="sign_in_here">Sie haben bereits ein Konto? Hier anmelden</string>
     <string name="save">Speichern</string>
-    <string name="sign_up_here">Noch kein Konto? Hier anmelden</string>
+    <string name="sign_up_here">Sie haben noch keinen Account? Hier anmelden</string>
 </resources>
