@@ -81,31 +81,31 @@ public class registerActivity extends AppCompatActivity {
 
             if (name.isEmpty()) {
 
-                registerName.setError("Name is required");
+                registerName.setError(getString(R.string.name_field_error));
                 return;
             }
 
             if (email.isEmpty()) {
 
-                registerEmail.setError("Email is required");
+                registerEmail.setError(getString(R.string.email_field_error));
                 return;
             }
 
             if (password.isEmpty()) {
 
-                registerPassword.setError("Password is required");
+                registerPassword.setError(getString(R.string.passwd_field_error));
                 return;
             }
 
             if (confPass.isEmpty()) {
 
-                registerConfPass.setError("Confirmation Password is required");
+                registerConfPass.setError(getString(R.string.confpasswd_field_error));
                 return;
             }
 
             if (!password.equals(confPass)) {
 
-                registerConfPass.setError("Password do not match");
+                registerConfPass.setError(getString(R.string.passwd_error));
                 return;
             }
 

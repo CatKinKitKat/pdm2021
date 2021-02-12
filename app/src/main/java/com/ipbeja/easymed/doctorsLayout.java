@@ -23,7 +23,7 @@ public class doctorsLayout extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Find Doctors");
+        getSupportActionBar().setTitle(getString(R.string.find_doctors));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 

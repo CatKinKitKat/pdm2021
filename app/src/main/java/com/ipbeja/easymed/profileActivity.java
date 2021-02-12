@@ -83,7 +83,7 @@ public class profileActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Profile");
+        getSupportActionBar().setTitle(getString(R.string.profile));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         if (!auth.getCurrentUser().isEmailVerified()) {
@@ -97,7 +97,7 @@ public class profileActivity extends AppCompatActivity {
             //send verification email
             auth.getCurrentUser().sendEmailVerification().addOnSuccessListener(aVoid -> {
 
-                Toast.makeText(profileActivity.this, "Verification Email Sent", Toast.LENGTH_SHORT).show();
+                Toast.makeText(profileActivity.this, getString(R.string.email_verify), Toast.LENGTH_SHORT).show();
 
                 verifyEmailBtn.setVisibility(View.GONE);
                 verifyMsg.setVisibility(View.GONE);
@@ -117,14 +117,16 @@ public class profileActivity extends AppCompatActivity {
 
         deleteAccountBtn.setOnClickListener(v -> {
 
-            reset_alert.setTitle("Delete account permanently?")
-                    .setMessage("Are you sure?")
-                    .setPositiveButton("Ok", (dialog, which) -> {
+            reset_alert.setTitle(getString(R.string.del_acc_prompt))
+                    .setMessage(getString(R.string.conf_prompt))
+                    .setPositiveButton(getString(R.string.ok), (dialog, which) -> {
 
                         FirebaseUser user = auth.getCurrentUser();
                         user.delete().addOnSuccessListener(aVoid -> {
 
-                            Toast.makeText(profileActivity.this, "Account deleted", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(profileActivity.this,
+                                    getString(R.string.acc_del),
+                                    Toast.LENGTH_SHORT).show();
                             auth.signOut();
 
                             startActivity(new Intent(getApplicationContext(), loginActivity.class));
@@ -132,7 +134,7 @@ public class profileActivity extends AppCompatActivity {
                         }).addOnFailureListener(e -> Toast.makeText(
                                 profileActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show()
                         );
-                    }).setNegativeButton("Cancel", null).create().show();
+                    }).setNegativeButton(getString(R.string.cancel), null).create().show();
         });
 
 
@@ -140,25 +142,25 @@ public class profileActivity extends AppCompatActivity {
 
             View view = inflater.inflate(R.layout.reset_pop, null);
 
-            reset_alert.setTitle("Update Email?")
-                    .setMessage("Enter now email address")
-                    .setPositiveButton("Update", (dialog, which) -> {
+            reset_alert.setTitle(getString(R.string.update_email_prompt))
+                    .setMessage(getString(R.string.email_input_prompt))
+                    .setPositiveButton(getString(R.string.update), (dialog, which) -> {
 
                         EditText email = view.findViewById(R.id.reset_email_pop);
                         if (email.getText().toString().isEmpty()) {
 
-                            email.setError("Required field");
+                            email.setError(getString(R.string.field_error));
                             return;
                         }
 
                         FirebaseUser user = auth.getCurrentUser();
                         user.updateEmail(email.getText().toString()).addOnSuccessListener(aVoid -> Toast.makeText(
-                                profileActivity.this, "Email updated", Toast.LENGTH_SHORT).show()
+                                profileActivity.this, getString(R.string.email_update), Toast.LENGTH_SHORT).show()
                         ).addOnFailureListener(e -> Toast.makeText(
                                 profileActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show()
                         );
 
-                    }).setNegativeButton("Cancel", null).setView(view).create().show();
+                    }).setNegativeButton(getString(R.string.cancel), null).setView(view).create().show();
         });
     }
 

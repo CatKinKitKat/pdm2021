@@ -25,7 +25,7 @@ public class pharmacyLayout extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
 
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Order medicines");
+        getSupportActionBar().setTitle(getString(R.string.easy_med_order));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 

@@ -52,25 +52,25 @@ public class resetPassword extends AppCompatActivity {
         savePasswordBtn.setOnClickListener(v -> {
             if (userPassword.getText().toString().isEmpty()) {
 
-                userPassword.setError("Required field");
+                userPassword.setError(getString(R.string.field_error));
                 return;
             }
 
             if (userConfPassword.getText().toString().isEmpty()) {
 
-                userConfPassword.setError("Required field");
+                userConfPassword.setError(getString(R.string.field_error));
                 return;
             }
 
             if (!userPassword.getText().toString().equals(userConfPassword.getText().toString())) {
 
-                userConfPassword.setError("Password do not match");
+                userConfPassword.setError(getString(R.string.passwd_error));
                 return;
             }
 
             user.updatePassword(userPassword.getText().toString()).addOnSuccessListener(aVoid -> {
 
-                Toast.makeText(resetPassword.this, "Password updated", Toast.LENGTH_SHORT).show();
+                Toast.makeText(resetPassword.this, getString(R.string.passwd_update), Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(getApplicationContext(), profileActivity.class));
 
                 finish();

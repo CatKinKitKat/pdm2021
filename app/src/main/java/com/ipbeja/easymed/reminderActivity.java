@@ -23,7 +23,7 @@ public class reminderActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Reminder");
+        getSupportActionBar().setTitle(getString(R.string.reminder_title));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     }

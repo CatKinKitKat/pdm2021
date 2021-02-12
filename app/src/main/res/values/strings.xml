@@ -10,4 +10,31 @@
     <string name="img_context_2" translatable="false">header_img</string>
     <string name="sign_out">Sign Out</string>
     <string name="profile">Profile</string>
+    <string name="field_error">Required Field</string>
+    <string name="passwd_error">Passwords do not match</string>
+    <string name="passwd_update">Password Updated</string>
+    <string name="reminder_title">Reminder</string>
+    <string name="confpasswd_field_error">Confirm Password</string>
+    <string name="passwd_field_error">Password is required</string>
+    <string name="email_field_error">Email is required</string>
+    <string name="name_field_error">Name is required</string>
+    <string name="email_verify">Verification Email Sent</string>
+    <string name="del_acc_prompt">Delete account permanently?</string>
+    <string name="conf_prompt">Are you sure?</string>
+    <string name="ok">OK</string>
+    <string name="acc_del">Account deleted</string>
+    <string name="cancel">Cancel</string>
+    <string name="email_update">Email updated</string>
+    <string name="update">Update</string>
+    <string name="update_email_prompt">Update Email?</string>
+    <string name="email_input_prompt">Enter email address</string>
+    <string name="easy_med_order">Order medicines</string>
+    <string name="reset">Reset</string>
+    <string name="reset_passwd">Reset or forgot password?</string>
+    <string name="email_reset_passwd">Enter your email to get password reset link</string>
+    <string name="reset_email_sent">Reset email sent</string>
+    <string name="email_login_missing">Email is Missing</string>
+    <string name="passwd_login_missing">Password is Missing</string>
+    <string name="hospitals">Hospitals</string>
+    <string name="find_doctors">Find Doctors</string>
 </resources>

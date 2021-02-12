@@ -23,7 +23,7 @@ public class hospitalLayout extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Hospitals");
+        getSupportActionBar().setTitle(getString(R.string.hospitals));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 

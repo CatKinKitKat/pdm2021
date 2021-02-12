@@ -89,27 +89,27 @@ public class loginActivity extends AppCompatActivity {
             // start alertdialog
             View view = inflater.inflate(R.layout.reset_pop, null);
 
-            reset_alert.setTitle("Reset forgot password?")
-                    .setMessage("Enter your email to get password reset link")
-                    .setPositiveButton("Reset", (dialog, which) -> {
+            reset_alert.setTitle(getString(R.string.reset_passwd))
+                    .setMessage(getString(R.string.email_reset_passwd))
+                    .setPositiveButton(getString(R.string.reset), (dialog, which) -> {
 
                         //validate the email address
                         EditText email = view.findViewById(R.id.reset_email_pop);
                         if (email.getText().toString().isEmpty()) {
 
-                            email.setError("Required field");
+                            email.setError(getString(R.string.field_error));
                             return;
                         }
                         //send the reset link
 
                         firebaseAuth.sendPasswordResetEmail(email.getText().toString())
                                 .addOnSuccessListener(aVoid -> Toast.makeText(
-                                        loginActivity.this, "Reset email sent", Toast.LENGTH_SHORT).show()
+                                        loginActivity.this, getString(R.string.reset_email_sent), Toast.LENGTH_SHORT).show()
                                 ).addOnFailureListener(e -> Toast.makeText(
                                 loginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show()
                         );
 
-                    }).setNegativeButton("Cancel", null)
+                    }).setNegativeButton(getString(R.string.cancel), null)
                     .setView(view)
                     .create().show();
 
@@ -120,13 +120,13 @@ public class loginActivity extends AppCompatActivity {
             //extract and validate
             if (loginEmail.getText().toString().isEmpty()) {
 
-                loginEmail.setError("Email is Missing");
+                loginEmail.setError(getString(R.string.email_login_missing));
                 return;
             }
 
             if (password.getText().toString().isEmpty()) {
 
-                password.setError("Password is Missing");
+                password.setError(getString(R.string.passwd_login_missing));
                 return;
             }
 
