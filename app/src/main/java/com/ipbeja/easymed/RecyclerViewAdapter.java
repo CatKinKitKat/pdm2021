@@ -36,6 +36,7 @@ public class RecyclerViewAdapter extends
      * @param mData    the m data
      */
     public RecyclerViewAdapter(Context mContext, List<row> mData) {
+
         this.mContext = mContext;
         this.mData = mData;
     }
@@ -50,8 +51,10 @@ public class RecyclerViewAdapter extends
     @NonNull
     @Override
     public ImageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
         View view = LayoutInflater.from(mContext).inflate(
                 R.layout.recyclerview_item, parent, false);
+
         return new ImageViewHolder(view);
     }
 
@@ -69,7 +72,6 @@ public class RecyclerViewAdapter extends
          *
          * We'll use this library so our images load faster and safer
          */
-
         Glide.with(mContext)
                 .load(mData.get(position).getImg())
                 .into(holder.img);
@@ -103,6 +105,7 @@ public class RecyclerViewAdapter extends
          * @param itemView the item view
          */
         public ImageViewHolder(@NonNull View itemView) {
+
             super(itemView);
             img = itemView.findViewById(R.id.imageView);
 
@@ -120,21 +123,25 @@ public class RecyclerViewAdapter extends
 
             //Click type events on items
             if (getLayoutPosition() == 0) {
+
                 Intent intent = new Intent(mContext, reminderActivity.class);
                 mContext.startActivity(intent);
             }
 
             if (getLayoutPosition() == 1) {
+
                 Intent intent = new Intent(mContext, pharmacyLayout.class);
                 mContext.startActivity(intent);
             }
 
             if (getLayoutPosition() == 2) {
+
                 Intent intent = new Intent(mContext, hospitalLayout.class);
                 mContext.startActivity(intent);
             }
 
             if (getLayoutPosition() == 3) {
+
                 Intent intent = new Intent(mContext, doctorsLayout.class);
                 mContext.startActivity(intent);
             }

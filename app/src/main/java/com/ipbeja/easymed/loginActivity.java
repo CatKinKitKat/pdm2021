@@ -1,6 +1,5 @@
 package com.ipbeja.easymed;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,14 +8,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 /**
  * The type Login activity.
@@ -33,6 +28,9 @@ public class loginActivity extends AppCompatActivity {
      */
     loginBtn,
 
+    /**
+     * The Forget password btn.
+     */
     forget_password_btn;
 
     /**
@@ -50,8 +48,14 @@ public class loginActivity extends AppCompatActivity {
      */
     FirebaseAuth firebaseAuth;
 
+    /**
+     * The Reset alert.
+     */
     AlertDialog.Builder reset_alert;
 
+    /**
+     * The Inflater.
+     */
     LayoutInflater inflater;
 
 
@@ -80,61 +84,48 @@ public class loginActivity extends AppCompatActivity {
         password = findViewById(R.id.loginPassword);
         loginBtn = findViewById(R.id.loginBtn);
         forget_password_btn = findViewById(R.id.forget_password_btn);
-        forget_password_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // start alertdialog
+        forget_password_btn.setOnClickListener(v -> {
 
-                View view = inflater.inflate(R.layout.reset_pop, null);
+            // start alertdialog
+            View view = inflater.inflate(R.layout.reset_pop, null);
 
-                reset_alert.setTitle("Reset forgot password?")
-                        .setMessage("Enter your email to get password reset link")
-                        .setPositiveButton("Reset", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                //validate the email address
-                                EditText email = view.findViewById(R.id.reset_email_pop);
-                                if(email.getText().toString().isEmpty()){
+            reset_alert.setTitle("Reset forgot password?")
+                    .setMessage("Enter your email to get password reset link")
+                    .setPositiveButton("Reset", (dialog, which) -> {
 
-                                    email.setError("Required field");
-                                    return;
+                        //validate the email address
+                        EditText email = view.findViewById(R.id.reset_email_pop);
+                        if (email.getText().toString().isEmpty()) {
 
-                                }
-                                //send the reset link
+                            email.setError("Required field");
+                            return;
+                        }
+                        //send the reset link
 
-                                firebaseAuth.sendPasswordResetEmail(email.getText().toString()).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void aVoid) {
+                        firebaseAuth.sendPasswordResetEmail(email.getText().toString())
+                                .addOnSuccessListener(aVoid -> Toast.makeText(
+                                        loginActivity.this, "Reset email sent", Toast.LENGTH_SHORT).show()
+                                ).addOnFailureListener(e -> Toast.makeText(
+                                loginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show()
+                        );
 
-                                        Toast.makeText(loginActivity.this, "Reset email sent", Toast.LENGTH_SHORT).show();
+                    }).setNegativeButton("Cancel", null)
+                    .setView(view)
+                    .create().show();
 
-                                    }
-                                }).addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-
-                                        Toast.makeText(loginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-
-                                    }
-                                });
-
-                            }
-                        }).setNegativeButton("Cancel", null)
-                        .setView(view)
-                        .create().show();
-
-            }
         });
 
         loginBtn.setOnClickListener(v -> {
 
             //extract and validate
             if (loginEmail.getText().toString().isEmpty()) {
+
                 loginEmail.setError("Email is Missing");
                 return;
             }
 
             if (password.getText().toString().isEmpty()) {
+
                 password.setError("Password is Missing");
                 return;
             }
@@ -142,12 +133,15 @@ public class loginActivity extends AppCompatActivity {
             //data is valid
             //login user
             firebaseAuth.signInWithEmailAndPassword(
+
                     loginEmail.getText().toString(),
                     password.getText().toString()).addOnSuccessListener(authResult -> {
+
                 //login is successful
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
                 finish();
             }).addOnFailureListener(e -> Toast.makeText(
+
                     loginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show()
             );
         });

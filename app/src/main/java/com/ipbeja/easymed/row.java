@@ -18,6 +18,7 @@ public class row {
     public row(int img) {
         this.img = img;
     }
+
     /**
      * Gets img.
      *

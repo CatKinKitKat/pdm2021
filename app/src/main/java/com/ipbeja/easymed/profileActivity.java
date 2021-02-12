@@ -1,6 +1,5 @@
 package com.ipbeja.easymed;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,13 +11,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -35,15 +31,33 @@ public class profileActivity extends AppCompatActivity {
     /**
      * The Verify email btn.
      */
-    Button verifyEmailBtn, resetBtn, updateEmailMenu, deleteAccountBtn;
+    Button verifyEmailBtn,
+    /**
+     * The Reset btn.
+     */
+    resetBtn,
+    /**
+     * The Update email menu.
+     */
+    updateEmailMenu,
+    /**
+     * The Delete account btn.
+     */
+    deleteAccountBtn;
 
     /**
      * The Auth.
      */
     FirebaseAuth auth;
 
+    /**
+     * The Reset alert.
+     */
     AlertDialog.Builder reset_alert;
 
+    /**
+     * The Inflater.
+     */
     LayoutInflater inflater;
 
     /**
@@ -53,8 +67,10 @@ public class profileActivity extends AppCompatActivity {
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile_layout);
+
         auth = FirebaseAuth.getInstance();
         verifyMsg = findViewById(R.id.verifyEmailMsg);
         verifyEmailBtn = findViewById(R.id.verifyEmailBtn);
@@ -74,98 +90,76 @@ public class profileActivity extends AppCompatActivity {
 
             verifyEmailBtn.setVisibility(View.VISIBLE);
             verifyMsg.setVisibility(View.VISIBLE);
-
         }
 
         verifyEmailBtn.setOnClickListener(v -> {
+
             //send verification email
             auth.getCurrentUser().sendEmailVerification().addOnSuccessListener(aVoid -> {
+
                 Toast.makeText(profileActivity.this, "Verification Email Sent", Toast.LENGTH_SHORT).show();
+
                 verifyEmailBtn.setVisibility(View.GONE);
                 verifyMsg.setVisibility(View.GONE);
+
                 FirebaseAuth.getInstance().signOut();
-                profileActivity.this.startActivity(new Intent(profileActivity.this.getApplicationContext(), loginActivity.class));
+                profileActivity.this.startActivity(new Intent(
+                        profileActivity.this.getApplicationContext(), loginActivity.class)
+                );
                 profileActivity.this.finish();
             });
         });
 
-        resetBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), resetPassword.class));
-            }
-        });
+        resetBtn.setOnClickListener(v -> startActivity(
 
-        deleteAccountBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                reset_alert.setTitle("Delete account permanently?")
-                        .setMessage("Are you sure?")
-                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                FirebaseUser user = auth.getCurrentUser();
-                                user.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void aVoid) {
-                                        Toast.makeText(profileActivity.this, "Account deleted", Toast.LENGTH_SHORT).show();
-                                        auth.signOut();
-                                        startActivity(new Intent(getApplicationContext(), loginActivity.class));
-                                        finish();
-                                    }
-                                }).addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        Toast.makeText(profileActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-                            }
-                        }).setNegativeButton("Cancel", null)
-                        .create().show();;
-            }
+                new Intent(getApplicationContext(), resetPassword.class))
+        );
+
+        deleteAccountBtn.setOnClickListener(v -> {
+
+            reset_alert.setTitle("Delete account permanently?")
+                    .setMessage("Are you sure?")
+                    .setPositiveButton("Ok", (dialog, which) -> {
+
+                        FirebaseUser user = auth.getCurrentUser();
+                        user.delete().addOnSuccessListener(aVoid -> {
+
+                            Toast.makeText(profileActivity.this, "Account deleted", Toast.LENGTH_SHORT).show();
+                            auth.signOut();
+
+                            startActivity(new Intent(getApplicationContext(), loginActivity.class));
+                            finish();
+                        }).addOnFailureListener(e -> Toast.makeText(
+                                profileActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show()
+                        );
+                    }).setNegativeButton("Cancel", null).create().show();
         });
 
 
+        updateEmailMenu.setOnClickListener(v -> {
 
-        updateEmailMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            View view = inflater.inflate(R.layout.reset_pop, null);
 
-                View view = inflater.inflate(R.layout.reset_pop, null);
-                reset_alert.setTitle("Update Email?")
-                        .setMessage("Enter now email address")
-                        .setPositiveButton("Update", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
+            reset_alert.setTitle("Update Email?")
+                    .setMessage("Enter now email address")
+                    .setPositiveButton("Update", (dialog, which) -> {
 
-                                EditText email = view.findViewById(R.id.reset_email_pop);
-                                if(email.getText().toString().isEmpty()){
+                        EditText email = view.findViewById(R.id.reset_email_pop);
+                        if (email.getText().toString().isEmpty()) {
 
-                                    email.setError("Required field");
-                                    return;
+                            email.setError("Required field");
+                            return;
+                        }
 
-                                }
+                        FirebaseUser user = auth.getCurrentUser();
+                        user.updateEmail(email.getText().toString()).addOnSuccessListener(aVoid -> Toast.makeText(
+                                profileActivity.this, "Email updated", Toast.LENGTH_SHORT).show()
+                        ).addOnFailureListener(e -> Toast.makeText(
+                                profileActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show()
+                        );
 
-                                FirebaseUser user = auth.getCurrentUser();
-                                user.updateEmail(email.getText().toString()).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void aVoid) {
-                                        Toast.makeText(profileActivity.this, "Email updated", Toast.LENGTH_SHORT).show();
-                                    }
-                                }).addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        Toast.makeText(profileActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-
-                            }
-                        }).setNegativeButton("Cancel", null)
-                        .setView(view)
-                        .create().show();
-            }
+                    }).setNegativeButton("Cancel", null).setView(view).create().show();
         });
-
     }
 
     /**
@@ -176,6 +170,7 @@ public class profileActivity extends AppCompatActivity {
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+
         getMenuInflater().inflate(R.menu.menu_profile, menu);
         return true;
     }
@@ -188,22 +183,19 @@ public class profileActivity extends AppCompatActivity {
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
         int id = item.getItemId();
         if (id == R.id.logout) {
 
             FirebaseAuth.getInstance().signOut();
             startActivity(new Intent(getApplicationContext(), loginActivity.class));
             finish();
-
         } else if (id == android.R.id.home) {
 
-            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
             finish();
-
         }
 
         return super.onOptionsItemSelected(item);
     }
-
-
 }

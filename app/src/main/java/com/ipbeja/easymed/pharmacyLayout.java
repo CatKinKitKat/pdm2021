@@ -18,14 +18,15 @@ public class pharmacyLayout extends AppCompatActivity {
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pharmacy_layout);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
+
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Order medicines");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
     }
 
     /**
@@ -36,10 +37,13 @@ public class pharmacyLayout extends AppCompatActivity {
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
         if (item.getItemId() == android.R.id.home) {
+
             finish();
             return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 }

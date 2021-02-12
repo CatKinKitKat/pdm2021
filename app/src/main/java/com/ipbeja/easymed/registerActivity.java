@@ -16,12 +16,42 @@ import com.google.firebase.auth.FirebaseAuth;
  */
 public class registerActivity extends AppCompatActivity {
 
-    EditText registerName, registerEmail, registerPassword, registerConfPass;
-    Button registerUserBtn, goToLogin;
+    /**
+     * The Register name.
+     */
+    EditText registerName,
+    /**
+     * The Register email.
+     */
+    registerEmail,
+    /**
+     * The Register password.
+     */
+    registerPassword,
+    /**
+     * The Register conf pass.
+     */
+    registerConfPass;
+    /**
+     * The Register user btn.
+     */
+    Button registerUserBtn,
+    /**
+     * The Go to login.
+     */
+    goToLogin;
+    /**
+     * The F auth.
+     */
     FirebaseAuth fAuth;
 
+    /**
+     * On create.
+     *
+     * @param savedInstanceState the saved instance state
+     */
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register_activity);
@@ -36,11 +66,13 @@ public class registerActivity extends AppCompatActivity {
         fAuth = FirebaseAuth.getInstance();
 
         goToLogin.setOnClickListener(v -> {
+
             startActivity(new Intent(getApplicationContext(), loginActivity.class));
             finish();
         });
 
         registerUserBtn.setOnClickListener(v -> {
+
             //extract the data
             String name = registerName.getText().toString();
             String email = registerEmail.getText().toString();
@@ -48,11 +80,13 @@ public class registerActivity extends AppCompatActivity {
             String confPass = registerConfPass.getText().toString();
 
             if (name.isEmpty()) {
+
                 registerName.setError("Name is required");
                 return;
             }
 
             if (email.isEmpty()) {
+
                 registerEmail.setError("Email is required");
                 return;
             }
@@ -64,11 +98,13 @@ public class registerActivity extends AppCompatActivity {
             }
 
             if (confPass.isEmpty()) {
+
                 registerConfPass.setError("Confirmation Password is required");
                 return;
             }
 
             if (!password.equals(confPass)) {
+
                 registerConfPass.setError("Password do not match");
                 return;
             }
@@ -76,10 +112,12 @@ public class registerActivity extends AppCompatActivity {
             //data is validated
             //register the user using firebase
             fAuth.createUserWithEmailAndPassword(email, password).addOnSuccessListener(authResult -> {
+
                 // send user to next page
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
                 finish();
             }).addOnFailureListener(e -> Toast.makeText(
+
                     registerActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show()
             );
         });

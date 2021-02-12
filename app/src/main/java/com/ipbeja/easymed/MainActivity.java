@@ -104,6 +104,8 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Initialize data into recycler view.
+     *
+     * @param covers the covers
      */
     private void InitializeDataIntoRecyclerView(int[] covers) {
 
@@ -126,6 +128,7 @@ public class MainActivity extends AppCompatActivity {
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
@@ -138,19 +141,19 @@ public class MainActivity extends AppCompatActivity {
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
         int id = item.getItemId();
         if (id == R.id.logout) {
 
             FirebaseAuth.getInstance().signOut();
             startActivity(new Intent(getApplicationContext(), loginActivity.class));
             finish();
-
         } else if (id == R.id.profile) {
 
             startActivity(new Intent(getApplicationContext(), profileActivity.class));
             finish();
-
         }
+
         return super.onOptionsItemSelected(item);
     }
 }
