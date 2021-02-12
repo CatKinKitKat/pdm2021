@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="password">Passwort</string>
+    <string name="sign_out">Ausfahrt</string>
+    <string name="profile">Profil</string>
+    <string name="field_error">Pflichtfeld</string>
+    <string name="passwd_error">Passwörter stimmen nicht überein</string>
+    <string name="find_doctors">Mediziner finden</string>
+    <string name="hospitals">Krankenhäuser</string>
+    <string name="passwd_login_missing">Passwort fehlt</string>
+    <string name="email_login_missing">Email fehlt</string>
+    <string name="reset_email_sent">Email zum Zurücksetzen des Passworts gesendet</string>
+    <string name="email_reset_passwd">"Geben Sie Ihre Email, um den Link zum Zurücksetzen des Passworts zu erhalten "</string>
+    <string name="reset_passwd">"Passwort zurücksetzen/vergessen "</string>
+    <string name="reset">Zurücksetzen</string>
+    <string name="easy_med_order">Medikamente bestellen</string>
+    <string name="email_input_prompt">Email eingeben</string>
+    <string name="update_email_prompt">Email aktualisieren?</string>
+    <string name="update">Aktualisieren</string>
+    <string name="email_update">Emailt aktualisiert</string>
+    <string name="cancel">Abbrechen</string>
+    <string name="acc_del">Konto gelöscht</string>
+    <string name="conf_prompt">Bist du sicher?</string>
+    <string name="del_acc_prompt">Konto dauerhaft löschen?</string>
+    <string name="email_verify">Bestätigungs Email gesendet</string>
+    <string name="name_field_error">Name ist erforderlich</string>
+    <string name="email_field_error">Email ist erforderlich</string>
+    <string name="passwd_field_error">Passwort ist erforderlich</string>
+    <string name="reminder_title">Erinnerung</string>
+    <string name="passwd_update">Passwort aktualisiert</string>
+    <string name="confpasswd_field_error">Bestätige das Passwort</string>
+    <string name="sign_up">Anmelden</string>
+    <string name="sign_in">Sie haben bereits ein Konto? Hier anmelden</string>
+</resources>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="password">Contrasenã</string>
+    <string name="sign_out">Salir</string>
+    <string name="profile">Perfil</string>
+    <string name="field_error">Campo Requerido</string>
+    <string name="passwd_error">Las contraseñas no coinciden</string>
+    <string name="passwd_field_error">Se requiere contraseña</string>
+    <string name="email_field_error">Se requiere Email</string>
+    <string name="name_field_error">Se requiere el nombre</string>
+    <string name="email_verify">Email de verificación ha sido enviado</string>
+    <string name="del_acc_prompt">¿Eliminar cuenta de forma permanente?</string>
+    <string name="conf_prompt">¿Estas seguro?</string>
+    <string name="acc_del">Cuenta borrada</string>
+    <string name="cancel">Cancelar</string>
+    <string name="email_update">Email actualiazado</string>
+    <string name="update">Actualizar</string>
+    <string name="update_email_prompt">¿Actualizar Email?</string>
+    <string name="email_input_prompt">Ingrese su Email</string>
+    <string name="easy_med_order">Pedir medicamentos</string>
+    <string name="reset">Reiniciar</string>
+    <string name="email_reset_passwd">"Ingrese su Email para restablecer la contraseña "</string>
+    <string name="reset_passwd">Restablecer/olvidé la contraseña</string>
+    <string name="reset_email_sent">Email de restablecimiento de contraseña enviado</string>
+    <string name="email_login_missing">Falta el Email</string>
+    <string name="passwd_login_missing">Falta la contraseña</string>
+    <string name="hospitals">Hospitales</string>
+    <string name="find_doctors">Encontrar Médicos</string>
+    <string name="reminder_title">Recordatorios</string>
+    <string name="passwd_update">Contraseña actualiza</string>
+    <string name="confpasswd_field_error">Confirmar contraseña</string>
+    <string name="sign_in">¿Ya tienes una cuenta? Firme aquí</string>
+    <string name="sign_up">Inscribirse</string>
+</resources>

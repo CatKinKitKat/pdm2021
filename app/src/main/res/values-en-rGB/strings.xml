@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="sign_in">Already have an account? Sign in here</string>
     <string name="sign_up">Sign Up</string>
@@ -17,7 +16,6 @@
     <string name="email_verify">Verification Email Sent</string>
     <string name="del_acc_prompt">Delete account permanently?</string>
     <string name="conf_prompt">Are you sure?</string>
-    <string name="ok">OK</string>
     <string name="acc_del">Account deleted</string>
     <string name="cancel">Cancel</string>
     <string name="email_update">Email updated</string>
@@ -26,7 +24,7 @@
     <string name="email_input_prompt">Enter email address</string>
     <string name="easy_med_order">Order medicines</string>
     <string name="reset">Reset</string>
-    <string name="reset_passwd">Reset or forgot password?</string>
+    <string name="reset_passwd">Reset or forgot password</string>
     <string name="email_reset_passwd">Enter your email to get password reset link</string>
     <string name="reset_email_sent">Reset email sent</string>
     <string name="email_login_missing">Email is Missing</string>
