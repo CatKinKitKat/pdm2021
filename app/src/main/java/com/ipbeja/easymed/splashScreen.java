@@ -14,7 +14,7 @@ public class splashScreen extends AppCompatActivity {
     /**
      * The constant SPLASH_TIMEOUT.
      */
-    private static final long SPLASH_TIMEOUT = 3000;
+    private static final long SPLASH_TIMEOUT = 1000;
 
     /**
      * On create.
