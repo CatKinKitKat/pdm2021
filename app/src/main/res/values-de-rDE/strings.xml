@@ -11,7 +11,7 @@
     <string name="email_login_missing">Email fehlt</string>
     <string name="reset_email_sent">Email zum Zurücksetzen des Passworts gesendet</string>
     <string name="email_reset_passwd">"Geben Sie Ihre Email, um den Link zum Zurücksetzen des Passworts zu erhalten "</string>
-    <string name="reset_passwd">"Passwort zurücksetzen/vergessen "</string>
+    <string name="reset_passwd">"Passwort vergessen "</string>
     <string name="reset">Zurücksetzen</string>
     <string name="easy_med_order">Medikamente bestellen</string>
     <string name="email_input_prompt">Email eingeben</string>
@@ -36,4 +36,5 @@
     <string name="verify_now_logout">Verify Now and Logout</string>
     <string name="sign_in_here">Sie haben bereits ein Konto? Hier anmelden</string>
     <string name="save">Speichern</string>
+    <string name="sign_up_here">Noch kein Konto? Hier anmelden</string>
 </resources>

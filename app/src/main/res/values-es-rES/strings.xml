@@ -20,7 +20,7 @@
     <string name="easy_med_order">Pedir medicamentos</string>
     <string name="reset">Reiniciar</string>
     <string name="email_reset_passwd">"Ingrese su Email para restablecer la contraseña "</string>
-    <string name="reset_passwd">Restablecer/olvidé la contraseña</string>
+    <string name="reset_passwd">Olvidé la contraseña</string>
     <string name="reset_email_sent">Email de restablecimiento de contraseña enviado</string>
     <string name="email_login_missing">Falta el Email</string>
     <string name="passwd_login_missing">Falta la contraseña</string>
@@ -36,4 +36,5 @@
     <string name="verify_now_logout">Verify Now and Logout</string>
     <string name="sign_in_here">¿Ya tienes una cuenta? Firme aquí</string>
     <string name="save">Salvar</string>
+    <string name="sign_up_here">¿Aún no tienes una cuenta? Registrate aquí</string>
 </resources>

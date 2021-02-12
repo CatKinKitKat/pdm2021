@@ -30,7 +30,7 @@
     <string name="email_input_prompt">Enter email address</string>
     <string name="easy_med_order">Order medicines</string>
     <string name="reset">Reset</string>
-    <string name="reset_passwd">Reset or forgot password</string>
+    <string name="reset_passwd">Forgot password</string>
     <string name="email_reset_passwd">Enter your email to get password reset link</string>
     <string name="reset_email_sent">Reset email sent</string>
     <string name="email_login_missing">Email is Missing</string>
@@ -41,5 +41,6 @@
     <string name="name">Name</string>
     <string name="verify_now_logout">Verify Now and Logout</string>
     <string name="sign_in_here">Already have an account? Sign in here</string>
+    <string name="sign_up_here">Don\'t an account yet? Sign up here</string>
     <string name="save">Save</string>
 </resources>

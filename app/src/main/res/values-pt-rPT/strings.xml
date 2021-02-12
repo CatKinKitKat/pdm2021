@@ -24,7 +24,7 @@
     <string name="email_input_prompt">Coloque o email</string>
     <string name="easy_med_order">Encomendar medicação</string>
     <string name="reset">Redefinir</string>
-    <string name="reset_passwd">Redefinir/Esqueci a password.</string>
+    <string name="reset_passwd">Esqueci a password.</string>
     <string name="email_reset_passwd">Digita o email para repor a password</string>
     <string name="reset_email_sent">Email de reposição enviado</string>
     <string name="email_login_missing">Falta o Email</string>
@@ -36,4 +36,5 @@
     <string name="verify_now_logout">Verify Now and Logout</string>
     <string name="sign_in_here">Já está registado? Entre aqui</string>
     <string name="save">Guardar</string>
+    <string name="sign_up_here">Ainda não tem uma conta? Assine aqui</string>
 </resources>
