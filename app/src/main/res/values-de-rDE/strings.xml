@@ -30,5 +30,10 @@
     <string name="passwd_update">Passwort aktualisiert</string>
     <string name="confpasswd_field_error">Bestätige das Passwort</string>
     <string name="sign_up">Anmelden</string>
-    <string name="sign_in">Sie haben bereits ein Konto? Hier anmelden</string>
+    <string name="sign_in">Hier anmelden</string>
+    <string name="conf_passwd">Bestätige das Passwort</string>
+    <string name="name">Name</string>
+    <string name="verify_now_logout">Verify Now and Logout</string>
+    <string name="sign_in_here">Sie haben bereits ein Konto? Hier anmelden</string>
+    <string name="save">Speichern</string>
 </resources>

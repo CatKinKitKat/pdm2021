@@ -29,6 +29,11 @@
     <string name="reminder_title">Recordatorios</string>
     <string name="passwd_update">Contraseña actualiza</string>
     <string name="confpasswd_field_error">Confirmar contraseña</string>
-    <string name="sign_in">¿Ya tienes una cuenta? Firme aquí</string>
+    <string name="sign_in">Firme aquí</string>
     <string name="sign_up">Inscribirse</string>
+    <string name="conf_passwd">Confirma la contraseña</string>
+    <string name="name">Nombre</string>
+    <string name="verify_now_logout">Verify Now and Logout</string>
+    <string name="sign_in_here">¿Ya tienes una cuenta? Firme aquí</string>
+    <string name="save">Salvar</string>
 </resources>

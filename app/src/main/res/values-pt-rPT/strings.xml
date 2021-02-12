@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="password">Password</string>
-    <string name="sign_in">Já está registado? Entre aqui</string>
+    <string name="sign_in">Entre aqui</string>
     <string name="sign_up">Registar</string>
     <string name="sign_out">Sair</string>
     <string name="profile">Perfil</string>
@@ -31,4 +31,9 @@
     <string name="passwd_login_missing">Falta a Password</string>
     <string name="hospitals">Hospitais</string>
     <string name="find_doctors">Encontrar Médicos</string>
+    <string name="conf_passwd">Confirme a password</string>
+    <string name="name">Nome</string>
+    <string name="verify_now_logout">Verify Now and Logout</string>
+    <string name="sign_in_here">Já está registado? Entre aqui</string>
+    <string name="save">Guardar</string>
 </resources>
