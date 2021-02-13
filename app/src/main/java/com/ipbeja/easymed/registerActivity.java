@@ -2,13 +2,23 @@ package com.ipbeja.easymed;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.ipbeja.easymed.FireStore.Users;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -16,6 +26,7 @@ import com.google.firebase.auth.FirebaseAuth;
  */
 public class registerActivity extends AppCompatActivity {
 
+    public static final String TAG = "TAG";
     /**
      * The Register name.
      */
@@ -31,7 +42,9 @@ public class registerActivity extends AppCompatActivity {
     /**
      * The Register conf pass.
      */
-    registerConfPass;
+    registerConfPass,
+
+    phoneNumber;
     /**
      * The Register user btn.
      */
@@ -44,6 +57,10 @@ public class registerActivity extends AppCompatActivity {
      * The F auth.
      */
     FirebaseAuth fAuth;
+
+    FirebaseFirestore fStore;
+
+    String userID;
 
     /**
      * On create.
@@ -58,13 +75,14 @@ public class registerActivity extends AppCompatActivity {
 
         registerName = findViewById(R.id.registerName);
         registerEmail = findViewById(R.id.registerEmail);
+        phoneNumber = findViewById(R.id.phoneNum);
         registerPassword = findViewById(R.id.registerPassword);
         registerConfPass = findViewById(R.id.confPassword);
         registerUserBtn = findViewById(R.id.resetBtn);
         goToLogin = findViewById(R.id.goToLogin);
 
         fAuth = FirebaseAuth.getInstance();
-
+        fStore = FirebaseFirestore.getInstance();
         goToLogin.setOnClickListener(v -> {
 
             startActivity(new Intent(getApplicationContext(), loginActivity.class));
@@ -76,6 +94,7 @@ public class registerActivity extends AppCompatActivity {
             //extract the data
             String name = registerName.getText().toString();
             String email = registerEmail.getText().toString();
+            String phone = phoneNumber.getText().toString();
             String password = registerPassword.getText().toString();
             String confPass = registerConfPass.getText().toString();
 
@@ -114,8 +133,31 @@ public class registerActivity extends AppCompatActivity {
             fAuth.createUserWithEmailAndPassword(email, password).addOnSuccessListener(authResult -> {
 
                 // send user to next page
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                finish();
+                userID = fAuth.getCurrentUser().getUid();
+
+                Users u = new Users(email, name, phone, "images/pill.png", userID);
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                db.collection("users").add(u)
+                        .addOnSuccessListener(this, documentReference ->{
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            finish();
+                        });
+
+                /*
+                DocumentReference documentReference = fStore.collection("users").document(userID);
+                Map<String,Object> user = new HashMap<>();
+                user.put("fName",name);
+                user.put("email",email);
+                user.put("phone",phone);
+                documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "onSuccess: user Profile is created for "+ userID);
+                    }
+                });
+
+                 */
+
             }).addOnFailureListener(e -> Toast.makeText(
 
                     registerActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show()
