@@ -37,4 +37,11 @@
     <string name="verify_now_logout">Verify Now and Logout</string>
     <string name="save">Save</string>
     <string name="sign_up_here">Don\'t have an account yet? Sign up here</string>
+    <string name="verify_email_prompt">Please Verify your Email Address</string>
+    <string name="change_password">Change Password</string>
+    <string name="del_acc">Delete account</string>
+    <string name="change_profile_picture">Change Profile Picture</string>
+    <string name="del_acc_error">Account deletion failed</string>
+    <string name="del_acc_success">Account successfully deleted</string>
+    <string name="cancel_action">Action cancelled</string>
 </resources>

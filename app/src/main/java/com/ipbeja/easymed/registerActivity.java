@@ -2,23 +2,15 @@ package com.ipbeja.easymed;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentChange;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.ipbeja.easymed.FireStore.Users;
-
-import java.util.HashMap;
-import java.util.Map;
 
 
 /**
@@ -26,40 +18,30 @@ import java.util.Map;
  */
 public class registerActivity extends AppCompatActivity {
 
+    /**
+     * The constant TAG.
+     */
     public static final String TAG = "TAG";
-    /**
-     * The Register name.
-     */
-    EditText registerName,
-    /**
-     * The Register email.
-     */
-    registerEmail,
-    /**
-     * The Register password.
-     */
-    registerPassword,
-    /**
-     * The Register conf pass.
-     */
-    registerConfPass,
 
-    phoneNumber;
     /**
-     * The Register user btn.
+     * The Register name, email, phone, passwd and confirmation fields
      */
-    Button registerUserBtn,
+    EditText registerName, registerEmail, registerPassword, registerConfPass, phoneNumber;
+
     /**
-     * The Go to login.
+     * The Register user and go to login buttons
      */
-    goToLogin;
+    Button registerUserBtn, goToLogin;
+
     /**
-     * The F auth.
+     * Firebase objects.
      */
     FirebaseAuth fAuth;
-
     FirebaseFirestore fStore;
 
+    /**
+     * The User id.
+     */
     String userID;
 
     /**
@@ -83,6 +65,7 @@ public class registerActivity extends AppCompatActivity {
 
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
+
         goToLogin.setOnClickListener(v -> {
 
             startActivity(new Intent(getApplicationContext(), loginActivity.class));
@@ -134,32 +117,15 @@ public class registerActivity extends AppCompatActivity {
 
                 // send user to next page
                 userID = fAuth.getCurrentUser().getUid();
-
                 Users u = new Users(email, name, phone, "images/pill.png", userID);
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
+
                 db.collection("users").add(u)
-                        .addOnSuccessListener(this, documentReference ->{
+                        .addOnSuccessListener(this, documentReference -> {
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                             finish();
                         });
-
-                /*
-                DocumentReference documentReference = fStore.collection("users").document(userID);
-                Map<String,Object> user = new HashMap<>();
-                user.put("fName",name);
-                user.put("email",email);
-                user.put("phone",phone);
-                documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d(TAG, "onSuccess: user Profile is created for "+ userID);
-                    }
-                });
-
-                 */
-
             }).addOnFailureListener(e -> Toast.makeText(
-
                     registerActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show()
             );
         });

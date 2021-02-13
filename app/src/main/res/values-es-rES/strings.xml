@@ -37,4 +37,11 @@
     <string name="sign_in_here">¿Ya tienes una cuenta? Firme aquí</string>
     <string name="save">Salvar</string>
     <string name="sign_up_here">¿Aún no tienes una cuenta? Registrate aquí</string>
+    <string name="verify_email_prompt">Por favor verifique su dirección de Email</string>
+    <string name="change_password">Cambiar la contraseña</string>
+    <string name="del_acc">Borrar cuenta</string>
+    <string name="change_profile_picture">Cambiar foto de perfil</string>
+    <string name="del_acc_error">Error al eliminar la cuenta</string>
+    <string name="del_acc_success">Cuenta eliminada correctamente</string>
+    <string name="cancel_action">Acción cancelada</string>
 </resources>

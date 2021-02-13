@@ -37,4 +37,11 @@
     <string name="sign_in_here">Sie haben bereits ein Konto? Hier anmelden</string>
     <string name="save">Speichern</string>
     <string name="sign_up_here">Sie haben noch keinen Account? Hier anmelden</string>
+    <string name="verify_email_prompt">Bitte bestätigen sie ihre Email Adresse</string>
+    <string name="change_password">Passwort ändern</string>
+    <string name="del_acc">Konto löschen</string>
+    <string name="change_profile_picture">Profilbild ändern</string>
+    <string name="del_acc_error">Das Löschen des Kontos ist fehlgeschlagen</string>
+    <string name="del_acc_success">"Konto erfolgreich gelöscht "</string>
+    <string name="cancel_action">Aktion abgebrochen</string>
 </resources>

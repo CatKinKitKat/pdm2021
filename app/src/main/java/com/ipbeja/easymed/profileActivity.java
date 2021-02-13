@@ -12,27 +12,21 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 import com.ipbeja.easymed.FireStore.Users;
 
 import java.io.ByteArrayOutputStream;
@@ -46,45 +40,37 @@ public class profileActivity extends AppCompatActivity {
     /**
      * The Verify msg.
      */
-
     public static final String TAG = "TAG";
 
+    /**
+     * The constant CAMERA_REQUEST_CODE.
+     */
     public static final int CAMERA_REQUEST_CODE = 3000;
 
+    /**
+     * The User.
+     */
     private Users user;
 
+    /**
+     * The Verify message, name, email and phone.
+     */
     private TextView verifyMsg, name, email, phone;
 
     /**
      * The Verify email btn.
      */
-    private Button verifyEmailBtn,
-    /**
-     * The Reset btn.
-     */
-    resetBtn,
-    /**
-     * The Update email menu.
-     */
-    updateEmailMenu,
-    /**
-     * The Delete account btn.
-     */
-    deleteAccountBtn,
-
-
-    changeProfile;
+    private Button verifyEmailBtn;
 
     /**
      * The Auth.
      */
     private FirebaseAuth fAuth;
 
-    private FirebaseFirestore fStore;
-
+    /**
+     * The User id.
+     */
     private String userID;
-
-    private StorageReference storageReference;
 
     /**
      * The Reset alert.
@@ -92,10 +78,8 @@ public class profileActivity extends AppCompatActivity {
     private AlertDialog.Builder reset_alert;
 
     /**
-     * The Inflater.
+     * The Profile image.
      */
-    private LayoutInflater inflater;
-
     private ImageView profileImage;
 
     /**
@@ -112,36 +96,38 @@ public class profileActivity extends AppCompatActivity {
         fAuth = FirebaseAuth.getInstance();
         verifyMsg = findViewById(R.id.verifyEmailMsg);
         verifyEmailBtn = findViewById(R.id.verifyEmailBtn);
-        resetBtn = findViewById(R.id.resetBtn);
-        //updateEmailMenu = findViewById(R.id.updateEmailMenu);
-        deleteAccountBtn = findViewById(R.id.delete_account_menu);
+
+        Button resetBtn = findViewById(R.id.resetBtn);
+        Button deleteAccountBtn = findViewById(R.id.delete_account_menu);
+
         name = findViewById(R.id.profileName);
         email = findViewById(R.id.profileEmail);
         phone = findViewById(R.id.profileNumber);
-
         profileImage = findViewById(R.id.profileImage);
-        changeProfile = findViewById(R.id.changeProfile);
 
-        fStore = FirebaseFirestore.getInstance();
-        storageReference = FirebaseStorage.getInstance().getReference();
+        Button changeProfile = findViewById(R.id.changeProfile);
+
+        FirebaseFirestore.getInstance();
+        FirebaseStorage.getInstance().getReference();
         userID = fAuth.getCurrentUser().getUid();
-
-
         FirebaseFirestore db = FirebaseFirestore.getInstance();
+
         db.collection("users")
                 .whereEqualTo("authID", userID)
                 .get()
                 .addOnCompleteListener(task -> {
+
                     if (task.isSuccessful()) {
 
                         Users u = null;
 
                         for (QueryDocumentSnapshot document : task.getResult()) {
+
                             u = document.toObject(Users.class);
                             u.setFireStoreID(document.getId());
                         }
 
-                        if (u != null){
+                        if (u != null) {
 
                             this.user = u;
 
@@ -152,44 +138,18 @@ public class profileActivity extends AppCompatActivity {
                             FirebaseStorage storage = FirebaseStorage.getInstance();
                             StorageReference storageRef = storage.getReference();
                             StorageReference picturePath = storageRef.child(u.getProfileImagePath());
+
                             picturePath.getBytes(Long.MAX_VALUE).addOnSuccessListener(bytes -> {
-                                this.profileImage.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
+                                this.profileImage.setImageBitmap(
+                                        BitmapFactory.decodeByteArray(bytes, 0, bytes.length)
+                                );
                             });
-
                         }
-
-
                     }
-
                 });
 
-
-
-
-        /*
-        DocumentReference documentReference = fStore.collection("users").document(userID);
-        documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
-            @Override
-            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-                if (e!=null){
-
-                    Log.d(TAG, "Error"+e.getMessage());
-
-                }
-                else {
-
-                    phone.setText(documentSnapshot.getString("phone"));
-                    name.setText(documentSnapshot.getString("fName"));
-                    email.setText(documentSnapshot.getString("email"));
-
-                }
-            }
-        });
-
-         */
-
         reset_alert = new AlertDialog.Builder(this);
-        inflater = this.getLayoutInflater();
+        LayoutInflater inflater = this.getLayoutInflater();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -239,18 +199,12 @@ public class profileActivity extends AppCompatActivity {
                                     Toast.LENGTH_SHORT).show();
                             db.collection("users").document(this.user.getFireStoreID())
                                     .delete()
-                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                        @Override
-                                        public void onSuccess(Void aVoid) {
-                                            Log.d(TAG, "DocumentSnapshot successfully deleted!");
-                                        }
-                                    })
-                                    .addOnFailureListener(new OnFailureListener() {
-                                        @Override
-                                        public void onFailure(@NonNull Exception e) {
-                                            Log.w(TAG, "Error deleting document", e);
-                                        }
-                                    });
+                                    .addOnSuccessListener(aVoid1 -> Log.d(
+                                            TAG, getString(R.string.del_acc_success)
+                                    ))
+                                    .addOnFailureListener(e -> Log.w(
+                                            TAG, getString(R.string.del_acc_error), e
+                                    ));
 
                             fAuth.signOut();
                             startActivity(new Intent(getApplicationContext(), loginActivity.class));
@@ -261,80 +215,57 @@ public class profileActivity extends AppCompatActivity {
                     }).setNegativeButton(getString(R.string.cancel), null).create().show();
         });
 
-
-        changeProfile.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(i, CAMERA_REQUEST_CODE);
-            }
+        changeProfile.setOnClickListener(v -> {
+            Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            startActivityForResult(i, CAMERA_REQUEST_CODE);
         });
-/*
-        updateEmailMenu.setOnClickListener(v -> {
-
-            View view = inflater.inflate(R.layout.reset_pop, null);
-
-            reset_alert.setTitle(getString(R.string.update_email_prompt))
-                    .setMessage(getString(R.string.email_input_prompt))
-                    .setPositiveButton(getString(R.string.update), (dialog, which) -> {
-
-                        EditText email = view.findViewById(R.id.reset_email_pop);
-                        if (email.getText().toString().isEmpty()) {
-
-                            email.setError(getString(R.string.field_error));
-                            return;
-                        }
-
-                        FirebaseUser user = fAuth.getCurrentUser();
-                        user.updateEmail(email.getText().toString()).addOnSuccessListener(aVoid -> Toast.makeText(
-                                profileActivity.this, getString(R.string.email_update), Toast.LENGTH_SHORT).show()
-                        ).addOnFailureListener(e -> Toast.makeText(
-                                profileActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show()
-                        );
-
-                    }).setNegativeButton(getString(R.string.cancel), null).setView(view).create().show();
-        });
-
- */
     }
 
+    /**
+     * On activity result.
+     *
+     * @param requestCode the request code
+     * @param resultCode  the result code
+     * @param data        the data
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if(requestCode == CAMERA_REQUEST_CODE){
-            if(resultCode == RESULT_OK){
+        if (requestCode == CAMERA_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
                 Bitmap bitmap = data.getParcelableExtra("data");
                 this.profileImage.setImageBitmap(bitmap);
 
                 uploadImageToFirebase();
+            } else {
+                Toast.makeText(this, getString(R.string.cancel_action), Toast.LENGTH_SHORT).show();
             }
-            else{
-                Toast.makeText(this, "Ação Cancelada", Toast.LENGTH_SHORT).show();
-            }
-        }
-        else super.onActivityResult(requestCode, resultCode, data);
+        } else super.onActivityResult(requestCode, resultCode, data);
     }
 
+    /**
+     * Upload image to firebase.
+     */
     private void uploadImageToFirebase() {
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReference();
-        String imagePath = "images/" +  UUID.randomUUID().toString() + ".jpg";
+
+        String imagePath = "images/" + UUID.randomUUID().toString() + ".jpg";
         StorageReference imageRef = storageRef.child(imagePath);
+
         profileImage.setDrawingCacheEnabled(true);
         profileImage.buildDrawingCache();
+
         Bitmap bitmap = ((BitmapDrawable) profileImage.getDrawable()).getBitmap();
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] data = baos.toByteArray();
-
-        UploadTask uploadTask = imageRef.putBytes(data);
-
+        imageRef.putBytes(data);
         this.user.setProfileImagePath(imagePath);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("users").document(this.user.getFireStoreID()).set(this.user);
-
     }
 
     /**

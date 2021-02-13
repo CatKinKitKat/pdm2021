@@ -19,29 +19,14 @@ import com.google.firebase.auth.FirebaseAuth;
 public class loginActivity extends AppCompatActivity {
 
     /**
-     * The Create account btn.
+     * The Create account, Login, passwd recover buttons.
      */
-    Button createAccountBtn,
+    Button createAccountBtn, loginBtn, forget_password_btn;
 
     /**
-     * The Login btn.
+     * The Login email and passwd.
      */
-    loginBtn,
-
-    /**
-     * The Forget password btn.
-     */
-    forget_password_btn;
-
-    /**
-     * The Login email.
-     */
-    EditText loginEmail,
-
-    /**
-     * The Password.
-     */
-    password;
+    EditText loginEmail, password;
 
     /**
      * The Firebase auth.

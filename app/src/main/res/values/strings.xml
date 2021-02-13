@@ -43,4 +43,15 @@
     <string name="sign_in_here">Already have an account? Sign in here</string>
     <string name="sign_up_here">Don\'t have an account yet? Sign up here</string>
     <string name="save">Save</string>
+    <string name="img_context_3" translatable="false">Smartphone logo</string>
+    <string name="verify_email_prompt">Please Verify your Email Address</string>
+    <string name="change_password">Change Password</string>
+    <string name="del_acc">Delete account</string>
+    <string name="change_profile_picture">Change Profile Picture</string>
+    <string name="profilename" translatable="false">profileName</string>
+    <string name="email_address" translatable="false">emailAddress</string>
+    <string name="phone_number" translatable="false">phoneNumber</string>
+    <string name="del_acc_error">Account deletion failed</string>
+    <string name="del_acc_success">Account successfully deleted</string>
+    <string name="cancel_action">Action cancelled</string>
 </resources>
