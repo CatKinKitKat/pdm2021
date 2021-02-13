@@ -55,4 +55,5 @@
     <string name="del_acc_error">Account deletion failed</string>
     <string name="del_acc_success">Account successfully deleted</string>
     <string name="cancel_action">Action cancelled</string>
+    <string name="directions">Directions</string>
 </resources>

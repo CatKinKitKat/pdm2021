@@ -6,10 +6,20 @@ import android.view.MenuItem;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
 /**
  * The type Hospital layout.
  */
-public class hospitalLayout extends AppCompatActivity {
+public class hospitalLayout extends AppCompatActivity implements OnMapReadyCallback {
+
+
+    private GoogleMap map;
 
     /**
      * On create.
@@ -25,6 +35,12 @@ public class hospitalLayout extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(getString(R.string.hospitals));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.mapView);
+        if (mapFragment != null) {
+            mapFragment.getMapAsync(this);
+        }
     }
 
     /**
@@ -40,5 +56,17 @@ public class hospitalLayout extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onMapReady(GoogleMap map) {
+
+        map = this.map;
+
+        LatLng sydney = new LatLng(-33.852, 151.211);
+        map.addMarker(new MarkerOptions()
+                .position(sydney)
+                .title("Marker in Sydney"));
+        map.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 }

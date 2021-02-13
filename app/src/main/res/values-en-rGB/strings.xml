@@ -45,4 +45,5 @@
     <string name="del_acc_success">Account successfully deleted</string>
     <string name="cancel_action">Action cancelled</string>
     <string name="phone_number">Phone Number</string>
+    <string name="directions">Directions</string>
 </resources>

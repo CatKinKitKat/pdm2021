@@ -45,4 +45,5 @@
     <string name="del_acc_success">Conta apagada com sucesso</string>
     <string name="cancel_action">Ação cancelada</string>
     <string name="phone_number">Phone Number</string>
+    <string name="directions">Directions</string>
 </resources>
