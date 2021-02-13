@@ -50,7 +50,8 @@
     <string name="change_profile_picture">Change Profile Picture</string>
     <string name="profilename" translatable="false">profileName</string>
     <string name="email_address" translatable="false">emailAddress</string>
-    <string name="phone_number" translatable="false">phoneNumber</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="phone_number_field" translatable="false">phoneNumber</string>
     <string name="del_acc_error">Account deletion failed</string>
     <string name="del_acc_success">Account successfully deleted</string>
     <string name="cancel_action">Action cancelled</string>

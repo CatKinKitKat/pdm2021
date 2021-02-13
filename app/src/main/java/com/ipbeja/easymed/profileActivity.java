@@ -289,10 +289,13 @@ public class profileActivity extends AppCompatActivity {
         StorageReference storageRef = storage.getReference();
         String imagePath = "images/" + UUID.randomUUID().toString() + ".jpg";
         StorageReference imageRef = storageRef.child(imagePath);
+
         profileImage.setDrawingCacheEnabled(true);
         profileImage.buildDrawingCache();
+
         Bitmap bitmap = ((BitmapDrawable) profileImage.getDrawable()).getBitmap();
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] data = baos.toByteArray();
 

@@ -44,4 +44,5 @@
     <string name="del_acc_error">Error al eliminar la cuenta</string>
     <string name="del_acc_success">Cuenta eliminada correctamente</string>
     <string name="cancel_action">Acción cancelada</string>
+    <string name="phone_number">Phone Number</string>
 </resources>
