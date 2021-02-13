@@ -1,25 +1,30 @@
 package com.ipbeja.easymed;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 
 /**
  * The type Hospital layout.
  */
-public class hospitalLayout extends AppCompatActivity implements OnMapReadyCallback {
+public class hospitalLayout extends AppCompatActivity {
 
-
-    private GoogleMap map;
+    /**
+     * The Map.
+     */
+    GoogleMap map;
 
     /**
      * On create.
@@ -36,11 +41,8 @@ public class hospitalLayout extends AppCompatActivity implements OnMapReadyCallb
         getSupportActionBar().setTitle(getString(R.string.hospitals));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.mapView);
-        if (mapFragment != null) {
-            mapFragment.getMapAsync(this);
-        }
+        MapFragment mapFragment = new MapFragment();
+        this.map = mapFragment.getMap();
     }
 
     /**
@@ -58,15 +60,65 @@ public class hospitalLayout extends AppCompatActivity implements OnMapReadyCallb
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onMapReady(GoogleMap map) {
+    /**
+     * The type INNER Class Map fragment.
+     */
+    private class MapFragment extends Fragment implements OnMapReadyCallback {
 
-        map = this.map;
+        /**
+         * The Map.
+         */
+        private GoogleMap map;
 
-        LatLng sydney = new LatLng(-33.852, 151.211);
-        map.addMarker(new MarkerOptions()
-                .position(sydney)
-                .title("Marker in Sydney"));
-        map.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        /**
+         * On create view view.
+         *
+         * @param inflater           the inflater
+         * @param container          the container
+         * @param savedInstanceState the saved instance state
+         * @return the view
+         */
+        @Nullable
+        @Override
+        public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+            SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                    .findFragmentById(R.id.mapView);
+            if (mapFragment != null) {
+                mapFragment.getMapAsync(this);
+            }
+
+            return super.onCreateView(inflater, container, savedInstanceState);
+        }
+
+        /**
+         * On map ready.
+         *
+         * @param map the map
+         */
+        @Override
+        public void onMapReady(GoogleMap map) {
+
+            map = this.map;
+            map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        }
+
+        /**
+         * Gets map.
+         *
+         * @return the map
+         */
+        public GoogleMap getMap() {
+            return this.map;
+        }
+
+        /**
+         * Sets map.
+         *
+         * @param map the map
+         */
+        public void setMap(GoogleMap map) {
+            this.map = map;
+        }
     }
 }
