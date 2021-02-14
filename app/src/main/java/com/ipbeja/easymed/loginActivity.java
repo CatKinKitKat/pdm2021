@@ -55,26 +55,26 @@ public class loginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
 
-        firebaseAuth = FirebaseAuth.getInstance();
+        this.firebaseAuth = FirebaseAuth.getInstance();
 
-        reset_alert = new AlertDialog.Builder(this);
-        inflater = this.getLayoutInflater();
+        this.reset_alert = new AlertDialog.Builder(this);
+        this.inflater = this.getLayoutInflater();
 
-        createAccountBtn = findViewById(R.id.createAccountBtn);
-        createAccountBtn.setOnClickListener(v -> startActivity(
+        this.createAccountBtn = findViewById(R.id.createAccountBtn);
+        this.createAccountBtn.setOnClickListener(v -> startActivity(
                 new Intent(getApplicationContext(), registerActivity.class))
         );
 
-        loginEmail = findViewById(R.id.loginEmail);
-        password = findViewById(R.id.loginPassword);
-        loginBtn = findViewById(R.id.loginBtn);
-        forget_password_btn = findViewById(R.id.forget_password_btn);
-        forget_password_btn.setOnClickListener(v -> {
+        this.loginEmail = findViewById(R.id.loginEmail);
+        this.password = findViewById(R.id.loginPassword);
+        this.loginBtn = findViewById(R.id.loginBtn);
+        this.forget_password_btn = findViewById(R.id.forget_password_btn);
+        this.forget_password_btn.setOnClickListener(v -> {
 
             // start alertdialog
-            View view = inflater.inflate(R.layout.reset_pop, null);
+            View view = this.inflater.inflate(R.layout.reset_pop, null);
 
-            reset_alert.setTitle(getString(R.string.reset_passwd))
+            this.reset_alert.setTitle(getString(R.string.reset_passwd))
                     .setMessage(getString(R.string.email_reset_passwd))
                     .setPositiveButton(getString(R.string.reset), (dialog, which) -> {
 
@@ -87,7 +87,7 @@ public class loginActivity extends AppCompatActivity {
                         }
                         //send the reset link
 
-                        firebaseAuth.sendPasswordResetEmail(email.getText().toString())
+                        this.firebaseAuth.sendPasswordResetEmail(email.getText().toString())
                                 .addOnSuccessListener(aVoid -> Toast.makeText(
                                         loginActivity.this, getString(R.string.reset_email_sent), Toast.LENGTH_SHORT).show()
                                 ).addOnFailureListener(e -> Toast.makeText(
@@ -100,27 +100,27 @@ public class loginActivity extends AppCompatActivity {
 
         });
 
-        loginBtn.setOnClickListener(v -> {
+        this.loginBtn.setOnClickListener(v -> {
 
             //extract and validate
-            if (loginEmail.getText().toString().isEmpty()) {
+            if (this.loginEmail.getText().toString().isEmpty()) {
 
-                loginEmail.setError(getString(R.string.email_login_missing));
+                this.loginEmail.setError(getString(R.string.email_login_missing));
                 return;
             }
 
-            if (password.getText().toString().isEmpty()) {
+            if (this.password.getText().toString().isEmpty()) {
 
-                password.setError(getString(R.string.passwd_login_missing));
+                this.password.setError(getString(R.string.passwd_login_missing));
                 return;
             }
 
             //data is valid
             //login user
-            firebaseAuth.signInWithEmailAndPassword(
+            this.firebaseAuth.signInWithEmailAndPassword(
 
-                    loginEmail.getText().toString(),
-                    password.getText().toString()).addOnSuccessListener(authResult -> {
+                    this.loginEmail.getText().toString(),
+                    this.password.getText().toString()).addOnSuccessListener(authResult -> {
 
                 //login is successful
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
