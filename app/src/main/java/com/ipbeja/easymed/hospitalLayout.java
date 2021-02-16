@@ -214,6 +214,7 @@ public class hospitalLayout extends AppCompatActivity {
                 double lon = jsonObj.getJSONArray("latlng").getDouble(1);
 
                 Marker currentMarker = map.addMarker(
+
                         new MarkerOptions()
                                 .title(jsonObj.getString("name"))
                                 .position(new LatLng(lat, lon)

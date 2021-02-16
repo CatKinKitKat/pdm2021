@@ -121,29 +121,30 @@ public class RecyclerViewAdapter extends
         @Override
         public void onClick(View view) {
 
-            //Click type events on items
-            if (getLayoutPosition() == 0) {
+            try {
 
-                Intent intent = new Intent(mContext, reminderActivity.class);
+                Intent intent = this.setIntent(getLayoutPosition());
                 mContext.startActivity(intent);
+            } catch (NullPointerException noIntent) {
+
+                noIntent.printStackTrace(); //Just for debug
+                // How does someone get here?
             }
+        }
 
-            if (getLayoutPosition() == 1) {
+        private Intent setIntent(int which) {
 
-                Intent intent = new Intent(mContext, pharmacyLayout.class);
-                mContext.startActivity(intent);
-            }
-
-            if (getLayoutPosition() == 2) {
-
-                Intent intent = new Intent(mContext, hospitalLayout.class);
-                mContext.startActivity(intent);
-            }
-
-            if (getLayoutPosition() == 3) {
-
-                Intent intent = new Intent(mContext, doctorsLayout.class);
-                mContext.startActivity(intent);
+            switch (which) {
+                case 0:
+                    return new Intent(mContext, reminderActivity.class);
+                case 1:
+                    return new Intent(mContext, pharmacyLayout.class);
+                case 2:
+                    return new Intent(mContext, hospitalLayout.class);
+                case 3:
+                    return new Intent(mContext, doctorsLayout.class);
+                default:
+                    return null;
             }
         }
     }

@@ -181,7 +181,9 @@ public class profileActivity extends AppCompatActivity {
             //send verification email
             fAuth.getCurrentUser().sendEmailVerification().addOnSuccessListener(aVoid -> {
 
-                Toast.makeText(profileActivity.this, getString(R.string.email_verify), Toast.LENGTH_SHORT).show();
+                Toast.makeText(
+                        profileActivity.this, getString(R.string.email_verify), Toast.LENGTH_SHORT
+                ).show();
 
                 verifyEmailBtn.setVisibility(View.GONE);
                 verifyMsg.setVisibility(View.GONE);

@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         //Making the home button in toolbar
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false); // Hide hamburger menu
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.menu);
 
         //Initializing RecyclerView
@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         //Putting Data into recyclerView
-        InitializeDataIntoRecyclerView(this.covers);
+        InitializeDataIntoRecyclerView();
 
         imageSliderModelList = new ArrayList<>();
         sliderView = findViewById(R.id.imageSlider);
@@ -104,12 +104,10 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Initialize data into recycler view.
-     *
-     * @param covers the covers
      */
-    private void InitializeDataIntoRecyclerView(int[] covers) {
+    private void InitializeDataIntoRecyclerView() {
 
-        covers = this.covers;
+        int[] covers = this.covers;
         row a;
 
         for (int cover : covers) {
