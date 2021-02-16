@@ -211,8 +211,13 @@ public class hospitalLayout extends AppCompatActivity {
      * Center map.
      */
     private void centerMap() {
-        this.map.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(38.015545f, -7.874886f)));
-        this.map.animateCamera(CameraUpdateFactory.zoomTo(10));
+        this.map.moveCamera(CameraUpdateFactory.newLatLng(
+                new LatLng(
+                        this.currentLatitude,
+                        this.currentLongitude
+                )
+        ));
+        this.map.animateCamera(CameraUpdateFactory.zoomTo((float) 17.5));
     }
 
     /**
@@ -257,7 +262,7 @@ public class hospitalLayout extends AppCompatActivity {
         float lng = (float) this.closestMarker.getPosition().longitude;
 
         this.map.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(lat, lng)));
-        this.map.animateCamera(CameraUpdateFactory.zoomTo(25));
+        this.map.animateCamera(CameraUpdateFactory.zoomTo((float) 17.5));
     }
 
     /**
