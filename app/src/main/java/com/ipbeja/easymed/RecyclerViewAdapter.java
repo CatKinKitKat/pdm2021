@@ -132,6 +132,12 @@ public class RecyclerViewAdapter extends
             }
         }
 
+        /**
+         * Sets intent.
+         *
+         * @param which the which
+         * @return the intent
+         */
         private Intent setIntent(int which) {
 
             switch (which) {

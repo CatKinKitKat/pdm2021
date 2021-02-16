@@ -26,17 +26,35 @@ public class registerActivity extends AppCompatActivity {
     /**
      * The Register name, email, phone, passwd and confirmation fields
      */
-    EditText registerName, registerEmail, registerPassword, registerConfPass, phoneNumber;
+    EditText registerName, /**
+     * The Register email.
+     */
+    registerEmail, /**
+     * The Register password.
+     */
+    registerPassword, /**
+     * The Register conf pass.
+     */
+    registerConfPass, /**
+     * The Phone number.
+     */
+    phoneNumber;
 
     /**
      * The Register user and go to login buttons
      */
-    Button registerUserBtn, goToLogin;
+    Button registerUserBtn, /**
+     * The Go to login.
+     */
+    goToLogin;
 
     /**
      * Firebase objects.
      */
     FirebaseAuth fAuth;
+    /**
+     * The F store.
+     */
     FirebaseFirestore fStore;
 
     /**

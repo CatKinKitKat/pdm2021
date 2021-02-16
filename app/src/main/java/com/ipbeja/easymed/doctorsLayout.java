@@ -21,6 +21,9 @@ public class doctorsLayout extends AppCompatActivity {
      * The M firebase firestore.
      */
     FirebaseFirestore mFirebaseFirestore;
+    /**
+     * The Task.
+     */
     private Task<QuerySnapshot> task;
 
     /**

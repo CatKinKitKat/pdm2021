@@ -56,7 +56,16 @@ public class profileActivity extends AppCompatActivity {
     /**
      * The Verify message, name email and phone.
      */
-    private TextView verifyMsg, name, email, phone;
+    private TextView verifyMsg, /**
+     * The Name.
+     */
+    name, /**
+     * The Email.
+     */
+    email, /**
+     * The Phone.
+     */
+    phone;
 
     /**
      * The Verify email btn.

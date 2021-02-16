@@ -21,12 +21,21 @@ public class loginActivity extends AppCompatActivity {
     /**
      * The Create account, Login, passwd recover buttons.
      */
-    Button createAccountBtn, loginBtn, forget_password_btn;
+    Button createAccountBtn, /**
+     * The Login btn.
+     */
+    loginBtn, /**
+     * The Forget password btn.
+     */
+    forget_password_btn;
 
     /**
      * The Login email and passwd.
      */
-    EditText loginEmail, password;
+    EditText loginEmail, /**
+     * The Password.
+     */
+    password;
 
     /**
      * The Firebase auth.

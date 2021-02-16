@@ -25,16 +25,33 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <Button
+        android:id="@+id/clearBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Clear"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
         android:id="@+id/goBtn"
         style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="120dp"
-        android:layout_height="40dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:text="@string/directions"
         android:textColorHighlight="#2196F3"
         android:textColorLink="#3F51B5"
         android:textCursorDrawable="@android:drawable/ic_dialog_map"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toStartOf="@+id/centerBtn"
+        app:layout_constraintStart_toEndOf="@+id/clearBtn" />
+
+    <Button
+        android:id="@+id/centerBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
