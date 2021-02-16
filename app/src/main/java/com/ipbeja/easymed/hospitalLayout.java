@@ -1,7 +1,6 @@
 package com.ipbeja.easymed;
 
 import android.Manifest;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -12,6 +11,7 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
@@ -68,10 +68,6 @@ public class hospitalLayout extends AppCompatActivity {
      * The M closest marker.
      */
     private Marker closestMarker;
-    /**
-     * The Progress dialog.
-     */
-    private ProgressDialog progressDialog;
 
     /**
      * On create.
@@ -161,6 +157,11 @@ public class hospitalLayout extends AppCompatActivity {
      * Gets directions.
      */
     private void getDirections() {
+        Toast.makeText(
+                this.getApplicationContext(),
+                getString(R.string.google_maps_error),
+                Toast.LENGTH_LONG
+        ).show();
     }
 
     /**

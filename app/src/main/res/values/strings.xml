@@ -61,4 +61,5 @@
     <string name="proceed">Proceed Purchase</string>
     <string name="kart">My Kart</string>
     <string name="mbway_error">There seems to be problems in the banking system. Please try again later.</string>
+    <string name="google_maps_error">Google Maps directions isn\'t available at the moment</string>
 </resources>
