@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "439661424238",
+    "firebase_url": "https://easymed-8c0ce-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "easymed-8c0ce",
     "storage_bucket": "easymed-8c0ce.appspot.com"
   },
@@ -9,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:439661424238:android:31a76e660de3564582407f",
         "android_client_info": {
-          "package_name": "com.example.easymed"
+          "package_name": "com.ipbeja.easymed"
         }
       },
       "oauth_client": [
