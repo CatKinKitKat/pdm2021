@@ -6,10 +6,21 @@ import android.view.MenuItem;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
 /**
  * The type Doctors layout.
  */
 public class doctorsLayout extends AppCompatActivity {
+
+    /**
+     * The M firebase firestore.
+     */
+    FirebaseFirestore mFirebaseFirestore;
+    private Task<QuerySnapshot> task;
 
     /**
      * On create.
@@ -40,5 +51,22 @@ public class doctorsLayout extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+
+    /**
+     * Gets list items.
+     */
+    private void getListItems() {
+
+        mFirebaseFirestore.collection("doctors").get()
+                .addOnSuccessListener(e -> {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            Doctors u = document.toObject(Doctors.class);
+                            u.setFireStoreId(document.getId());
+                        }
+                    }
+                });
     }
 }
