@@ -23,6 +23,24 @@ public class Hospitals {
     private float longitude;
 
     /**
+     * Gets fire store id.
+     *
+     * @return the fire store id
+     */
+    public String getFireStoreID() {
+        return fireStoreID;
+    }
+
+    /**
+     * Sets fire store id.
+     *
+     * @param fireStoreID the fire store id
+     */
+    public void setFireStoreID(String fireStoreID) {
+        this.fireStoreID = fireStoreID;
+    }
+
+    /**
      * Gets name.
      *
      * @return the name
