@@ -161,9 +161,9 @@ public class Doctors {
     /**
      * Sets furl.
      *
-     * @param purl the purl
+     * @param furl the purl
      */
-    public void setFurl(String purl) {
+    public void setFurl(String furl) {
         this.furl = furl;
     }
 }
