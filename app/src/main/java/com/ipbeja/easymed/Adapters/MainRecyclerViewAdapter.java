@@ -23,8 +23,8 @@ import java.util.List;
 /**
  * The type Recycler view adapter.
  */
-public class RecyclerViewAdapter extends
-        RecyclerView.Adapter<RecyclerViewAdapter.ImageViewHolder> {
+public class MainRecyclerViewAdapter extends
+        RecyclerView.Adapter<MainRecyclerViewAdapter.ImageViewHolder> {
 
     /**
      * The M context.
@@ -41,7 +41,7 @@ public class RecyclerViewAdapter extends
      * @param mContext the m context
      * @param mData    the m data
      */
-    public RecyclerViewAdapter(Context mContext, List<Row> mData) {
+    public MainRecyclerViewAdapter(Context mContext, List<Row> mData) {
 
         this.mContext = mContext;
         this.mData = mData;

@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.ipbeja.easymed.Adapters.HelperAdapter;
+import com.ipbeja.easymed.Adapters.DoctorRecyclerViewAdapter;
 import com.ipbeja.easymed.FireStore.Doctors;
 import com.ipbeja.easymed.R;
 
@@ -35,7 +35,7 @@ public class DoctorsActivity extends AppCompatActivity {
     /**
      * The Helper adapter.
      */
-    HelperAdapter helperAdapter;
+    DoctorRecyclerViewAdapter doctorRecyclerViewAdapter;
 
 
     /**
@@ -60,8 +60,8 @@ public class DoctorsActivity extends AppCompatActivity {
                             u.setFireStoreId(document.getId());
                             this.doctorsData.add(u);
                         }
-                        this.helperAdapter = new HelperAdapter(this.doctorsData);
-                        this.recyclerView.setAdapter(this.helperAdapter);
+                        this.doctorRecyclerViewAdapter = new DoctorRecyclerViewAdapter(this.doctorsData);
+                        this.recyclerView.setAdapter(this.doctorRecyclerViewAdapter);
                     }
                 }
 

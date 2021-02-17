@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.ipbeja.easymed.Adapters.ImageSliderAdapter;
-import com.ipbeja.easymed.Adapters.RecyclerViewAdapter;
+import com.ipbeja.easymed.Adapters.MainRecyclerViewAdapter;
 import com.ipbeja.easymed.Objects.ImageSlider;
 import com.ipbeja.easymed.Objects.Row;
 import com.ipbeja.easymed.R;
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * The Adapter.
      */
-    private RecyclerViewAdapter adapter;
+    private MainRecyclerViewAdapter adapter;
 
     /**
      * The App list.
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         this.appList = new ArrayList<>();
 
         //Adapter
-        this.adapter = new RecyclerViewAdapter(this, this.appList);
+        this.adapter = new MainRecyclerViewAdapter(this, this.appList);
         StaggeredGridLayoutManager manager =
                 new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
 

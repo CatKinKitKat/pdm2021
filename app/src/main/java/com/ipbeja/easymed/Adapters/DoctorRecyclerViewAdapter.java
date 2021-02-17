@@ -21,7 +21,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 /**
  * The type Helper adapter.
  */
-public class HelperAdapter extends RecyclerView.Adapter {
+public class DoctorRecyclerViewAdapter extends RecyclerView.Adapter {
     /**
      * The Doctors list.
      */
@@ -32,7 +32,7 @@ public class HelperAdapter extends RecyclerView.Adapter {
      *
      * @param doctorsList the doctors list
      */
-    public HelperAdapter(List<Doctors> doctorsList) {
+    public DoctorRecyclerViewAdapter(List<Doctors> doctorsList) {
         this.doctorsList = doctorsList;
     }
 
@@ -61,8 +61,8 @@ public class HelperAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
         Doctors doctors = this.doctorsList.get(position);
-        ((HelperAdapter.viewHolderClass) holder).name.setText(doctors.getName());
-        ((HelperAdapter.viewHolderClass) holder).speciality.setText(doctors.getSpeciality());
+        ((DoctorRecyclerViewAdapter.viewHolderClass) holder).name.setText(doctors.getName());
+        ((DoctorRecyclerViewAdapter.viewHolderClass) holder).speciality.setText(doctors.getSpeciality());
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReference();
