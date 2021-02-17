@@ -60,8 +60,6 @@ public class HelperAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
-        viewHolderClass viewHolderClass = (viewHolderClass) holder;
-
         Doctors doctors = this.doctorsList.get(position);
         ((HelperAdapter.viewHolderClass) holder).name.setText(doctors.getName());
         ((HelperAdapter.viewHolderClass) holder).speciality.setText(doctors.getSpeciality());

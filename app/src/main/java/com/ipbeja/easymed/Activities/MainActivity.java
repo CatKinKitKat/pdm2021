@@ -12,10 +12,10 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.ipbeja.easymed.Adapters.ImageSliderAdapter;
-import com.ipbeja.easymed.Objects.ImageSlider;
-import com.ipbeja.easymed.R;
 import com.ipbeja.easymed.Adapters.RecyclerViewAdapter;
+import com.ipbeja.easymed.Objects.ImageSlider;
 import com.ipbeja.easymed.Objects.Row;
+import com.ipbeja.easymed.R;
 import com.smarteist.autoimageslider.SliderView;
 
 import java.util.ArrayList;
@@ -77,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
 
         //Making the home button in toolbar
         getSupportActionBar().setDisplayHomeAsUpEnabled(false); // Hide hamburger menu
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.menu);
 
         //Initializing RecyclerView
         this.recyclerView = findViewById(R.id.recyclerview);

@@ -29,7 +29,7 @@ public class ImageSliderAdapter extends SliderViewAdapter<SliderViewHolder> {
     /**
      * Instantiates a new Image slider adapter.
      *
-     * @param context              the context
+     * @param context         the context
      * @param imageSliderList the image slider model list
      */
     public ImageSliderAdapter(Context context, List<ImageSlider> imageSliderList) {

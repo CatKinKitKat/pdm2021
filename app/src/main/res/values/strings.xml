@@ -66,4 +66,6 @@
     <string name="enable_gps">Enable GPS</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="closest_hospital">Find Closest Hospital</string>
+    <string name="find_me">Find Me!</string>
 </resources>

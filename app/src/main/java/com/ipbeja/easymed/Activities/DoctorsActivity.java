@@ -8,12 +8,11 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.ipbeja.easymed.Adapters.HelperAdapter;
 import com.ipbeja.easymed.FireStore.Doctors;
 import com.ipbeja.easymed.R;
-import com.ipbeja.easymed.Adapters.HelperAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,10 +36,6 @@ public class DoctorsActivity extends AppCompatActivity {
      * The Helper adapter.
      */
     HelperAdapter helperAdapter;
-    /**
-     * The Database reference.
-     */
-    DatabaseReference databaseReference;
 
 
     /**
@@ -53,9 +48,9 @@ public class DoctorsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctors_layout);
 
-        recyclerView = findViewById(R.id.recyclerview);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        doctorsData = new ArrayList<>();
+        this.recyclerView = findViewById(R.id.recyclerview);
+        this.recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        this.doctorsData = new ArrayList<>();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         db.collection("doctors").get().addOnCompleteListener(task -> {
@@ -63,10 +58,10 @@ public class DoctorsActivity extends AppCompatActivity {
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             Doctors u = document.toObject(Doctors.class);
                             u.setFireStoreId(document.getId());
-                            doctorsData.add(u);
+                            this.doctorsData.add(u);
                         }
-                        helperAdapter = new HelperAdapter(doctorsData);
-                        recyclerView.setAdapter(helperAdapter);
+                        this.helperAdapter = new HelperAdapter(this.doctorsData);
+                        this.recyclerView.setAdapter(this.helperAdapter);
                     }
                 }
 
