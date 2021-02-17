@@ -63,4 +63,7 @@
     <string name="mbway_error">There seems to be problems in the banking system. Please try again later.</string>
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="google_maps_error" translatable="false">YEET</string>
+    <string name="enable_gps">Enable GPS</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>

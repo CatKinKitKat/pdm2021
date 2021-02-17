@@ -125,10 +125,7 @@ public class RecyclerViewAdapter extends
 
                 Intent intent = this.setIntent(getLayoutPosition());
                 mContext.startActivity(intent);
-            } catch (NullPointerException noIntent) {
-
-                noIntent.printStackTrace(); //Just for debug
-                // How does someone get here?
+            } catch (Exception ignore) {
             }
         }
 

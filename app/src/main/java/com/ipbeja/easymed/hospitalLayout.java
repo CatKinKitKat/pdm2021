@@ -29,6 +29,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.ipbeja.easymed.FireStore.Hospitals;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 /**
  * The type Hospital layout.
  */
@@ -124,9 +126,9 @@ public class hospitalLayout extends AppCompatActivity {
      */
     private void OnGPS() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Enable GPS").setCancelable(false).setPositiveButton("Yes",
+        builder.setMessage(getString(R.string.enable_gps)).setCancelable(false).setPositiveButton(getString(R.string.yes),
                 (dialog, which) -> startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
-        ).setNegativeButton("No",
+        ).setNegativeButton(getString(R.string.no),
                 (dialog, which) -> dialog.cancel()
         );
         final AlertDialog alertDialog = builder.create();
@@ -169,13 +171,13 @@ public class hospitalLayout extends AppCompatActivity {
      */
     private void createMarkersFromDB() {
 
-        int i = 0;
+        AtomicInteger i = new AtomicInteger();
         this.mFirebaseFirestore.collection("hospitals").get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 for (QueryDocumentSnapshot document : task.getResult()) {
                     Hospitals u = document.toObject(Hospitals.class);
                     u.setFireStoreID(document.getId());
-                    this.createMarkerWithDistance(u.getLatitude(), u.getLongitude(), u.getName(), i);
+                    this.createMarkerWithDistance(u.getLatitude(), u.getLongitude(), u.getName(), i.getAndIncrement());
                 }
             }
         });
