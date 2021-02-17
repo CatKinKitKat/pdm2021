@@ -75,31 +75,31 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.menu);
 
         //Initializing RecyclerView
-        recyclerView = findViewById(R.id.recyclerview);
-        appList = new ArrayList<>();
+        this.recyclerView = findViewById(R.id.recyclerview);
+        this.appList = new ArrayList<>();
 
         //Adapter
-        adapter = new RecyclerViewAdapter(this, appList);
+        this.adapter = new RecyclerViewAdapter(this, this.appList);
         StaggeredGridLayoutManager manager =
                 new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
 
         //Layout Manager
-        recyclerView.setLayoutManager(manager);
+        this.recyclerView.setLayoutManager(manager);
 
         //Adapter
-        recyclerView.setAdapter(adapter);
+        this.recyclerView.setAdapter(this.adapter);
 
         //Putting Data into recyclerView
         InitializeDataIntoRecyclerView();
 
-        imageSliderModelList = new ArrayList<>();
-        sliderView = findViewById(R.id.imageSlider);
+        this.imageSliderModelList = new ArrayList<>();
+        this.sliderView = findViewById(R.id.imageSlider);
 
-        imageSliderModelList.add(new ImageSliderModel(R.drawable.image_a));
-        imageSliderModelList.add(new ImageSliderModel(R.drawable.image_b));
-        imageSliderModelList.add(new ImageSliderModel(R.drawable.image_c));
+        this.imageSliderModelList.add(new ImageSliderModel(R.drawable.image_a));
+        this.imageSliderModelList.add(new ImageSliderModel(R.drawable.image_b));
+        this.imageSliderModelList.add(new ImageSliderModel(R.drawable.image_c));
 
-        sliderView.setSliderAdapter(new ImageSliderAdapter(this, imageSliderModelList));
+        this.sliderView.setSliderAdapter(new ImageSliderAdapter(this, this.imageSliderModelList));
     }
 
     /**
@@ -112,10 +112,10 @@ public class MainActivity extends AppCompatActivity {
 
         for (int cover : covers) {
             a = new row(cover);
-            appList.add(a);
+            this.appList.add(a);
         }
 
-        adapter.notifyDataSetChanged();
+        this.adapter.notifyDataSetChanged();
     }
 
     /**

@@ -43,32 +43,32 @@ public class resetPassword extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reset_password);
 
-        userPassword = findViewById(R.id.newUserPassword);
-        userConfPassword = findViewById(R.id.newConfirmPassword);
+        this.userPassword = findViewById(R.id.newUserPassword);
+        this.userConfPassword = findViewById(R.id.newConfirmPassword);
 
-        user = FirebaseAuth.getInstance().getCurrentUser();
+        this.user = FirebaseAuth.getInstance().getCurrentUser();
 
-        savePasswordBtn = findViewById(R.id.resetPasswordBtn);
-        savePasswordBtn.setOnClickListener(v -> {
-            if (userPassword.getText().toString().isEmpty()) {
+        this.savePasswordBtn = findViewById(R.id.resetPasswordBtn);
+        this.savePasswordBtn.setOnClickListener(v -> {
+            if (this.userPassword.getText().toString().isEmpty()) {
 
-                userPassword.setError(getString(R.string.field_error));
+                this.userPassword.setError(getString(R.string.field_error));
                 return;
             }
 
-            if (userConfPassword.getText().toString().isEmpty()) {
+            if (this.userConfPassword.getText().toString().isEmpty()) {
 
-                userConfPassword.setError(getString(R.string.field_error));
+                this.userConfPassword.setError(getString(R.string.field_error));
                 return;
             }
 
-            if (!userPassword.getText().toString().equals(userConfPassword.getText().toString())) {
+            if (!this.userPassword.getText().toString().equals(this.userConfPassword.getText().toString())) {
 
-                userConfPassword.setError(getString(R.string.passwd_error));
+                this.userConfPassword.setError(getString(R.string.passwd_error));
                 return;
             }
 
-            user.updatePassword(userPassword.getText().toString()).addOnSuccessListener(aVoid -> {
+            this.user.updatePassword(this.userPassword.getText().toString()).addOnSuccessListener(aVoid -> {
 
                 Toast.makeText(resetPassword.this, getString(R.string.passwd_update), Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(getApplicationContext(), profileActivity.class));

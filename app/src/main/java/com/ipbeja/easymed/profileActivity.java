@@ -56,13 +56,16 @@ public class profileActivity extends AppCompatActivity {
     /**
      * The Verify message, name email and phone.
      */
-    private TextView verifyMsg, /**
+    private TextView verifyMsg,
+    /**
      * The Name.
      */
-    name, /**
+    name,
+    /**
      * The Email.
      */
-    email, /**
+    email,
+    /**
      * The Phone.
      */
     phone;
@@ -104,24 +107,24 @@ public class profileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile_layout);
 
-        fAuth = FirebaseAuth.getInstance();
-        verifyMsg = findViewById(R.id.verifyEmailMsg);
+        this.fAuth = FirebaseAuth.getInstance();
+        this.verifyMsg = findViewById(R.id.verifyEmailMsg);
 
-        verifyEmailBtn = findViewById(R.id.verifyEmailBtn);
+        this.verifyEmailBtn = findViewById(R.id.verifyEmailBtn);
         Button resetBtn = findViewById(R.id.resetBtn);
         //Button updateEmailMenu = findViewById(R.id.updateEmailMenu);
         Button deleteAccountBtn = findViewById(R.id.delete_account_menu);
 
-        name = findViewById(R.id.profileName);
-        email = findViewById(R.id.profileEmail);
-        phone = findViewById(R.id.profileNumber);
+        this.name = findViewById(R.id.profileName);
+        this.email = findViewById(R.id.profileEmail);
+        this.phone = findViewById(R.id.profileNumber);
 
-        profileImage = findViewById(R.id.profileImage);
+        this.profileImage = findViewById(R.id.profileImage);
         Button changeProfile = findViewById(R.id.changeProfile);
 
         FirebaseFirestore fStore = FirebaseFirestore.getInstance();
         FirebaseStorage.getInstance().getReference();
-        String userID = fAuth.getCurrentUser().getUid();
+        String userID = this.fAuth.getCurrentUser().getUid();
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("users")
@@ -129,21 +132,15 @@ public class profileActivity extends AppCompatActivity {
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-
-                        Users u = null;
-
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            u = document.toObject(Users.class);
+                            Users u = document.toObject(Users.class);
                             u.setFireStoreID(document.getId());
-                        }
-
-                        if (u != null) {
 
                             this.user = u;
 
-                            phone.setText(u.getPhone());
-                            name.setText(u.getfName());
-                            email.setText(u.getEmail());
+                            this.phone.setText(u.getPhone());
+                            this.name.setText(u.getfName());
+                            this.email.setText(u.getEmail());
 
                             FirebaseStorage storage = FirebaseStorage.getInstance();
                             StorageReference storageRef = storage.getReference();
@@ -154,7 +151,10 @@ public class profileActivity extends AppCompatActivity {
                                         BitmapFactory.decodeByteArray(bytes, 0, bytes.length)
                                 );
                             });
+
                         }
+
+
                     }
                 });
 
@@ -165,37 +165,37 @@ public class profileActivity extends AppCompatActivity {
                 Log.d(TAG, "Error" + e.getMessage());
             } else {
 
-                phone.setText(documentSnapshot.getString("phone"));
-                name.setText(documentSnapshot.getString("fName"));
-                email.setText(documentSnapshot.getString("email"));
+                this.phone.setText(documentSnapshot.getString("phone"));
+                this.name.setText(documentSnapshot.getString("fName"));
+                this.email.setText(documentSnapshot.getString("email"));
             }
         });
 
-        reset_alert = new AlertDialog.Builder(this);
-        inflater = this.getLayoutInflater();
+        this.reset_alert = new AlertDialog.Builder(this);
+        this.inflater = this.getLayoutInflater();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(getString(R.string.profile));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        if (!fAuth.getCurrentUser().isEmailVerified()) {
+        if (!this.fAuth.getCurrentUser().isEmailVerified()) {
 
-            verifyEmailBtn.setVisibility(View.VISIBLE);
-            verifyMsg.setVisibility(View.VISIBLE);
+            this.verifyEmailBtn.setVisibility(View.VISIBLE);
+            this.verifyMsg.setVisibility(View.VISIBLE);
         }
 
-        verifyEmailBtn.setOnClickListener(v -> {
+        this.verifyEmailBtn.setOnClickListener(v -> {
 
             //send verification email
-            fAuth.getCurrentUser().sendEmailVerification().addOnSuccessListener(aVoid -> {
+            this.fAuth.getCurrentUser().sendEmailVerification().addOnSuccessListener(aVoid -> {
 
                 Toast.makeText(
                         profileActivity.this, getString(R.string.email_verify), Toast.LENGTH_SHORT
                 ).show();
 
-                verifyEmailBtn.setVisibility(View.GONE);
-                verifyMsg.setVisibility(View.GONE);
+                this.verifyEmailBtn.setVisibility(View.GONE);
+                this.verifyMsg.setVisibility(View.GONE);
 
                 FirebaseAuth.getInstance().signOut();
                 profileActivity.this.startActivity(new Intent(
@@ -212,11 +212,11 @@ public class profileActivity extends AppCompatActivity {
 
         deleteAccountBtn.setOnClickListener(v -> {
 
-            reset_alert.setTitle(getString(R.string.del_acc_prompt))
+            this.reset_alert.setTitle(getString(R.string.del_acc_prompt))
                     .setMessage(getString(R.string.conf_prompt))
                     .setPositiveButton(getString(R.string.ok), (dialog, which) -> {
 
-                        FirebaseUser user = fAuth.getCurrentUser();
+                        FirebaseUser user = this.fAuth.getCurrentUser();
                         user.delete().addOnSuccessListener(aVoid -> {
 
                             Toast.makeText(profileActivity.this,
@@ -227,7 +227,7 @@ public class profileActivity extends AppCompatActivity {
                                     .addOnSuccessListener(aVoid1 -> Log.d(TAG, getString(R.string.del_acc_success)))
                                     .addOnFailureListener(e -> Log.w(TAG, getString(R.string.del_acc_error), e));
 
-                            fAuth.signOut();
+                            this.fAuth.signOut();
                             startActivity(new Intent(getApplicationContext(), loginActivity.class));
                             finish();
                         }).addOnFailureListener(e -> Toast.makeText(
@@ -266,8 +266,6 @@ public class profileActivity extends AppCompatActivity {
 
                     }).setNegativeButton(getString(R.string.cancel), null).setView(view).create().show();
         });*/
-
-
     }
 
     /**
@@ -301,10 +299,10 @@ public class profileActivity extends AppCompatActivity {
         String imagePath = "images/" + UUID.randomUUID().toString() + ".jpg";
         StorageReference imageRef = storageRef.child(imagePath);
 
-        profileImage.setDrawingCacheEnabled(true);
-        profileImage.buildDrawingCache();
+        this.profileImage.setDrawingCacheEnabled(true);
+        this.profileImage.buildDrawingCache();
 
-        Bitmap bitmap = ((BitmapDrawable) profileImage.getDrawable()).getBitmap();
+        Bitmap bitmap = ((BitmapDrawable) this.profileImage.getDrawable()).getBitmap();
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);

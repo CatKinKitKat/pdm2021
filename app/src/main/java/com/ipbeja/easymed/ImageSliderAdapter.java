@@ -56,7 +56,7 @@ public class ImageSliderAdapter extends SliderViewAdapter<SliderViewHolder> {
      */
     @Override
     public void onBindViewHolder(SliderViewHolder viewHolder, int position) {
-        viewHolder.sliderImageView.setImageResource(imageSliderModelList.get(position).getImage());
+        viewHolder.sliderImageView.setImageResource(this.imageSliderModelList.get(position).getImage());
     }
 
     /**
@@ -66,7 +66,7 @@ public class ImageSliderAdapter extends SliderViewAdapter<SliderViewHolder> {
      */
     @Override
     public int getCount() {
-        return imageSliderModelList.size();
+        return this.imageSliderModelList.size();
     }
 }
 
@@ -86,6 +86,6 @@ class SliderViewHolder extends SliderViewAdapter.ViewHolder {
      */
     public SliderViewHolder(View itemView) {
         super(itemView);
-        sliderImageView = itemView.findViewById(R.id.imageView);
+        this.sliderImageView = itemView.findViewById(R.id.imageView);
     }
 }

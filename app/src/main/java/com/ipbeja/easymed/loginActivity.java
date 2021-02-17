@@ -21,10 +21,12 @@ public class loginActivity extends AppCompatActivity {
     /**
      * The Create account, Login, passwd recover buttons.
      */
-    Button createAccountBtn, /**
+    Button createAccountBtn,
+    /**
      * The Login btn.
      */
-    loginBtn, /**
+    loginBtn,
+    /**
      * The Forget password btn.
      */
     forget_password_btn;
@@ -32,7 +34,8 @@ public class loginActivity extends AppCompatActivity {
     /**
      * The Login email and passwd.
      */
-    EditText loginEmail, /**
+    EditText loginEmail,
+    /**
      * The Password.
      */
     password;

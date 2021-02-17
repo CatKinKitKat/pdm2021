@@ -73,18 +73,18 @@ public class registerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register_activity);
 
-        registerName = findViewById(R.id.registerName);
-        registerEmail = findViewById(R.id.registerEmail);
-        phoneNumber = findViewById(R.id.phoneNum);
-        registerPassword = findViewById(R.id.registerPassword);
-        registerConfPass = findViewById(R.id.confPassword);
-        registerUserBtn = findViewById(R.id.resetBtn);
-        goToLogin = findViewById(R.id.goToLogin);
+        this.registerName = findViewById(R.id.registerName);
+        this.registerEmail = findViewById(R.id.registerEmail);
+        this.phoneNumber = findViewById(R.id.phoneNum);
+        this.registerPassword = findViewById(R.id.registerPassword);
+        this.registerConfPass = findViewById(R.id.confPassword);
+        this.registerUserBtn = findViewById(R.id.resetBtn);
+        this.goToLogin = findViewById(R.id.goToLogin);
 
-        fAuth = FirebaseAuth.getInstance();
-        fStore = FirebaseFirestore.getInstance();
+        this.fAuth = FirebaseAuth.getInstance();
+        this.fStore = FirebaseFirestore.getInstance();
 
-        goToLogin.setOnClickListener(v -> {
+        this.goToLogin.setOnClickListener(v -> {
 
             startActivity(new Intent(getApplicationContext(), loginActivity.class));
             finish();
@@ -93,49 +93,49 @@ public class registerActivity extends AppCompatActivity {
         registerUserBtn.setOnClickListener(v -> {
 
             //extract the data
-            String name = registerName.getText().toString();
-            String email = registerEmail.getText().toString();
-            String phone = phoneNumber.getText().toString();
-            String password = registerPassword.getText().toString();
-            String confPass = registerConfPass.getText().toString();
+            String name = this.registerName.getText().toString();
+            String email = this.registerEmail.getText().toString();
+            String phone = this.phoneNumber.getText().toString();
+            String password = this.registerPassword.getText().toString();
+            String confPass = this.registerConfPass.getText().toString();
 
             if (name.isEmpty()) {
 
-                registerName.setError(getString(R.string.name_field_error));
+                this.registerName.setError(getString(R.string.name_field_error));
                 return;
             }
 
             if (email.isEmpty()) {
 
-                registerEmail.setError(getString(R.string.email_field_error));
+                this.registerEmail.setError(getString(R.string.email_field_error));
                 return;
             }
 
             if (password.isEmpty()) {
 
-                registerPassword.setError(getString(R.string.passwd_field_error));
+                this.registerPassword.setError(getString(R.string.passwd_field_error));
                 return;
             }
 
             if (confPass.isEmpty()) {
 
-                registerConfPass.setError(getString(R.string.confpasswd_field_error));
+                this.registerConfPass.setError(getString(R.string.confpasswd_field_error));
                 return;
             }
 
             if (!password.equals(confPass)) {
 
-                registerConfPass.setError(getString(R.string.passwd_error));
+                this.registerConfPass.setError(getString(R.string.passwd_error));
                 return;
             }
 
             //data is validated
             //register the user using firebase
-            fAuth.createUserWithEmailAndPassword(email, password).addOnSuccessListener(authResult -> {
+            this.fAuth.createUserWithEmailAndPassword(email, password).addOnSuccessListener(authResult -> {
 
                 // send user to next page
-                userID = fAuth.getCurrentUser().getUid();
-                Users u = new Users(email, name, phone, "images/pill.png", userID);
+                this.userID = this.fAuth.getCurrentUser().getUid();
+                Users u = new Users(email, name, phone, "images/pill.png", this.userID);
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
 
                 db.collection("users").add(u)

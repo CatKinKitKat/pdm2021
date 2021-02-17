@@ -5,12 +5,16 @@ import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.ipbeja.easymed.FireStore.Doctors;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The type Doctors layout.
@@ -18,13 +22,24 @@ import com.ipbeja.easymed.FireStore.Doctors;
 public class doctorsLayout extends AppCompatActivity {
 
     /**
-     * The M firebase firestore.
+     * On create.
+     *
+     * @param savedInstanceState the saved instance state
      */
-    FirebaseFirestore mFirebaseFirestore;
+    List<Doctors> doctorsData;
     /**
-     * The Task.
+     * The Recycler view.
      */
-    private Task<QuerySnapshot> task;
+    RecyclerView recyclerView;
+    /**
+     * The Helper adapter.
+     */
+    helperAdapter helperAdapter;
+    /**
+     * The Database reference.
+     */
+    DatabaseReference databaseReference;
+
 
     /**
      * On create.
@@ -35,6 +50,25 @@ public class doctorsLayout extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctors_layout);
+
+        recyclerView = findViewById(R.id.recyclerview);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        doctorsData = new ArrayList<>();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        db.collection("doctors").get().addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            Doctors u = document.toObject(Doctors.class);
+                            u.setFireStoreId(document.getId());
+                            doctorsData.add(u);
+                        }
+                        helperAdapter = new helperAdapter(doctorsData);
+                        recyclerView.setAdapter(helperAdapter);
+                    }
+                }
+
+        );
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -55,22 +89,5 @@ public class doctorsLayout extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-
-    /**
-     * Gets list items.
-     */
-    private void getListItems() {
-
-        mFirebaseFirestore.collection("doctors").get()
-                .addOnSuccessListener(e -> {
-                    if (task.isSuccessful()) {
-                        for (QueryDocumentSnapshot document : task.getResult()) {
-                            Doctors u = document.toObject(Doctors.class);
-                            u.setFireStoreId(document.getId());
-                        }
-                    }
-                });
     }
 }
