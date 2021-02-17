@@ -1,4 +1,4 @@
-package com.ipbeja.easymed;
+package com.ipbeja.easymed.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,11 +12,12 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.ipbeja.easymed.R;
 
 /**
  * The type Login activity.
  */
-public class loginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     /**
      * The Create account, Login, passwd recover buttons.
@@ -74,7 +75,7 @@ public class loginActivity extends AppCompatActivity {
 
         this.createAccountBtn = findViewById(R.id.createAccountBtn);
         this.createAccountBtn.setOnClickListener(v -> startActivity(
-                new Intent(getApplicationContext(), registerActivity.class))
+                new Intent(getApplicationContext(), RegisterActivity.class))
         );
 
         this.loginEmail = findViewById(R.id.loginEmail);
@@ -101,9 +102,9 @@ public class loginActivity extends AppCompatActivity {
 
                         this.firebaseAuth.sendPasswordResetEmail(email.getText().toString())
                                 .addOnSuccessListener(aVoid -> Toast.makeText(
-                                        loginActivity.this, getString(R.string.reset_email_sent), Toast.LENGTH_SHORT).show()
+                                        LoginActivity.this, getString(R.string.reset_email_sent), Toast.LENGTH_SHORT).show()
                                 ).addOnFailureListener(e -> Toast.makeText(
-                                loginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show()
+                                LoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show()
                         );
 
                     }).setNegativeButton(getString(R.string.cancel), null)
@@ -139,7 +140,7 @@ public class loginActivity extends AppCompatActivity {
                 finish();
             }).addOnFailureListener(e -> Toast.makeText(
 
-                    loginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show()
+                    LoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show()
             );
         });
     }

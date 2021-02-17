@@ -1,4 +1,4 @@
-package com.ipbeja.easymed;
+package com.ipbeja.easymed.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,12 +11,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.ipbeja.easymed.FireStore.Users;
+import com.ipbeja.easymed.R;
 
 
 /**
  * The type Register activity.
  */
-public class registerActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity {
 
     /**
      * The constant TAG.
@@ -86,7 +87,7 @@ public class registerActivity extends AppCompatActivity {
 
         this.goToLogin.setOnClickListener(v -> {
 
-            startActivity(new Intent(getApplicationContext(), loginActivity.class));
+            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
             finish();
         });
 
@@ -144,7 +145,7 @@ public class registerActivity extends AppCompatActivity {
                             finish();
                         });
             }).addOnFailureListener(e -> Toast.makeText(
-                    registerActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show()
+                    RegisterActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show()
             );
         });
     }

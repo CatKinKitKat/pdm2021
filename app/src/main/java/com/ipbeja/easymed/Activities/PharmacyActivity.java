@@ -1,17 +1,19 @@
-package com.ipbeja.easymed;
+package com.ipbeja.easymed.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.ipbeja.easymed.R;
+
 /**
  * The type Pharmacy layout.
  */
-public class checkoutLayout extends AppCompatActivity {
+public class PharmacyActivity extends AppCompatActivity {
 
     /**
      * On create.
@@ -22,29 +24,28 @@ public class checkoutLayout extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_checkout_layout);
+        setContentView(R.layout.activity_pharmacy_layout);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
 
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(getString(R.string.kart));
+        getSupportActionBar().setTitle(getString(R.string.easy_med_order));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        Button clearButton = findViewById(R.id.clearKartBtn);
-        Button buyButton = findViewById(R.id.buyBtn);
+        Button myKartBtn = findViewById(R.id.checkoutBtn);
 
-        buyButton.setOnClickListener(v -> {
-            Toast.makeText(
-                    checkoutLayout.this,
-                    getString(R.string.mbway_error),
-                    Toast.LENGTH_SHORT
-            ).show();
+        myKartBtn.setOnClickListener(v -> {
+
+            this.goToKart();
         });
+    }
 
-        clearButton.setOnClickListener(v -> {
+    /**
+     * Go to kart.
+     */
+    private void goToKart() {
 
-            // TODO: CLEAR RECYCLERVIEW
-        });
+        startActivity(new Intent(getApplicationContext(), CheckoutActivity.class));
     }
 
     /**

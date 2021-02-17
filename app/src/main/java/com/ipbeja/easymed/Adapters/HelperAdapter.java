@@ -1,4 +1,4 @@
-package com.ipbeja.easymed;
+package com.ipbeja.easymed.Adapters;
 
 import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.ipbeja.easymed.FireStore.Doctors;
+import com.ipbeja.easymed.R;
 
 import java.util.List;
 
@@ -20,7 +21,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 /**
  * The type Helper adapter.
  */
-public class helperAdapter extends RecyclerView.Adapter {
+public class HelperAdapter extends RecyclerView.Adapter {
     /**
      * The Doctors list.
      */
@@ -31,7 +32,7 @@ public class helperAdapter extends RecyclerView.Adapter {
      *
      * @param doctorsList the doctors list
      */
-    public helperAdapter(List<Doctors> doctorsList) {
+    public HelperAdapter(List<Doctors> doctorsList) {
         this.doctorsList = doctorsList;
     }
 
@@ -62,8 +63,8 @@ public class helperAdapter extends RecyclerView.Adapter {
         viewHolderClass viewHolderClass = (viewHolderClass) holder;
 
         Doctors doctors = this.doctorsList.get(position);
-        ((helperAdapter.viewHolderClass) holder).name.setText(doctors.getName());
-        ((helperAdapter.viewHolderClass) holder).speciality.setText(doctors.getSpeciality());
+        ((HelperAdapter.viewHolderClass) holder).name.setText(doctors.getName());
+        ((HelperAdapter.viewHolderClass) holder).speciality.setText(doctors.getSpeciality());
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReference();

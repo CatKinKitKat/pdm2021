@@ -1,4 +1,4 @@
-package com.ipbeja.easymed;
+package com.ipbeja.easymed.Activities;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -29,6 +29,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.ipbeja.easymed.FireStore.Users;
+import com.ipbeja.easymed.R;
 
 import java.io.ByteArrayOutputStream;
 import java.util.UUID;
@@ -36,7 +37,7 @@ import java.util.UUID;
 /**
  * The type Profile activity.
  */
-public class profileActivity extends AppCompatActivity {
+public class ProfileActivity extends AppCompatActivity {
 
     /**
      * The Verify msg.
@@ -191,23 +192,23 @@ public class profileActivity extends AppCompatActivity {
             this.fAuth.getCurrentUser().sendEmailVerification().addOnSuccessListener(aVoid -> {
 
                 Toast.makeText(
-                        profileActivity.this, getString(R.string.email_verify), Toast.LENGTH_SHORT
+                        ProfileActivity.this, getString(R.string.email_verify), Toast.LENGTH_SHORT
                 ).show();
 
                 this.verifyEmailBtn.setVisibility(View.GONE);
                 this.verifyMsg.setVisibility(View.GONE);
 
                 FirebaseAuth.getInstance().signOut();
-                profileActivity.this.startActivity(new Intent(
-                        profileActivity.this.getApplicationContext(), loginActivity.class)
+                ProfileActivity.this.startActivity(new Intent(
+                        ProfileActivity.this.getApplicationContext(), LoginActivity.class)
                 );
-                profileActivity.this.finish();
+                ProfileActivity.this.finish();
             });
         });
 
         resetBtn.setOnClickListener(v -> startActivity(
 
-                new Intent(getApplicationContext(), resetPassword.class))
+                new Intent(getApplicationContext(), ResetPasswordActivity.class))
         );
 
         deleteAccountBtn.setOnClickListener(v -> {
@@ -219,7 +220,7 @@ public class profileActivity extends AppCompatActivity {
                         FirebaseUser user = this.fAuth.getCurrentUser();
                         user.delete().addOnSuccessListener(aVoid -> {
 
-                            Toast.makeText(profileActivity.this,
+                            Toast.makeText(ProfileActivity.this,
                                     getString(R.string.acc_del),
                                     Toast.LENGTH_SHORT).show();
                             db.collection("users").document(this.user.getFireStoreID())
@@ -228,10 +229,10 @@ public class profileActivity extends AppCompatActivity {
                                     .addOnFailureListener(e -> Log.w(TAG, getString(R.string.del_acc_error), e));
 
                             this.fAuth.signOut();
-                            startActivity(new Intent(getApplicationContext(), loginActivity.class));
+                            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                             finish();
                         }).addOnFailureListener(e -> Toast.makeText(
-                                profileActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show()
+                                ProfileActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show()
                         );
                     }).setNegativeButton(getString(R.string.cancel), null).create().show();
         });
@@ -343,7 +344,7 @@ public class profileActivity extends AppCompatActivity {
         if (id == R.id.logout) {
 
             FirebaseAuth.getInstance().signOut();
-            startActivity(new Intent(getApplicationContext(), loginActivity.class));
+            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
             finish();
         } else if (id == android.R.id.home) {
 

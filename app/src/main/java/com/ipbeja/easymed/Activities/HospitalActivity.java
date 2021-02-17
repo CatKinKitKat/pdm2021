@@ -1,4 +1,4 @@
-package com.ipbeja.easymed;
+package com.ipbeja.easymed.Activities;
 
 import android.Manifest;
 import android.content.Context;
@@ -28,13 +28,14 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.ipbeja.easymed.FireStore.Hospitals;
+import com.ipbeja.easymed.R;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * The type Hospital layout.
  */
-public class hospitalLayout extends AppCompatActivity {
+public class HospitalActivity extends AppCompatActivity {
 
     /**
      * The M firebase firestore.

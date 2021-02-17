@@ -1,9 +1,9 @@
-package com.ipbeja.easymed;
+package com.ipbeja.easymed.Objects;
 
 /**
  * The type Row.
  */
-public class row {
+public class Row {
 
     /**
      * The Img.
@@ -15,7 +15,7 @@ public class row {
      *
      * @param img the img
      */
-    public row(int img) {
+    public Row(int img) {
         this.img = img;
     }
 

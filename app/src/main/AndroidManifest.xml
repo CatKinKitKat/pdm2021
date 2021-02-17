@@ -19,18 +19,18 @@
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="@string/google_maps_api" />
 
-        <activity android:name=".resetPassword" />
-        <activity android:name=".reminderActivity" />
-        <activity android:name=".pharmacyLayout" />
-        <activity android:name=".hospitalLayout" />
-        <activity android:name=".doctorsLayout" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".loginActivity" />
-        <activity android:name=".registerActivity" />
-        <activity android:name=".profileActivity" />
-        <activity android:name=".checkoutLayout" />
+        <activity android:name=".Activities.ResetPasswordActivity" />
+        <activity android:name=".Activities.ReminderActivity" />
+        <activity android:name=".Activities.PharmacyActivity" />
+        <activity android:name=".Activities.HospitalActivity" />
+        <activity android:name=".Activities.DoctorsActivity" />
+        <activity android:name=".Activities.MainActivity" />
+        <activity android:name=".Activities.LoginActivity" />
+        <activity android:name=".Activities.RegisterActivity" />
+        <activity android:name=".Activities.ProfileActivity" />
+        <activity android:name=".Activities.CheckoutActivity" />
 
-        <activity android:name=".splashScreen">
+        <activity android:name=".Launcher.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

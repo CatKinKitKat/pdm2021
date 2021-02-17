@@ -1,4 +1,4 @@
-package com.ipbeja.easymed;
+package com.ipbeja.easymed.Launcher;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,10 +6,13 @@ import android.os.Handler;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.ipbeja.easymed.Activities.LoginActivity;
+import com.ipbeja.easymed.R;
+
 /**
  * The type Splash screen.
  */
-public class splashScreen extends AppCompatActivity {
+public class SplashScreen extends AppCompatActivity {
 
     /**
      * The constant SPLASH_TIMEOUT.
@@ -29,7 +32,7 @@ public class splashScreen extends AppCompatActivity {
 
         new Handler().postDelayed(() -> {
 
-            Intent intent = new Intent(splashScreen.this, loginActivity.class);
+            Intent intent = new Intent(SplashScreen.this, LoginActivity.class);
 
             startActivity(intent);
             finish();

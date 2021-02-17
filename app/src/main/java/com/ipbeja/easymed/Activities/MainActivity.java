@@ -1,4 +1,4 @@
-package com.ipbeja.easymed;
+package com.ipbeja.easymed.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.ipbeja.easymed.Adapters.ImageSliderAdapter;
+import com.ipbeja.easymed.Objects.ImageSlider;
+import com.ipbeja.easymed.R;
+import com.ipbeja.easymed.Adapters.RecyclerViewAdapter;
+import com.ipbeja.easymed.Objects.Row;
 import com.smarteist.autoimageslider.SliderView;
 
 import java.util.ArrayList;
@@ -44,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * The Image slider model list.
      */
-    List<ImageSliderModel> imageSliderModelList;
+    List<ImageSlider> imageSliderList;
 
     /**
      * The Adapter.
@@ -54,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * The App list.
      */
-    private List<row> appList;
+    private List<Row> appList;
 
     /**
      * On create.
@@ -92,14 +97,14 @@ public class MainActivity extends AppCompatActivity {
         //Putting Data into recyclerView
         InitializeDataIntoRecyclerView();
 
-        this.imageSliderModelList = new ArrayList<>();
+        this.imageSliderList = new ArrayList<>();
         this.sliderView = findViewById(R.id.imageSlider);
 
-        this.imageSliderModelList.add(new ImageSliderModel(R.drawable.image_a));
-        this.imageSliderModelList.add(new ImageSliderModel(R.drawable.image_b));
-        this.imageSliderModelList.add(new ImageSliderModel(R.drawable.image_c));
+        this.imageSliderList.add(new ImageSlider(R.drawable.image_a));
+        this.imageSliderList.add(new ImageSlider(R.drawable.image_b));
+        this.imageSliderList.add(new ImageSlider(R.drawable.image_c));
 
-        this.sliderView.setSliderAdapter(new ImageSliderAdapter(this, this.imageSliderModelList));
+        this.sliderView.setSliderAdapter(new ImageSliderAdapter(this, this.imageSliderList));
     }
 
     /**
@@ -108,10 +113,10 @@ public class MainActivity extends AppCompatActivity {
     private void InitializeDataIntoRecyclerView() {
 
         int[] covers = this.covers;
-        row a;
+        Row a;
 
         for (int cover : covers) {
-            a = new row(cover);
+            a = new Row(cover);
             this.appList.add(a);
         }
 
@@ -144,11 +149,11 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.logout) {
 
             FirebaseAuth.getInstance().signOut();
-            startActivity(new Intent(getApplicationContext(), loginActivity.class));
+            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
             finish();
         } else if (id == R.id.profile) {
 
-            startActivity(new Intent(getApplicationContext(), profileActivity.class));
+            startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
             finish();
         }
 

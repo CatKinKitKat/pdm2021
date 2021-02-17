@@ -1,4 +1,4 @@
-package com.ipbeja.easymed;
+package com.ipbeja.easymed.Activities;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -12,6 +12,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.ipbeja.easymed.FireStore.Doctors;
+import com.ipbeja.easymed.R;
+import com.ipbeja.easymed.Adapters.HelperAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +21,7 @@ import java.util.List;
 /**
  * The type Doctors layout.
  */
-public class doctorsLayout extends AppCompatActivity {
+public class DoctorsActivity extends AppCompatActivity {
 
     /**
      * On create.
@@ -34,7 +36,7 @@ public class doctorsLayout extends AppCompatActivity {
     /**
      * The Helper adapter.
      */
-    helperAdapter helperAdapter;
+    HelperAdapter helperAdapter;
     /**
      * The Database reference.
      */
@@ -63,7 +65,7 @@ public class doctorsLayout extends AppCompatActivity {
                             u.setFireStoreId(document.getId());
                             doctorsData.add(u);
                         }
-                        helperAdapter = new helperAdapter(doctorsData);
+                        helperAdapter = new HelperAdapter(doctorsData);
                         recyclerView.setAdapter(helperAdapter);
                     }
                 }

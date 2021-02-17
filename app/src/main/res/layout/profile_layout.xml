@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient"
-    tools:context=".profileActivity">
+    tools:context=".Activities.ProfileActivity">
 
     <include
         android:id="@+id/toolbar"

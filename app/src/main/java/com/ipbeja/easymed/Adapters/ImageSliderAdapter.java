@@ -1,4 +1,4 @@
-package com.ipbeja.easymed;
+package com.ipbeja.easymed.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.ipbeja.easymed.Objects.ImageSlider;
+import com.ipbeja.easymed.R;
 import com.smarteist.autoimageslider.SliderViewAdapter;
 
 import java.util.List;
@@ -22,17 +24,17 @@ public class ImageSliderAdapter extends SliderViewAdapter<SliderViewHolder> {
     /**
      * The Image slider model list.
      */
-    List<ImageSliderModel> imageSliderModelList;
+    List<ImageSlider> imageSliderList;
 
     /**
      * Instantiates a new Image slider adapter.
      *
      * @param context              the context
-     * @param imageSliderModelList the image slider model list
+     * @param imageSliderList the image slider model list
      */
-    public ImageSliderAdapter(Context context, List<ImageSliderModel> imageSliderModelList) {
+    public ImageSliderAdapter(Context context, List<ImageSlider> imageSliderList) {
         this.context = context;
-        this.imageSliderModelList = imageSliderModelList;
+        this.imageSliderList = imageSliderList;
     }
 
     /**
@@ -56,7 +58,7 @@ public class ImageSliderAdapter extends SliderViewAdapter<SliderViewHolder> {
      */
     @Override
     public void onBindViewHolder(SliderViewHolder viewHolder, int position) {
-        viewHolder.sliderImageView.setImageResource(this.imageSliderModelList.get(position).getImage());
+        viewHolder.sliderImageView.setImageResource(this.imageSliderList.get(position).getImage());
     }
 
     /**
@@ -66,7 +68,7 @@ public class ImageSliderAdapter extends SliderViewAdapter<SliderViewHolder> {
      */
     @Override
     public int getCount() {
-        return this.imageSliderModelList.size();
+        return this.imageSliderList.size();
     }
 }
 

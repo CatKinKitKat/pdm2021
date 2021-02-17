@@ -1,4 +1,4 @@
-package com.ipbeja.easymed;
+package com.ipbeja.easymed.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,11 +10,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.ipbeja.easymed.R;
 
 /**
  * The type Reset password.
  */
-public class resetPassword extends AppCompatActivity {
+public class ResetPasswordActivity extends AppCompatActivity {
     /**
      * The User password.
      */
@@ -70,13 +71,13 @@ public class resetPassword extends AppCompatActivity {
 
             this.user.updatePassword(this.userPassword.getText().toString()).addOnSuccessListener(aVoid -> {
 
-                Toast.makeText(resetPassword.this, getString(R.string.passwd_update), Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(getApplicationContext(), profileActivity.class));
+                Toast.makeText(ResetPasswordActivity.this, getString(R.string.passwd_update), Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
 
                 finish();
             }).addOnFailureListener(e -> Toast.makeText(
 
-                    resetPassword.this, e.getMessage(), Toast.LENGTH_SHORT).show()
+                    ResetPasswordActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show()
             );
         });
     }

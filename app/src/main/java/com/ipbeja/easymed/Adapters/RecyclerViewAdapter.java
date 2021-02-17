@@ -1,4 +1,4 @@
-package com.ipbeja.easymed;
+package com.ipbeja.easymed.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,6 +11,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.ipbeja.easymed.Activities.DoctorsActivity;
+import com.ipbeja.easymed.Activities.HospitalActivity;
+import com.ipbeja.easymed.Activities.PharmacyActivity;
+import com.ipbeja.easymed.Activities.ReminderActivity;
+import com.ipbeja.easymed.Objects.Row;
+import com.ipbeja.easymed.R;
 
 import java.util.List;
 
@@ -27,7 +33,7 @@ public class RecyclerViewAdapter extends
     /**
      * The M data.
      */
-    List<row> mData;
+    List<Row> mData;
 
     /**
      * Instantiates a new Recycler view adapter.
@@ -35,7 +41,7 @@ public class RecyclerViewAdapter extends
      * @param mContext the m context
      * @param mData    the m data
      */
-    public RecyclerViewAdapter(Context mContext, List<row> mData) {
+    public RecyclerViewAdapter(Context mContext, List<Row> mData) {
 
         this.mContext = mContext;
         this.mData = mData;
@@ -139,13 +145,13 @@ public class RecyclerViewAdapter extends
 
             switch (which) {
                 case 0:
-                    return new Intent(mContext, reminderActivity.class);
+                    return new Intent(mContext, ReminderActivity.class);
                 case 1:
-                    return new Intent(mContext, pharmacyLayout.class);
+                    return new Intent(mContext, PharmacyActivity.class);
                 case 2:
-                    return new Intent(mContext, hospitalLayout.class);
+                    return new Intent(mContext, HospitalActivity.class);
                 case 3:
-                    return new Intent(mContext, doctorsLayout.class);
+                    return new Intent(mContext, DoctorsActivity.class);
                 default:
                     return null;
             }
