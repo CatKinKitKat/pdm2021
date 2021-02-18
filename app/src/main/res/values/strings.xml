@@ -55,17 +55,31 @@
     <string name="del_acc_error">Account deletion failed</string>
     <string name="del_acc_success">Account successfully deleted</string>
     <string name="cancel_action">Action cancelled</string>
-    <string name="directions" translatable="false">Directions</string>
+    <string name="directions">Directions</string>
     <string name="checkout">Checkout</string>
     <string name="clear_kart">Clear</string>
     <string name="proceed">Proceed Purchase</string>
     <string name="kart">My Kart</string>
     <string name="mbway_error">There seems to be problems in the banking system. Please try again later.</string>
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
-    <string name="google_maps_error" translatable="false">YEET</string>
     <string name="enable_gps">Enable GPS</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="closest_hospital">Find Closest Hospital</string>
     <string name="find_me">Find Me!</string>
+    <string name="repeat_off">No Repeat</string>
+    <string name="edit_reminder_title">Edit Reminder</string>
+    <string name="add_rem">Add Reminder Bubble</string>
+    <string name="on">On</string>
+    <string name="repeat_interval">Interval?</string>
+    <string name="repeat_no">Number of repeats</string>
+    <string name="repeat">Repeat</string>
+    <string name="time">Time</string>
+    <string name="date">Date</string>
+    <string name="details">Details</string>
+    <string name="off">Off</string>
+    <string name="add_reminder">Add a Reminder</string>
+    <string name="repeat_img_context" translatable="false">repeat_img_context</string>
+    <string name="alarm_state_img_context" translatable="false">alarm_state_img_context</string>
+    <string name="alarm_face_img_context" translatable="false">alarm_face_img_context</string>
 </resources>

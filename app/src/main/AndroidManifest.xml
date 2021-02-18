@@ -21,6 +21,8 @@
 
         <activity android:name=".Activities.ResetPasswordActivity" />
         <activity android:name=".Activities.ReminderActivity" />
+        <activity android:name=".Activities.ReminderAddActivity" />
+        <activity android:name=".Activities.ReminderEditActivity" />
         <activity android:name=".Activities.PharmacyActivity" />
         <activity android:name=".Activities.HospitalActivity" />
         <activity android:name=".Activities.DoctorsActivity" />
