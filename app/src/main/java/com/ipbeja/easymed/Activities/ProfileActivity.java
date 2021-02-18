@@ -20,17 +20,19 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.ipbeja.easymed.FireStore.Users;
 import com.ipbeja.easymed.R;
 
 import java.io.ByteArrayOutputStream;
+import java.util.Objects;
 import java.util.UUID;
 
 /**
@@ -90,6 +92,7 @@ public class ProfileActivity extends AppCompatActivity {
      * The Profile image.
      */
     private ImageView profileImage;
+    private Task<QuerySnapshot> collection;
 
     /**
      * On create.
@@ -115,55 +118,37 @@ public class ProfileActivity extends AppCompatActivity {
 
         this.profileImage = findViewById(R.id.profileImage);
         Button changeProfile = findViewById(R.id.changeProfile);
-
-        FirebaseFirestore fStore = FirebaseFirestore.getInstance();
         FirebaseStorage.getInstance().getReference();
-        String userID = this.fAuth.getCurrentUser().getUid();
+        String userID = Objects.requireNonNull(this.fAuth.getCurrentUser()).getUid();
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("users")
+        this.collection = db.collection("users")
                 .whereEqualTo("authID", userID)
                 .get()
                 .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        for (QueryDocumentSnapshot document : task.getResult()) {
+                    if (task.isSuccessful() && task.getResult() != null) {
+                        for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
                             Users u = document.toObject(Users.class);
                             u.setFireStoreID(document.getId());
-
                             this.user = u;
-
-                            this.phone.setText(u.getPhone());
-                            this.name.setText(u.getfName());
-                            this.email.setText(u.getEmail());
+                        }
+                        if (this.user != null) {
+                            this.phone.setText(this.user.getPhone());
+                            this.name.setText(this.user.getfName());
+                            this.email.setText(this.user.getEmail());
 
                             FirebaseStorage storage = FirebaseStorage.getInstance();
                             StorageReference storageRef = storage.getReference();
-                            StorageReference picturePath = storageRef.child(u.getProfileImagePath());
+                            StorageReference picturePath = storageRef.child(this.user.getProfileImagePath());
 
                             picturePath.getBytes(Long.MAX_VALUE).addOnSuccessListener(bytes -> {
                                 this.profileImage.setImageBitmap(
                                         BitmapFactory.decodeByteArray(bytes, 0, bytes.length)
                                 );
                             });
-
                         }
-
-
                     }
                 });
-
-        DocumentReference documentReference = fStore.collection("users").document(userID);
-        documentReference.addSnapshotListener(this, (documentSnapshot, e) -> {
-            if (e != null) {
-
-                Log.d(TAG, "Error" + e.getMessage());
-            } else {
-
-                this.phone.setText(documentSnapshot.getString("phone"));
-                this.name.setText(documentSnapshot.getString("fName"));
-                this.email.setText(documentSnapshot.getString("email"));
-            }
-        });
 
         this.reset_alert = new AlertDialog.Builder(this);
 
@@ -320,5 +305,14 @@ public class ProfileActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (this.collection.isComplete()) {
+            //TODO
+        }
+
+        super.onDestroy();
     }
 }
