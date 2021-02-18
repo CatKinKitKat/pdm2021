@@ -8,11 +8,12 @@ import java.util.Comparator;
 /**
  * The type Date time comparator.
  */
-public class DateTimeComparator implements Comparator {
+public class DateTimeComparator implements Comparator<Object> {
+
     /**
-     * The F.
+     * The date format.
      */
-    DateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy hh:mm");
+    DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm");
 
     /**
      * Compare int.

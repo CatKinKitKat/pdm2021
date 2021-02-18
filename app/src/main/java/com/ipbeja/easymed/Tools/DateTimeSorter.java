@@ -5,6 +5,7 @@ package com.ipbeja.easymed.Tools;
  * The type Date time sorter.
  */
 public class DateTimeSorter {
+
     /**
      * The M index.
      */
@@ -13,7 +14,6 @@ public class DateTimeSorter {
      * The M date time.
      */
     public String mDateTime;
-
 
     /**
      * Instantiates a new Date time sorter.
@@ -25,7 +25,6 @@ public class DateTimeSorter {
         this.mIndex = index;
         this.mDateTime = DateTime;
     }
-
 
     /**
      * Gets index.

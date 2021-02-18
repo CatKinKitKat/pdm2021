@@ -7,7 +7,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -88,11 +87,6 @@ public class ProfileActivity extends AppCompatActivity {
     private AlertDialog.Builder reset_alert;
 
     /**
-     * The Inflater.
-     */
-    private LayoutInflater inflater;
-
-    /**
      * The Profile image.
      */
     private ImageView profileImage;
@@ -113,7 +107,6 @@ public class ProfileActivity extends AppCompatActivity {
 
         this.verifyEmailBtn = findViewById(R.id.verifyEmailBtn);
         Button resetBtn = findViewById(R.id.resetBtn);
-        //Button updateEmailMenu = findViewById(R.id.updateEmailMenu);
         Button deleteAccountBtn = findViewById(R.id.delete_account_menu);
 
         this.name = findViewById(R.id.profileName);
@@ -173,7 +166,6 @@ public class ProfileActivity extends AppCompatActivity {
         });
 
         this.reset_alert = new AlertDialog.Builder(this);
-        this.inflater = this.getLayoutInflater();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -242,31 +234,6 @@ public class ProfileActivity extends AppCompatActivity {
             Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             startActivityForResult(i, CAMERA_REQUEST_CODE);
         });
-
-        /*updateEmailMenu.setOnClickListener(v -> {
-
-            View view = inflater.inflate(R.layout.reset_pop, null);
-
-            reset_alert.setTitle(getString(R.string.update_email_prompt))
-                    .setMessage(getString(R.string.email_input_prompt))
-                    .setPositiveButton(getString(R.string.update), (dialog, which) -> {
-
-                        EditText email = view.findViewById(R.id.reset_email_pop);
-                        if (email.getText().toString().isEmpty()) {
-
-                            email.setError(getString(R.string.field_error));
-                            return;
-                        }
-
-                        FirebaseUser user = fAuth.getCurrentUser();
-                        user.updateEmail(email.getText().toString()).addOnSuccessListener(aVoid -> Toast.makeText(
-                                profileActivity.this, getString(R.string.email_update), Toast.LENGTH_SHORT).show()
-                        ).addOnFailureListener(e -> Toast.makeText(
-                                profileActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show()
-                        );
-
-                    }).setNegativeButton(getString(R.string.cancel), null).setView(view).create().show();
-        });*/
     }
 
     /**

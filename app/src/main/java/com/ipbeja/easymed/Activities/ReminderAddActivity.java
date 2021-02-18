@@ -18,7 +18,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.ipbeja.easymed.Objects.Reminder;
 import com.ipbeja.easymed.R;
 import com.ipbeja.easymed.SQLite.ReminderDatabase;
@@ -104,14 +103,6 @@ public class ReminderAddActivity extends AppCompatActivity {
      * The M repeat type text.
      */
     mRepeatTypeText;
-    /**
-     * The M fab 1.
-     */
-    private FloatingActionButton mFAB1;
-    /**
-     * The M fab 2.
-     */
-    private FloatingActionButton mFAB2;
     /**
      * The M calendar.
      */
