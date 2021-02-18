@@ -27,6 +27,8 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.ipbeja.easymed.FireStore.Hospitals;
 import com.ipbeja.easymed.R;
 
+import java.util.Objects;
+
 /**
  * The type Hospital layout.
  */
@@ -101,15 +103,12 @@ public class HospitalActivity extends AppCompatActivity {
         if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             this.OnGPS();
         }
-
         this.getLocation();
 
         SupportMapFragment mapFragment = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapView));
         if (mapFragment != null) {
             mapFragment.getMapAsync(this::loadMap);
         }
-
-        this.createMarkersFromDB();
     }
 
     /**
@@ -152,11 +151,11 @@ public class HospitalActivity extends AppCompatActivity {
     private void createMarkersFromDB() {
 
         this.mFirebaseFirestore.collection("hospitals").get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                for (QueryDocumentSnapshot document : task.getResult()) {
-                    Hospitals u = document.toObject(Hospitals.class);
-                    u.setFireStoreID(document.getId());
-                    this.createMarkerWithDistance(u.getLatitude(), u.getLongitude(), u.getName());
+            if (task.isSuccessful() && task.getResult() != null) {
+                for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
+                    Hospitals h = document.toObject(Hospitals.class);
+                    h.setFireStoreID(document.getId());
+                    this.createMarkerWithDistance(h.getLatitude(), h.getLongitude(), h.getName());
                 }
             }
         });
@@ -219,6 +218,7 @@ public class HospitalActivity extends AppCompatActivity {
         this.uiSettings.setZoomGesturesEnabled(true);
 
         this.centerMap();
+        this.createMarkersFromDB();
     }
 
     /**
