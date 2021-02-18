@@ -5,15 +5,9 @@
     tools:context=".Activities.MainActivity">
 
     <item
-        android:id="@+id/discard_reminder"
-        android:icon="@drawable/discard"
-        android:title="discard"
-        app:showAsAction="ifRoom" />
-
-    <item
-        android:id="@+id/save_reminder"
-        android:icon="@drawable/save"
-        android:title="save"
+        android:id="@+id/delete_reminder"
+        android:icon="@drawable/delete"
+        android:title="delete"
         app:showAsAction="ifRoom" />
 
 </menu>

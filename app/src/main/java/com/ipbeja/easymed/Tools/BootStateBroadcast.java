@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * The type Boot receiver.
  */
-public class BootReceiver extends BroadcastReceiver {
+public class BootStateBroadcast extends BroadcastReceiver {
 
     /**
      * The constant milMinute.

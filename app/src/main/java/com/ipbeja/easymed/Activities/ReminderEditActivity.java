@@ -203,8 +203,6 @@ public class ReminderEditActivity extends AppCompatActivity {
         this.mRepeatText = findViewById(R.id.set_repeat);
         this.mRepeatNoText = findViewById(R.id.set_repeat_no);
         this.mRepeatTypeText = findViewById(R.id.set_repeat_type);
-        this.mFAB1 = findViewById(R.id.starred1);
-        this.mFAB2 = findViewById(R.id.starred2);
         SwitchCompat mRepeatSwitch = findViewById(R.id.repeat_switch);
 
         this.mTitleText.addTextChangedListener(new TextWatcher() {
@@ -269,16 +267,6 @@ public class ReminderEditActivity extends AppCompatActivity {
             this.mRepeatType = savedRepeatType;
 
             this.mActive = savedInstanceState.getString(KEY_ACTIVE);
-        }
-
-        if (mActive.equals("false")) {
-
-            this.mFAB1.setVisibility(View.VISIBLE);
-            this.mFAB2.setVisibility(View.GONE);
-        } else if (mActive.equals("true")) {
-
-            this.mFAB1.setVisibility(View.GONE);
-            this.mFAB2.setVisibility(View.VISIBLE);
         }
 
         if (mRepeat.equals("false")) {
@@ -370,34 +358,6 @@ public class ReminderEditActivity extends AppCompatActivity {
         }, this.mYear, this.mMonth, this.mDay);
 
         dpd.show();
-    }
-
-
-    /**
-     * Select fab 1.
-     *
-     * @param v the v
-     */
-    public void selectFab1(View v) {
-        this.mFAB1 = findViewById(R.id.starred1);
-        this.mFAB1.setVisibility(View.GONE);
-        this.mFAB2 = findViewById(R.id.starred2);
-        this.mFAB2.setVisibility(View.VISIBLE);
-        this.mActive = "true";
-    }
-
-
-    /**
-     * Select fab 2.
-     *
-     * @param v the v
-     */
-    public void selectFab2(View v) {
-        this.mFAB2 = findViewById(R.id.starred2);
-        this.mFAB2.setVisibility(View.GONE);
-        this.mFAB1 = findViewById(R.id.starred1);
-        this.mFAB1.setVisibility(View.VISIBLE);
-        this.mActive = "false";
     }
 
     /**

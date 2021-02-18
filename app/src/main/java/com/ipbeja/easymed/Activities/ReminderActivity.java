@@ -67,48 +67,36 @@ public class ReminderActivity extends AppCompatActivity {
      * The M alarm receiver.
      */
     private AlarmReceiver mAlarmReceiver;
+
     /**
      * The M delete mode.
      */
     private final ActionMode.Callback mDeleteMode = new ModalMultiSelectorCallback(mMultiSelector) {
         @Override
         public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
-            getMenuInflater().inflate(R.menu.menu_add_reminder, menu);
+            getMenuInflater().inflate(R.menu.menu_rem_reminder, menu);
             return true;
         }
 
         @Override
         public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
-            switch (menuItem.getItemId()) {
-                case R.id.discard_reminder:
-                    actionMode.finish();
-                    for (int i = IDmap.size(); i >= 0; i--) {
-                        if (mMultiSelector.isSelected(i, 0)) {
-                            int id = IDmap.get(i);
-                            Reminder temp = rb.getReminder(id);
-                            rb.deleteReminder(temp);
-                            mAdapter.removeItemSelected(i);
-                            mAlarmReceiver.cancelAlarm(getApplicationContext(), id);
-                        }
+            if (menuItem.getItemId() == R.id.delete_reminder) {
+                actionMode.finish();
+                for (int i = IDmap.size(); i >= 0; i--) {
+                    if (mMultiSelector.isSelected(i, 0)) {
+                        int id = IDmap.get(i);
+                        Reminder temp = rb.getReminder(id);
+                        rb.deleteReminder(temp);
+                        mAdapter.removeItemSelected(i);
+                        mAlarmReceiver.cancelAlarm(getApplicationContext(), id);
                     }
-                    mMultiSelector.clearSelections();
-                    mAdapter.onDeleteItem(getDefaultItemCount());
-                    Toast.makeText(getApplicationContext(),
-                            "Deleted",
-                            Toast.LENGTH_SHORT).show();
-                    List<Reminder> mTest = rb.getAllReminders();
-                    if (mTest.isEmpty()) {
-                        Toast.makeText(getApplicationContext(),
-                                "You have no Meds to take!",
-                                Toast.LENGTH_SHORT).show();
-                    }
-                    return true;
-                case R.id.save_reminder:
-                    actionMode.finish();
-                    mMultiSelector.clearSelections();
-                    return true;
-                default:
-                    break;
+                }
+                mMultiSelector.clearSelections();
+                mAdapter.onDeleteItem(getDefaultItemCount());
+                Toast.makeText(getApplicationContext(),
+                        "Deleted",
+                        Toast.LENGTH_SHORT).show();
+                return true;
             }
             return false;
         }
@@ -203,14 +191,6 @@ public class ReminderActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-
-        List<Reminder> mTest = this.rb.getAllReminders();
-
-        if (mTest.isEmpty()) {
-            Toast.makeText(getApplicationContext(),
-                    "You have no Meds to take!",
-                    Toast.LENGTH_SHORT).show();
-        }
 
         this.mAdapter.setItemCount(getDefaultItemCount());
     }

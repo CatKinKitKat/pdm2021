@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/relativeLayout3"
     android:layout_width="match_parent"
-    android:layout_height="100dp">
+    android:layout_height="100dp"
+    android:layout_margin="4dp">
 
     <ImageView
         android:id="@+id/thumbnail_image"
@@ -12,6 +13,7 @@
         android:layout_height="70dp"
         android:layout_margin="10dp"
         android:contentDescription="@string/alarm_face_img_context"
+        app:civ_border_color="#FF000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -35,6 +37,7 @@
             android:layout_marginTop="8dp"
             android:ellipsize="end"
             android:maxLines="1"
+            android:textColor="#FF000000"
             android:textSize="20sp"
             tools:text="Title" />
 
@@ -44,6 +47,7 @@
             android:layout_height="wrap_content"
             android:ellipsize="marquee"
             android:singleLine="true"
+            android:textColor="#FF000000"
             android:textSize="16sp"
             tools:text="Date and Time" />
 
@@ -54,6 +58,7 @@
             android:layout_marginBottom="8dp"
             android:ellipsize="marquee"
             android:singleLine="true"
+            android:textColor="#FF000000"
             android:textSize="16sp"
             tools:text="Repeat No and Type" />
 

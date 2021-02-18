@@ -93,7 +93,7 @@ public class AlarmReceiver extends WakefulBroadcastReceiver {
                 this.mPendingIntent);
 
 
-        ComponentName receiver = new ComponentName(context, BootReceiver.class);
+        ComponentName receiver = new ComponentName(context, BootStateBroadcast.class);
         PackageManager pm = context.getPackageManager();
         pm.setComponentEnabledSetting(receiver,
                 PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
@@ -124,11 +124,11 @@ public class AlarmReceiver extends WakefulBroadcastReceiver {
                 SystemClock.elapsedRealtime() + diffTime,
                 RepeatTime, this.mPendingIntent);
 
-        ComponentName receiver = new ComponentName(context, BootReceiver.class);
-        PackageManager pm = context.getPackageManager();
-        pm.setComponentEnabledSetting(receiver,
+        context.getPackageManager().setComponentEnabledSetting(
+                new ComponentName(context, BootStateBroadcast.class),
                 PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
-                PackageManager.DONT_KILL_APP);
+                PackageManager.DONT_KILL_APP
+        );
     }
 
     /**
@@ -144,9 +144,8 @@ public class AlarmReceiver extends WakefulBroadcastReceiver {
         this.mPendingIntent = PendingIntent.getBroadcast(context, ID, new Intent(context, AlarmReceiver.class), 0);
         this.mAlarmManager.cancel(this.mPendingIntent);
 
-        ComponentName receiver = new ComponentName(context, BootReceiver.class);
-        PackageManager pm = context.getPackageManager();
-        pm.setComponentEnabledSetting(receiver,
+        context.getPackageManager().setComponentEnabledSetting(
+                new ComponentName(context, BootStateBroadcast.class),
                 PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
                 PackageManager.DONT_KILL_APP);
     }
