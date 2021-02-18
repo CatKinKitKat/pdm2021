@@ -20,10 +20,12 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.ipbeja.easymed.FireStore.Users;
@@ -90,6 +92,7 @@ public class ProfileActivity extends AppCompatActivity {
      * The Profile image.
      */
     private ImageView profileImage;
+    private Task<QuerySnapshot> collection;
 
     /**
      * On create.
@@ -119,7 +122,7 @@ public class ProfileActivity extends AppCompatActivity {
         String userID = Objects.requireNonNull(this.fAuth.getCurrentUser()).getUid();
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("users")
+        this.collection = db.collection("users")
                 .whereEqualTo("authID", userID)
                 .get()
                 .addOnCompleteListener(task -> {
@@ -302,5 +305,14 @@ public class ProfileActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (this.collection.isComplete()) {
+            //TODO
+        }
+
+        super.onDestroy();
     }
 }
