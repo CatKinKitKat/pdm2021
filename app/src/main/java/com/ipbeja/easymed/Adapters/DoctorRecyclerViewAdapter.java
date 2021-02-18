@@ -1,5 +1,7 @@
 package com.ipbeja.easymed.Adapters;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -91,7 +93,7 @@ public class DoctorRecyclerViewAdapter extends RecyclerView.Adapter {
     /**
      * The type View holder class.
      */
-    public static class viewHolderClass extends RecyclerView.ViewHolder {
+    public static class viewHolderClass extends RecyclerView.ViewHolder{
 
         /**
          * The Name.
@@ -106,13 +108,12 @@ public class DoctorRecyclerViewAdapter extends RecyclerView.Adapter {
          */
         CircleImageView img;
 
-
         /**
          * Instantiates a new View holder class.
          *
          * @param itemView the item view
          */
-        public viewHolderClass(@NonNull View itemView) {
+        public viewHolderClass(final View itemView) {
 
             super(itemView);
             this.name = itemView.findViewById(R.id.nameText);
