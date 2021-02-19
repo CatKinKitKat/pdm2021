@@ -68,4 +68,6 @@
     <string name="details">Details</string>
     <string name="off">Off</string>
     <string name="add_reminder">Add a Reminder</string>
+    <string name="discard_prompt">Discard changes?</string>
+    <string name="delete_prompt">Delete?</string>
 </resources>
