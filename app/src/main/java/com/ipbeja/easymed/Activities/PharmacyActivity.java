@@ -7,24 +7,57 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.ipbeja.easymed.Adapters.MedsRecyclerViewAdapter;
+import com.ipbeja.easymed.FireStore.Doctors;
+import com.ipbeja.easymed.FireStore.Meds;
 import com.ipbeja.easymed.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The type Pharmacy layout.
  */
 public class PharmacyActivity extends AppCompatActivity {
 
+    List<Meds> medData;
     /**
-     * On create.
-     *
-     * @param savedInstanceState the saved instance state
+     * The Recycler view.
      */
+    RecyclerView recyclerView;
+    /**
+     * The Helper adapter.
+     */
+    MedsRecyclerViewAdapter medRecyclerViewAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pharmacy_layout);
+
+        this.recyclerView = findViewById(R.id.recyclerView);
+        this.recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        this.medData = new ArrayList<>();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        db.collection("meds").get().addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            Meds u = document.toObject(Meds.class);
+                            u.setFireStoreId(document.getId());
+                            this.medData.add(u);
+                        }
+                        this.medRecyclerViewAdapter = new MedsRecyclerViewAdapter(this.medData);
+                        this.recyclerView.setAdapter(this.medRecyclerViewAdapter);
+                    }
+                }
+
+        );
 
         Toolbar toolbar = findViewById(R.id.toolbar);
 

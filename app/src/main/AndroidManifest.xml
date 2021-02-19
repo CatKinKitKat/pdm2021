@@ -14,6 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PDM">
+
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="@string/google_maps_api" />
@@ -30,15 +31,18 @@
         <activity android:name=".Activities.RegisterActivity" />
         <activity android:name=".Activities.ProfileActivity" />
         <activity android:name=".Activities.CheckoutActivity" />
-
+        <activity android:name=".Activities.RvDoctors" />
+        <activity android:name=".Activities.RvMeds" />
         <receiver android:name=".Tools.BootStateBroadcast" />
         <receiver android:name=".Tools.AlarmReceiver" />
 
         <activity android:name=".Launcher.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>
+
 </manifest>

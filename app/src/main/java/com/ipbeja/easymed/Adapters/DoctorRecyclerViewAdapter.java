@@ -1,7 +1,7 @@
 package com.ipbeja.easymed.Adapters;
 
-import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.ipbeja.easymed.Activities.RvDoctors;
 import com.ipbeja.easymed.FireStore.Doctors;
 import com.ipbeja.easymed.R;
 
@@ -23,17 +24,21 @@ import de.hdodenhof.circleimageview.CircleImageView;
 /**
  * The type Helper adapter.
  */
-public class DoctorRecyclerViewAdapter extends RecyclerView.Adapter {
+public class DoctorRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     /**
      * The Doctors list.
      */
-    List<Doctors> doctorsList;
+    private List<Doctors> doctorsList;
+    private static Bitmap bitmap_transfer;
 
-    /**
-     * Instantiates a new Helper adapter.
-     *
-     * @param doctorsList the doctors list
-     */
+    public static Bitmap getBitmap_transfer() {
+        return bitmap_transfer;
+    }
+
+    public static void setBitmap_transfer(Bitmap bitmap_transfer_param) {
+        bitmap_transfer = bitmap_transfer_param;
+    }
+
     public DoctorRecyclerViewAdapter(List<Doctors> doctorsList) {
         this.doctorsList = doctorsList;
     }
@@ -62,7 +67,7 @@ public class DoctorRecyclerViewAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
-        Doctors doctors = this.doctorsList.get(position);
+        final Doctors doctors = this.doctorsList.get(position);
         ((DoctorRecyclerViewAdapter.viewHolderClass) holder).name.setText(doctors.getName());
         ((DoctorRecyclerViewAdapter.viewHolderClass) holder).speciality.setText(doctors.getSpeciality());
 
@@ -73,10 +78,36 @@ public class DoctorRecyclerViewAdapter extends RecyclerView.Adapter {
 
             StorageReference picturePath = storageRef.child(doctors.getFurl());
             picturePath.getBytes(Long.MAX_VALUE).addOnSuccessListener(bytes -> {
-                ((viewHolderClass) holder).img.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
+                ((DoctorRecyclerViewAdapter.viewHolderClass) holder).img.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
             });
 
         }
+
+
+        ((DoctorRecyclerViewAdapter.viewHolderClass) holder).img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                ((DoctorRecyclerViewAdapter.viewHolderClass) holder).img.buildDrawingCache();
+                setBitmap_transfer(((DoctorRecyclerViewAdapter.viewHolderClass) holder).img.getDrawingCache());
+
+
+                Intent i = new Intent(v.getContext(), RvDoctors.class);
+                i.putExtra("name", doctors.getName());
+                i.putExtra("speciality", doctors.getSpeciality());
+                i.putExtra("phoneNumber", doctors.getPhoneNumb());
+                i.putExtra("email", doctors.getEmail());
+                v.getContext().startActivity(i);
+
+                /*
+                AppCompatActivity activity = (AppCompatActivity)v.getContext();
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper, new DescFragment(doctors.getName(), doctors.getSpeciality(), doctors.getFurl(), doctors.getPhoneNumb(), doctors.getEmail())).addToBackStack(null).commit();
+                */
+            }
+        });
+
+
 
     }
 
@@ -93,7 +124,7 @@ public class DoctorRecyclerViewAdapter extends RecyclerView.Adapter {
     /**
      * The type View holder class.
      */
-    public static class viewHolderClass extends RecyclerView.ViewHolder{
+    public class viewHolderClass extends RecyclerView.ViewHolder{
 
         /**
          * The Name.
