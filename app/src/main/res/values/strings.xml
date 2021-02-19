@@ -1,3 +1,4 @@
+<?xml version="1.1" encoding="utf-8"?>
 <resources>
     <string name="app_name" translatable="false">EasyMed</string>
     <string name="title" translatable="false">EasyMed</string>
@@ -82,4 +83,6 @@
     <string name="repeat_img_context" translatable="false">repeat_img_context</string>
     <string name="alarm_state_img_context" translatable="false">alarm_state_img_context</string>
     <string name="alarm_face_img_context" translatable="false">alarm_face_img_context</string>
+    <string name="discard_prompt">Discard changes?</string>
+    <string name="delete_prompt">Delete?</string>
 </resources>

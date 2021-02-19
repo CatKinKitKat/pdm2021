@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.1" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ipbeja.easymed">
 
@@ -22,8 +22,7 @@
 
         <activity android:name=".Activities.ResetPasswordActivity" />
         <activity android:name=".Activities.ReminderActivity" />
-        <activity android:name=".Activities.ReminderAddActivity" />
-        <activity android:name=".Activities.ReminderEditActivity" />
+        <activity android:name=".Activities.AddReminderActivity" />
         <activity android:name=".Activities.PharmacyActivity" />
         <activity android:name=".Activities.HospitalActivity" />
         <activity android:name=".Activities.DoctorsActivity" />
@@ -35,9 +34,6 @@
         <activity android:name=".Activities.Popout.PopupDoctors" />
         <activity android:name=".Activities.Popout.PopupMeds" />
 
-        <receiver android:name=".Tools.BootStateBroadcast" />
-        <receiver android:name=".Tools.AlarmReceiver" />
-
         <activity android:name=".Launcher.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -45,6 +41,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:name=".Activities.AlarmPort.Database.AlarmProvider"
+            android:authorities="com.ipbeja.easymed.provider"
+            android:exported="false" />
+
+        <service
+            android:name=".Activities.AlarmPort.Services.AlarmService"
+            android:exported="true" />
+
     </application>
 
 </manifest>

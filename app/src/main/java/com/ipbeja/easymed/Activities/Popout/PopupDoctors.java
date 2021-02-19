@@ -47,11 +47,11 @@ public class PopupDoctors extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_popup_doctors);
 
-        nameHolder = findViewById(R.id.doctorName);
-        emailHolder = findViewById(R.id.doctorEmail);
-        specialityHolder = findViewById(R.id.doctorSpeciality);
-        phoneNumberHolder = findViewById(R.id.doctorPhoneNumb);
-        circleImage = findViewById(R.id.desc_img);
+        this.nameHolder = findViewById(R.id.doctorName);
+        this.emailHolder = findViewById(R.id.doctorEmail);
+        this.specialityHolder = findViewById(R.id.doctorSpeciality);
+        this.phoneNumberHolder = findViewById(R.id.doctorPhoneNumb);
+        this.circleImage = findViewById(R.id.desc_img);
 
         Intent i = getIntent();
         String name = i.getStringExtra("name");
@@ -59,11 +59,11 @@ public class PopupDoctors extends AppCompatActivity {
         String email = i.getStringExtra("email");
         String phoneNumb = i.getStringExtra("phoneNumber");
 
-        nameHolder.setText(name);
-        specialityHolder.setText(speciality);
-        emailHolder.setText(email);
-        phoneNumberHolder.setText(phoneNumb);
-        circleImage.setImageDrawable(new BitmapDrawable(getResources(), DoctorRecyclerViewAdapter.getBitmap_transfer()));
+        this.nameHolder.setText(name);
+        this.specialityHolder.setText(speciality);
+        this.emailHolder.setText(email);
+        this.phoneNumberHolder.setText(phoneNumb);
+        this.circleImage.setImageDrawable(new BitmapDrawable(getResources(), DoctorRecyclerViewAdapter.getBitmap_transfer()));
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
