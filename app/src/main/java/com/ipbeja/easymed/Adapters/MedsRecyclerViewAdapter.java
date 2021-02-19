@@ -113,6 +113,7 @@ public class MedsRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
                 Intent i = new Intent(v.getContext(), PopupMeds.class);
                 i.putExtra("name", meds.getName());
                 i.putExtra("price", meds.getPrice());
+                i.putExtra("url", meds.getUrl());
                 v.getContext().startActivity(i);
 
             }

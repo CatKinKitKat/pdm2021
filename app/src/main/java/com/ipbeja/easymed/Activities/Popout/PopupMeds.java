@@ -2,8 +2,11 @@ package com.ipbeja.easymed.Activities.Popout;
 
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,6 +34,8 @@ public class PopupMeds extends AppCompatActivity {
      */
     CircleImageView circleImage;
 
+    Button continueBtn;
+
     /**
      * On create.
      *
@@ -48,6 +53,7 @@ public class PopupMeds extends AppCompatActivity {
         Intent i = getIntent();
         String name = i.getStringExtra("name");
         String price = i.getStringExtra("price");
+        String url = i.getStringExtra("url");
 
         nameHolder.setText(name);
         priceHolder.setText(price);
@@ -57,6 +63,17 @@ public class PopupMeds extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Meds");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        continueBtn = (Button)findViewById(R.id.continueBtn);
+        continueBtn.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(browserIntent);
+            }
+        });
 
     }
 

@@ -14,7 +14,10 @@ public class Meds {
     furl, /**
      * The Price.
      */
-    price;
+    price,
+
+
+    url;
     /**
      * The Fire store id.
      */
@@ -34,11 +37,12 @@ public class Meds {
      * @param price       the price
      * @param fireStoreId the fire store id
      */
-    public Meds(String name, String furl, String price, String fireStoreId) {
+    public Meds(String name, String furl, String price, String fireStoreId, String url) {
         this.name = name;
         this.furl = furl;
         this.price = price;
         this.fireStoreId = fireStoreId;
+        this.url = url;
     }
 
     /**
@@ -112,4 +116,13 @@ public class Meds {
     public void setFireStoreId(String fireStoreId) {
         this.fireStoreId = fireStoreId;
     }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
 }
