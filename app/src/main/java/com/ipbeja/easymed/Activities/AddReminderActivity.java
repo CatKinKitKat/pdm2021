@@ -5,7 +5,6 @@ import android.app.LoaderManager;
 import android.app.TimePickerDialog;
 import android.content.ContentValues;
 import android.content.CursorLoader;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
@@ -27,8 +26,8 @@ import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.ipbeja.easymed.Activities.data.AlarmReminderContract;
-import com.ipbeja.easymed.Activities.reminder.AlarmScheduler;
+import com.ipbeja.easymed.Activities.AlarmPort.Database.AlarmURIManager;
+import com.ipbeja.easymed.Activities.AlarmPort.Services.AlarmScheduler;
 import com.ipbeja.easymed.R;
 
 import java.util.Calendar;
@@ -458,24 +457,18 @@ public class AddReminderActivity extends AppCompatActivity implements LoaderMana
         input.setInputType(InputType.TYPE_CLASS_NUMBER);
         alert.setView(input);
         alert.setPositiveButton("Ok",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
+                (dialog, whichButton) -> {
 
-                        if (input.getText().toString().length() == 0) {
-                            mRepeatNo = Integer.toString(1);
-                            mRepeatNoText.setText(mRepeatNo);
-                            mRepeatText.setText("Every " + mRepeatNo + " " + mRepeatType + "(s)");
-                        } else {
-                            mRepeatNo = input.getText().toString().trim();
-                            mRepeatNoText.setText(mRepeatNo);
-                            mRepeatText.setText("Every " + mRepeatNo + " " + mRepeatType + "(s)");
-                        }
+                    if (input.getText().toString().length() == 0) {
+                        mRepeatNo = Integer.toString(1);
+                    } else {
+                        mRepeatNo = input.getText().toString().trim();
                     }
+                    mRepeatNoText.setText(mRepeatNo);
+                    mRepeatText.setText("Every " + mRepeatNo + " " + mRepeatType + "(s)");
                 });
-        alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int whichButton) {
+        alert.setNegativeButton("Cancel", (dialog, whichButton) -> {
 
-            }
         });
         alert.show();
     }
@@ -548,29 +541,6 @@ public class AddReminderActivity extends AppCompatActivity implements LoaderMana
     }
 
     /**
-     * Show unsaved changes dialog.
-     *
-     * @param discardButtonClickListener the discard button click listener
-     */
-    private void showUnsavedChangesDialog(
-            DialogInterface.OnClickListener discardButtonClickListener) {
-
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(R.string.discard_prompt);
-        builder.setPositiveButton(R.string.yes, discardButtonClickListener);
-        builder.setNegativeButton(R.string.no, (dialog, id) -> {
-            if (dialog != null) {
-                dialog.dismiss();
-            }
-        });
-
-
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
-    }
-
-    /**
      * Show delete confirmation dialog.
      */
     private void showDeleteConfirmationDialog() {
@@ -629,13 +599,13 @@ public class AddReminderActivity extends AppCompatActivity implements LoaderMana
 
         ContentValues values = new ContentValues();
 
-        values.put(AlarmReminderContract.AlarmReminderEntry.KEY_TITLE, mTitle);
-        values.put(AlarmReminderContract.AlarmReminderEntry.KEY_DATE, mDate);
-        values.put(AlarmReminderContract.AlarmReminderEntry.KEY_TIME, mTime);
-        values.put(AlarmReminderContract.AlarmReminderEntry.KEY_REPEAT, mRepeat);
-        values.put(AlarmReminderContract.AlarmReminderEntry.KEY_REPEAT_NO, mRepeatNo);
-        values.put(AlarmReminderContract.AlarmReminderEntry.KEY_REPEAT_TYPE, mRepeatType);
-        values.put(AlarmReminderContract.AlarmReminderEntry.KEY_ACTIVE, mActive);
+        values.put(AlarmURIManager.Entry.KEY_TITLE, mTitle);
+        values.put(AlarmURIManager.Entry.KEY_DATE, mDate);
+        values.put(AlarmURIManager.Entry.KEY_TIME, mTime);
+        values.put(AlarmURIManager.Entry.KEY_REPEAT, mRepeat);
+        values.put(AlarmURIManager.Entry.KEY_REPEAT_NO, mRepeatNo);
+        values.put(AlarmURIManager.Entry.KEY_REPEAT_TYPE, mRepeatType);
+        values.put(AlarmURIManager.Entry.KEY_ACTIVE, mActive);
 
 
         mCalendar.set(Calendar.MONTH, --mMonth);
@@ -663,7 +633,7 @@ public class AddReminderActivity extends AppCompatActivity implements LoaderMana
         if (mCurrentReminderUri == null) {
 
 
-            Uri newUri = getContentResolver().insert(AlarmReminderContract.AlarmReminderEntry.CONTENT_URI, values);
+            Uri newUri = getContentResolver().insert(AlarmURIManager.Entry.CONTENT_URI, values);
 
 
             if (newUri == null) {
@@ -731,14 +701,14 @@ public class AddReminderActivity extends AppCompatActivity implements LoaderMana
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
 
         String[] projection = {
-                AlarmReminderContract.AlarmReminderEntry._ID,
-                AlarmReminderContract.AlarmReminderEntry.KEY_TITLE,
-                AlarmReminderContract.AlarmReminderEntry.KEY_DATE,
-                AlarmReminderContract.AlarmReminderEntry.KEY_TIME,
-                AlarmReminderContract.AlarmReminderEntry.KEY_REPEAT,
-                AlarmReminderContract.AlarmReminderEntry.KEY_REPEAT_NO,
-                AlarmReminderContract.AlarmReminderEntry.KEY_REPEAT_TYPE,
-                AlarmReminderContract.AlarmReminderEntry.KEY_ACTIVE,
+                AlarmURIManager.Entry._ID,
+                AlarmURIManager.Entry.KEY_TITLE,
+                AlarmURIManager.Entry.KEY_DATE,
+                AlarmURIManager.Entry.KEY_TIME,
+                AlarmURIManager.Entry.KEY_REPEAT,
+                AlarmURIManager.Entry.KEY_REPEAT_NO,
+                AlarmURIManager.Entry.KEY_REPEAT_TYPE,
+                AlarmURIManager.Entry.KEY_ACTIVE,
         };
 
 
@@ -764,13 +734,13 @@ public class AddReminderActivity extends AppCompatActivity implements LoaderMana
 
 
         if (cursor.moveToFirst()) {
-            int titleColumnIndex = cursor.getColumnIndex(AlarmReminderContract.AlarmReminderEntry.KEY_TITLE);
-            int dateColumnIndex = cursor.getColumnIndex(AlarmReminderContract.AlarmReminderEntry.KEY_DATE);
-            int timeColumnIndex = cursor.getColumnIndex(AlarmReminderContract.AlarmReminderEntry.KEY_TIME);
-            int repeatColumnIndex = cursor.getColumnIndex(AlarmReminderContract.AlarmReminderEntry.KEY_REPEAT);
-            int repeatNoColumnIndex = cursor.getColumnIndex(AlarmReminderContract.AlarmReminderEntry.KEY_REPEAT_NO);
-            int repeatTypeColumnIndex = cursor.getColumnIndex(AlarmReminderContract.AlarmReminderEntry.KEY_REPEAT_TYPE);
-            int activeColumnIndex = cursor.getColumnIndex(AlarmReminderContract.AlarmReminderEntry.KEY_ACTIVE);
+            int titleColumnIndex = cursor.getColumnIndex(AlarmURIManager.Entry.KEY_TITLE);
+            int dateColumnIndex = cursor.getColumnIndex(AlarmURIManager.Entry.KEY_DATE);
+            int timeColumnIndex = cursor.getColumnIndex(AlarmURIManager.Entry.KEY_TIME);
+            int repeatColumnIndex = cursor.getColumnIndex(AlarmURIManager.Entry.KEY_REPEAT);
+            int repeatNoColumnIndex = cursor.getColumnIndex(AlarmURIManager.Entry.KEY_REPEAT_NO);
+            int repeatTypeColumnIndex = cursor.getColumnIndex(AlarmURIManager.Entry.KEY_REPEAT_TYPE);
+            int activeColumnIndex = cursor.getColumnIndex(AlarmURIManager.Entry.KEY_ACTIVE);
 
 
             String title = cursor.getString(titleColumnIndex);
