@@ -40,6 +40,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:name=".Activities.AlarmPort.Database.AlarmProvider"
+            android:authorities="com.ipbeja.easymed.provider"
+            android:exported="false" />
+
+        <service
+            android:name=".Activities.AlarmPort.Services.AlarmService"
+            android:exported="true" />
+
     </application>
 
 </manifest>
