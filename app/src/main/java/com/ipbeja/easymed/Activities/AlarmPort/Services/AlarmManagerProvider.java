@@ -1,4 +1,4 @@
-package com.ipbeja.easymed.Activities.reminder;
+package com.ipbeja.easymed.Activities.AlarmPort.Services;
 
 import android.app.AlarmManager;
 import android.content.Context;

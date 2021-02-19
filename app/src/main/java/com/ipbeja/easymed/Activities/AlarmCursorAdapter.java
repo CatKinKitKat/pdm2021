@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.amulyakhare.textdrawable.util.ColorGenerator;
-import com.ipbeja.easymed.Activities.data.AlarmReminderContract;
+import com.ipbeja.easymed.Activities.AlarmPort.Database.AlarmURIManager;
 import com.ipbeja.easymed.R;
 
 /**
@@ -65,7 +65,7 @@ public class AlarmCursorAdapter extends CursorAdapter {
      */
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
-        return LayoutInflater.from(context).inflate(R.layout.reminder_recycleview, parent, false);
+        return LayoutInflater.from(context).inflate(R.layout.reminder_item, parent, false);
     }
 
     /**
@@ -84,13 +84,13 @@ public class AlarmCursorAdapter extends CursorAdapter {
         mActiveImage = view.findViewById(R.id.active_image);
         mThumbnailImage = view.findViewById(R.id.thumbnail_image);
 
-        int titleColumnIndex = cursor.getColumnIndex(AlarmReminderContract.AlarmReminderEntry.KEY_TITLE);
-        int dateColumnIndex = cursor.getColumnIndex(AlarmReminderContract.AlarmReminderEntry.KEY_DATE);
-        int timeColumnIndex = cursor.getColumnIndex(AlarmReminderContract.AlarmReminderEntry.KEY_TIME);
-        int repeatColumnIndex = cursor.getColumnIndex(AlarmReminderContract.AlarmReminderEntry.KEY_REPEAT);
-        int repeatNoColumnIndex = cursor.getColumnIndex(AlarmReminderContract.AlarmReminderEntry.KEY_REPEAT_NO);
-        int repeatTypeColumnIndex = cursor.getColumnIndex(AlarmReminderContract.AlarmReminderEntry.KEY_REPEAT_TYPE);
-        int activeColumnIndex = cursor.getColumnIndex(AlarmReminderContract.AlarmReminderEntry.KEY_ACTIVE);
+        int titleColumnIndex = cursor.getColumnIndex(AlarmURIManager.Entry.KEY_TITLE);
+        int dateColumnIndex = cursor.getColumnIndex(AlarmURIManager.Entry.KEY_DATE);
+        int timeColumnIndex = cursor.getColumnIndex(AlarmURIManager.Entry.KEY_TIME);
+        int repeatColumnIndex = cursor.getColumnIndex(AlarmURIManager.Entry.KEY_REPEAT);
+        int repeatNoColumnIndex = cursor.getColumnIndex(AlarmURIManager.Entry.KEY_REPEAT_NO);
+        int repeatTypeColumnIndex = cursor.getColumnIndex(AlarmURIManager.Entry.KEY_REPEAT_TYPE);
+        int activeColumnIndex = cursor.getColumnIndex(AlarmURIManager.Entry.KEY_ACTIVE);
 
         String title = cursor.getString(titleColumnIndex);
         String date = cursor.getString(dateColumnIndex);

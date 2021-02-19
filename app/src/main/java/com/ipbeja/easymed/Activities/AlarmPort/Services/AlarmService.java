@@ -1,4 +1,4 @@
-package com.ipbeja.easymed.Activities.reminder;
+package com.ipbeja.easymed.Activities.AlarmPort.Services;
 
 import android.app.IntentService;
 import android.app.Notification;
@@ -11,17 +11,17 @@ import android.database.Cursor;
 import android.net.Uri;
 
 import com.ipbeja.easymed.Activities.AddReminderActivity;
-import com.ipbeja.easymed.Activities.data.AlarmReminderContract;
+import com.ipbeja.easymed.Activities.AlarmPort.Database.AlarmURIManager;
 import com.ipbeja.easymed.R;
 
 /**
  * The type Reminder alarm service.
  */
-public class ReminderAlarmService extends IntentService {
+public class AlarmService extends IntentService {
     /**
      * The constant TAG.
      */
-    private static final String TAG = ReminderAlarmService.class.getSimpleName();
+    private static final String TAG = AlarmService.class.getSimpleName();
 
     /**
      * The constant NOTIFICATION_ID.
@@ -36,7 +36,7 @@ public class ReminderAlarmService extends IntentService {
     /**
      * Instantiates a new Reminder alarm service.
      */
-    public ReminderAlarmService() {
+    public AlarmService() {
         super(TAG);
     }
 
@@ -48,7 +48,7 @@ public class ReminderAlarmService extends IntentService {
      * @return the reminder pending intent
      */
     public static PendingIntent getReminderPendingIntent(Context context, Uri uri) {
-        Intent action = new Intent(context, ReminderAlarmService.class);
+        Intent action = new Intent(context, AlarmService.class);
         action.setData(uri);
         return PendingIntent.getService(context, 0, action, PendingIntent.FLAG_UPDATE_CURRENT);
     }
@@ -77,7 +77,7 @@ public class ReminderAlarmService extends IntentService {
         String description = "";
         try {
             if (cursor != null && cursor.moveToFirst()) {
-                description = AlarmReminderContract.getColumnString(cursor, AlarmReminderContract.AlarmReminderEntry.KEY_TITLE);
+                description = AlarmURIManager.getColumnString(cursor, AlarmURIManager.Entry.KEY_TITLE);
             }
         } finally {
             if (cursor != null) {

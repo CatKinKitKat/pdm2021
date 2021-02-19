@@ -15,7 +15,7 @@
         android:id="@+id/add_reminder_layout_top"
         android:layout_width="match_parent"
         android:layout_height="148dp"
-        android:background="@color/purple_700"
+        android:background="@color/primary"
         android:orientation="vertical"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,6 +44,7 @@
         android:id="@+id/scrollView2"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/add_reminder_layout_top">
@@ -82,7 +83,7 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginEnd="32dp"
                     android:layout_marginRight="32dp"
-                    app:srcCompat="@drawable/add" />
+                    app:srcCompat="@drawable/calendar" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -129,7 +130,7 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginEnd="32dp"
                     android:layout_marginRight="32dp"
-                    app:srcCompat="@drawable/add" />
+                    app:srcCompat="@drawable/time" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -172,7 +173,7 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginEnd="32dp"
                     android:layout_marginRight="32dp"
-                    app:srcCompat="@drawable/add" />
+                    app:srcCompat="@drawable/repeat" />
 
                 <LinearLayout
                     android:id="@+id/repeat_ll"
@@ -209,7 +210,6 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
-                    android:background="@color/purple_700"
                     android:checked="true"
                     android:onClick="onSwitchRepeat"
                     android:textOff="Off"
@@ -237,7 +237,7 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginEnd="32dp"
                     android:layout_marginRight="32dp"
-                    app:srcCompat="@drawable/add" />
+                    app:srcCompat="@drawable/repeat_no" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -284,7 +284,7 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginEnd="32dp"
                     android:layout_marginRight="32dp"
-                    app:srcCompat="@drawable/add" />
+                    app:srcCompat="@drawable/interval" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -330,7 +330,8 @@
         android:clickable="true"
         android:focusable="true"
         android:onClick="selectFab1"
-        app:backgroundTint="@color/purple_700"
+        app:backgroundTint="@color/accent"
+        app:srcCompat="@drawable/notificate"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 
@@ -342,7 +343,8 @@
         android:clickable="true"
         android:focusable="true"
         android:onClick="selectFab2"
-        app:backgroundTint="@color/purple_700"
+        app:backgroundTint="@color/accent"
+        app:srcCompat="@drawable/mute"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 

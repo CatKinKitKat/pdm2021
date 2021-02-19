@@ -1,4 +1,4 @@
-package com.ipbeja.easymed.Activities.reminder;
+package com.ipbeja.easymed.Activities.AlarmPort.Services;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -24,7 +24,7 @@ public class AlarmScheduler {
         AlarmManager manager = AlarmManagerProvider.getAlarmManager(context);
 
         PendingIntent operation =
-                ReminderAlarmService.getReminderPendingIntent(context, reminderTask);
+                AlarmService.getReminderPendingIntent(context, reminderTask);
 
 
         if (Build.VERSION.SDK_INT >= 23) {
@@ -54,7 +54,7 @@ public class AlarmScheduler {
         AlarmManager manager = AlarmManagerProvider.getAlarmManager(context);
 
         PendingIntent operation =
-                ReminderAlarmService.getReminderPendingIntent(context, reminderTask);
+                AlarmService.getReminderPendingIntent(context, reminderTask);
 
         manager.setRepeating(AlarmManager.RTC_WAKEUP, alarmTime, RepeatTime, operation);
 
