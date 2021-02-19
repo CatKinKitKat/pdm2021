@@ -1,8 +1,5 @@
 package com.ipbeja.easymed.Adapters;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,11 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.ipbeja.easymed.Activities.RvDoctors;
-import com.ipbeja.easymed.Activities.RvMeds;
-import com.ipbeja.easymed.FireStore.Doctors;
+import com.ipbeja.easymed.Activities.Popout.PopupMeds;
 import com.ipbeja.easymed.FireStore.Meds;
 import com.ipbeja.easymed.R;
 
@@ -23,23 +21,54 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class MedsRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+/**
+ * The type Meds recycler view adapter.
+ */
+public class MedsRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private List<Meds> medList;
+    /**
+     * The constant bitmap_transfer.
+     */
     private static Bitmap bitmap_transfer;
+    /**
+     * The Med list.
+     */
+    private final List<Meds> medList;
 
-    public static Bitmap getBitmap_transfer() {
-        return bitmap_transfer;
-    }
-
-    public static void setBitmap_transfer(Bitmap bitmap_transfer_param) {
-        bitmap_transfer = bitmap_transfer_param;
-    }
-
+    /**
+     * Instantiates a new Meds recycler view adapter.
+     *
+     * @param medList the med list
+     */
     public MedsRecyclerViewAdapter(List<Meds> medList) {
         this.medList = medList;
     }
 
+    /**
+     * Gets bitmap transfer.
+     *
+     * @return the bitmap transfer
+     */
+    public static Bitmap getBitmap_transfer() {
+        return bitmap_transfer;
+    }
+
+    /**
+     * Sets bitmap transfer.
+     *
+     * @param bitmap_transfer_param the bitmap transfer param
+     */
+    public static void setBitmap_transfer(Bitmap bitmap_transfer_param) {
+        bitmap_transfer = bitmap_transfer_param;
+    }
+
+    /**
+     * On create view holder recycler view . view holder.
+     *
+     * @param parent   the parent
+     * @param viewType the view type
+     * @return the recycler view . view holder
+     */
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -47,6 +76,12 @@ public class MedsRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
         return new viewHolderClass(view);
     }
 
+    /**
+     * On bind view holder.
+     *
+     * @param holder   the holder
+     * @param position the position
+     */
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
@@ -75,7 +110,7 @@ public class MedsRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
                 setBitmap_transfer(((MedsRecyclerViewAdapter.viewHolderClass) holder).img.getDrawingCache());
 
 
-                Intent i = new Intent(v.getContext(), RvMeds.class);
+                Intent i = new Intent(v.getContext(), PopupMeds.class);
                 i.putExtra("name", meds.getName());
                 i.putExtra("price", meds.getPrice());
                 v.getContext().startActivity(i);
@@ -85,13 +120,21 @@ public class MedsRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
 
     }
 
+    /**
+     * Gets item count.
+     *
+     * @return the item count
+     */
     @Override
     public int getItemCount() {
         return this.medList.size();
     }
 
 
-    public class viewHolderClass extends RecyclerView.ViewHolder{
+    /**
+     * The type View holder class.
+     */
+    public class viewHolderClass extends RecyclerView.ViewHolder {
 
         /**
          * The Name.

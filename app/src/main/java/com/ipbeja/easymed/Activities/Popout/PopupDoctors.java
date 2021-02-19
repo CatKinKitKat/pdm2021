@@ -1,7 +1,4 @@
-package com.ipbeja.easymed.Activities;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+package com.ipbeja.easymed.Activities.Popout;
 
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
@@ -9,20 +6,46 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import com.ipbeja.easymed.Adapters.DoctorRecyclerViewAdapter;
 import com.ipbeja.easymed.R;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class RvDoctors extends AppCompatActivity {
+/**
+ * The type Popup doctors.
+ */
+public class PopupDoctors extends AppCompatActivity {
 
-    TextView nameHolder, emailHolder, phoneNumberHolder, specialityHolder;
+    /**
+     * The Name holder.
+     */
+    TextView nameHolder, /**
+     * The Email holder.
+     */
+    emailHolder, /**
+     * The Phone number holder.
+     */
+    phoneNumberHolder, /**
+     * The Speciality holder.
+     */
+    specialityHolder;
+    /**
+     * The Circle image.
+     */
     CircleImageView circleImage;
 
+    /**
+     * On create.
+     *
+     * @param savedInstanceState the saved instance state
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_rv_doctors);
+        setContentView(R.layout.activity_popup_doctors);
 
         nameHolder = findViewById(R.id.doctorName);
         emailHolder = findViewById(R.id.doctorEmail);
@@ -49,6 +72,12 @@ public class RvDoctors extends AppCompatActivity {
 
     }
 
+    /**
+     * On options item selected boolean.
+     *
+     * @param item the item
+     * @return the boolean
+     */
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             finish();

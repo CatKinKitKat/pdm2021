@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.ipbeja.easymed.Activities.RvDoctors;
+import com.ipbeja.easymed.Activities.Popout.PopupDoctors;
 import com.ipbeja.easymed.FireStore.Doctors;
 import com.ipbeja.easymed.R;
 
@@ -26,21 +26,39 @@ import de.hdodenhof.circleimageview.CircleImageView;
  */
 public class DoctorRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     /**
+     * The constant bitmap_transfer.
+     */
+    private static Bitmap bitmap_transfer;
+    /**
      * The Doctors list.
      */
-    private List<Doctors> doctorsList;
-    private static Bitmap bitmap_transfer;
+    private final List<Doctors> doctorsList;
 
+    /**
+     * Instantiates a new Doctor recycler view adapter.
+     *
+     * @param doctorsList the doctors list
+     */
+    public DoctorRecyclerViewAdapter(List<Doctors> doctorsList) {
+        this.doctorsList = doctorsList;
+    }
+
+    /**
+     * Gets bitmap transfer.
+     *
+     * @return the bitmap transfer
+     */
     public static Bitmap getBitmap_transfer() {
         return bitmap_transfer;
     }
 
+    /**
+     * Sets bitmap transfer.
+     *
+     * @param bitmap_transfer_param the bitmap transfer param
+     */
     public static void setBitmap_transfer(Bitmap bitmap_transfer_param) {
         bitmap_transfer = bitmap_transfer_param;
-    }
-
-    public DoctorRecyclerViewAdapter(List<Doctors> doctorsList) {
-        this.doctorsList = doctorsList;
     }
 
     /**
@@ -93,7 +111,7 @@ public class DoctorRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
                 setBitmap_transfer(((DoctorRecyclerViewAdapter.viewHolderClass) holder).img.getDrawingCache());
 
 
-                Intent i = new Intent(v.getContext(), RvDoctors.class);
+                Intent i = new Intent(v.getContext(), PopupDoctors.class);
                 i.putExtra("name", doctors.getName());
                 i.putExtra("speciality", doctors.getSpeciality());
                 i.putExtra("phoneNumber", doctors.getPhoneNumb());
@@ -106,7 +124,6 @@ public class DoctorRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
                 */
             }
         });
-
 
 
     }
@@ -124,7 +141,7 @@ public class DoctorRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
     /**
      * The type View holder class.
      */
-    public class viewHolderClass extends RecyclerView.ViewHolder{
+    public class viewHolderClass extends RecyclerView.ViewHolder {
 
         /**
          * The Name.

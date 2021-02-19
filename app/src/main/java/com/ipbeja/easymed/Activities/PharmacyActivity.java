@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.ipbeja.easymed.Adapters.MedsRecyclerViewAdapter;
-import com.ipbeja.easymed.FireStore.Doctors;
 import com.ipbeja.easymed.FireStore.Meds;
 import com.ipbeja.easymed.R;
 
@@ -25,6 +24,9 @@ import java.util.List;
  */
 public class PharmacyActivity extends AppCompatActivity {
 
+    /**
+     * The Med data.
+     */
     List<Meds> medData;
     /**
      * The Recycler view.
@@ -34,6 +36,12 @@ public class PharmacyActivity extends AppCompatActivity {
      * The Helper adapter.
      */
     MedsRecyclerViewAdapter medRecyclerViewAdapter;
+
+    /**
+     * On create.
+     *
+     * @param savedInstanceState the saved instance state
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 

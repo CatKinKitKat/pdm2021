@@ -31,8 +31,9 @@
         <activity android:name=".Activities.RegisterActivity" />
         <activity android:name=".Activities.ProfileActivity" />
         <activity android:name=".Activities.CheckoutActivity" />
-        <activity android:name=".Activities.RvDoctors" />
-        <activity android:name=".Activities.RvMeds" />
+        <activity android:name=".Activities.Popout.PopupDoctors" />
+        <activity android:name=".Activities.Popout.PopupMeds" />
+
         <receiver android:name=".Tools.BootStateBroadcast" />
         <receiver android:name=".Tools.AlarmReceiver" />
 
