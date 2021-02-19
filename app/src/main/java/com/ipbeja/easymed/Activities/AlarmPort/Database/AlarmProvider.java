@@ -55,7 +55,7 @@ public class AlarmProvider extends ContentProvider {
      */
     @Override
     public boolean onCreate() {
-        mDbHelper = new AlarmDatabase(getContext());
+        this.mDbHelper = new AlarmDatabase(getContext());
         return true;
     }
 
@@ -73,7 +73,7 @@ public class AlarmProvider extends ContentProvider {
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs,
                         String sortOrder) {
-        SQLiteDatabase database = mDbHelper.getReadableDatabase();
+        SQLiteDatabase database = this.mDbHelper.getReadableDatabase();
 
 
         Cursor cursor = null;
@@ -147,7 +147,7 @@ public class AlarmProvider extends ContentProvider {
      */
     private Uri insertReminder(Uri uri, ContentValues values) {
 
-        SQLiteDatabase database = mDbHelper.getWritableDatabase();
+        SQLiteDatabase database = this.mDbHelper.getWritableDatabase();
 
         long id = database.insert(AlarmURIManager.Entry.TABLE_NAME, null, values);
 
@@ -173,7 +173,7 @@ public class AlarmProvider extends ContentProvider {
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
 
-        SQLiteDatabase database = mDbHelper.getWritableDatabase();
+        SQLiteDatabase database = this.mDbHelper.getWritableDatabase();
 
         int rowsDeleted;
 
@@ -238,7 +238,7 @@ public class AlarmProvider extends ContentProvider {
             return 0;
         }
 
-        SQLiteDatabase database = mDbHelper.getWritableDatabase();
+        SQLiteDatabase database = this.mDbHelper.getWritableDatabase();
 
         int rowsUpdated = database.update(AlarmURIManager.Entry.TABLE_NAME, values, selection, selectionArgs);
 

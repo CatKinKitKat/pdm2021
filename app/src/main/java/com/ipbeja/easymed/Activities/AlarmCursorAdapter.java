@@ -78,11 +78,11 @@ public class AlarmCursorAdapter extends CursorAdapter {
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
 
-        mTitleText = view.findViewById(R.id.recycle_title);
-        mDateAndTimeText = view.findViewById(R.id.recycle_date_time);
-        mRepeatInfoText = view.findViewById(R.id.recycle_repeat_info);
-        mActiveImage = view.findViewById(R.id.active_image);
-        mThumbnailImage = view.findViewById(R.id.thumbnail_image);
+        this.mTitleText = view.findViewById(R.id.recycle_title);
+        this.mDateAndTimeText = view.findViewById(R.id.recycle_date_time);
+        this.mRepeatInfoText = view.findViewById(R.id.recycle_repeat_info);
+        this.mActiveImage = view.findViewById(R.id.active_image);
+        this.mThumbnailImage = view.findViewById(R.id.thumbnail_image);
 
         int titleColumnIndex = cursor.getColumnIndex(AlarmURIManager.Entry.KEY_TITLE);
         int dateColumnIndex = cursor.getColumnIndex(AlarmURIManager.Entry.KEY_DATE);
@@ -118,19 +118,19 @@ public class AlarmCursorAdapter extends CursorAdapter {
      */
 // Set reminder title view
     public void setReminderTitle(String title) {
-        mTitleText.setText(title);
+        this.mTitleText.setText(title);
         String letter = "A";
 
         if (title != null && !title.isEmpty()) {
             letter = title.substring(0, 1);
         }
 
-        int color = mColorGenerator.getRandomColor();
+        int color = this.mColorGenerator.getRandomColor();
 
         // Create a circular icon consisting of  a random background colour and first letter of title
-        mDrawableBuilder = TextDrawable.builder()
+        this.mDrawableBuilder = TextDrawable.builder()
                 .buildRound(letter, color);
-        mThumbnailImage.setImageDrawable(mDrawableBuilder);
+        this.mThumbnailImage.setImageDrawable(this.mDrawableBuilder);
     }
 
     /**
@@ -140,7 +140,7 @@ public class AlarmCursorAdapter extends CursorAdapter {
      */
 // Set date and time views
     public void setReminderDateTime(String datetime) {
-        mDateAndTimeText.setText(datetime);
+        this.mDateAndTimeText.setText(datetime);
     }
 
     /**
@@ -153,9 +153,9 @@ public class AlarmCursorAdapter extends CursorAdapter {
 // Set repeat views
     public void setReminderRepeatInfo(String repeat, String repeatNo, String repeatType) {
         if (repeat.equals("true")) {
-            mRepeatInfoText.setText("Every " + repeatNo + " " + repeatType + "(s)");
+            this.mRepeatInfoText.setText("Every " + repeatNo + " " + repeatType + "(s)");
         } else if (repeat.equals("false")) {
-            mRepeatInfoText.setText("Repeat Off");
+            this.mRepeatInfoText.setText("Repeat Off");
         }
     }
 
@@ -167,9 +167,9 @@ public class AlarmCursorAdapter extends CursorAdapter {
 // Set active image as on or off
     public void setActiveImage(String active) {
         if (active.equals("true")) {
-            mActiveImage.setImageResource(R.drawable.notificate);
+            this.mActiveImage.setImageResource(R.drawable.notificate);
         } else if (active.equals("false")) {
-            mActiveImage.setImageResource(R.drawable.mute);
+            this.mActiveImage.setImageResource(R.drawable.mute);
         }
     }
 }

@@ -71,17 +71,17 @@ public class AlarmService extends IntentService {
                 .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
 
         if (uri != null) {
-            cursor = getContentResolver().query(uri, null, null, null, null);
+            this.cursor = getContentResolver().query(uri, null, null, null, null);
         }
 
         String description = "";
         try {
-            if (cursor != null && cursor.moveToFirst()) {
-                description = AlarmURIManager.getColumnString(cursor, AlarmURIManager.Entry.KEY_TITLE);
+            if (this.cursor != null && this.cursor.moveToFirst()) {
+                description = AlarmURIManager.getColumnString(this.cursor, AlarmURIManager.Entry.KEY_TITLE);
             }
         } finally {
-            if (cursor != null) {
-                cursor.close();
+            if (this.cursor != null) {
+                this.cursor.close();
             }
         }
 
