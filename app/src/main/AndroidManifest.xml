@@ -14,7 +14,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PDM">
-        <activity android:name=".Activities.CardListActivity"></activity>
 
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
@@ -30,7 +29,6 @@
         <activity android:name=".Activities.LoginActivity" />
         <activity android:name=".Activities.RegisterActivity" />
         <activity android:name=".Activities.ProfileActivity" />
-        <activity android:name=".Activities.CheckoutActivity" />
         <activity android:name=".Activities.Popout.PopupDoctors" />
         <activity android:name=".Activities.Popout.PopupMeds" />
 
@@ -49,7 +47,7 @@
 
         <service
             android:name=".Activities.AlarmPort.Services.AlarmService"
-            android:exported="true" />
+            android:exported="false" />
 
     </application>
 

@@ -1,9 +1,7 @@
 package com.ipbeja.easymed.Activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -12,8 +10,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.ipbeja.easymed.Adapters.MedsRecyclerViewAdapter;
-import com.ipbeja.easymed.FireStore.Meds;
+import com.ipbeja.easymed.Adapters.PharmacyRecyclerViewAdapter;
+import com.ipbeja.easymed.FireStore.Pharmacy;
 import com.ipbeja.easymed.R;
 
 import java.util.ArrayList;
@@ -27,7 +25,7 @@ public class PharmacyActivity extends AppCompatActivity {
     /**
      * The Med data.
      */
-    List<Meds> medData;
+    List<Pharmacy> pharmacyData;
     /**
      * The Recycler view.
      */
@@ -35,7 +33,7 @@ public class PharmacyActivity extends AppCompatActivity {
     /**
      * The Helper adapter.
      */
-    MedsRecyclerViewAdapter medRecyclerViewAdapter;
+    PharmacyRecyclerViewAdapter pharmacyRecyclerViewAdapter;
 
     /**
      * On create.
@@ -50,18 +48,18 @@ public class PharmacyActivity extends AppCompatActivity {
 
         this.recyclerView = findViewById(R.id.recyclerView);
         this.recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        this.medData = new ArrayList<>();
+        this.pharmacyData = new ArrayList<>();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        db.collection("meds").get().addOnCompleteListener(task -> {
+        db.collection("pharmacies").get().addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            Meds u = document.toObject(Meds.class);
+                            Pharmacy u = document.toObject(Pharmacy.class);
                             u.setFireStoreId(document.getId());
-                            this.medData.add(u);
+                            this.pharmacyData.add(u);
                         }
-                        this.medRecyclerViewAdapter = new MedsRecyclerViewAdapter(this.medData);
-                        this.recyclerView.setAdapter(this.medRecyclerViewAdapter);
+                        this.pharmacyRecyclerViewAdapter = new PharmacyRecyclerViewAdapter(this.pharmacyData);
+                        this.recyclerView.setAdapter(this.pharmacyRecyclerViewAdapter);
                     }
                 }
 
@@ -72,21 +70,6 @@ public class PharmacyActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(getString(R.string.easy_med_order));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        Button myKartBtn = findViewById(R.id.checkoutBtn);
-
-        myKartBtn.setOnClickListener(v -> {
-
-            this.goToKart();
-        });
-    }
-
-    /**
-     * Go to kart.
-     */
-    private void goToKart() {
-
-        startActivity(new Intent(getApplicationContext(), CheckoutActivity.class));
     }
 
     /**

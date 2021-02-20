@@ -3,7 +3,7 @@ package com.ipbeja.easymed.FireStore;
 /**
  * The type Meds.
  */
-public class Meds {
+public class Pharmacy {
 
     /**
      * The Name.
@@ -11,10 +11,7 @@ public class Meds {
     String name, /**
      * The Furl.
      */
-    furl, /**
-     * The Price.
-     */
-    price,
+    furl,
 
 
     url;
@@ -26,7 +23,7 @@ public class Meds {
     /**
      * Instantiates a new Meds.
      */
-    public Meds() {
+    public Pharmacy() {
     }
 
     /**
@@ -34,13 +31,11 @@ public class Meds {
      *
      * @param name        the name
      * @param furl        the furl
-     * @param price       the price
      * @param fireStoreId the fire store id
      */
-    public Meds(String name, String furl, String price, String fireStoreId, String url) {
+    public Pharmacy(String name, String furl, String fireStoreId, String url) {
         this.name = name;
         this.furl = furl;
-        this.price = price;
         this.fireStoreId = fireStoreId;
         this.url = url;
     }
@@ -72,41 +67,6 @@ public class Meds {
         return furl;
     }
 
-    /**
-     * Sets furl.
-     *
-     * @param furl the furl
-     */
-    public void setFurl(String furl) {
-        this.furl = furl;
-    }
-
-    /**
-     * Gets price.
-     *
-     * @return the price
-     */
-    public String getPrice() {
-        return price;
-    }
-
-    /**
-     * Sets price.
-     *
-     * @param price the price
-     */
-    public void setPrice(String price) {
-        this.price = price;
-    }
-
-    /**
-     * Gets fire store id.
-     *
-     * @return the fire store id
-     */
-    public String getFireStoreId() {
-        return fireStoreId;
-    }
 
     /**
      * Sets fire store id.
@@ -119,10 +79,6 @@ public class Meds {
 
     public String getUrl() {
         return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
     }
 
 }
