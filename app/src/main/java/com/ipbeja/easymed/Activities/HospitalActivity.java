@@ -35,7 +35,7 @@ public class HospitalActivity extends AppCompatActivity {
     /**
      * The M firebase firestore.
      */
-    FirebaseFirestore mFirebaseFirestore;
+    FirebaseFirestore firebaseFirestore;
 
     /**
      * The Map.
@@ -95,7 +95,7 @@ public class HospitalActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(getString(R.string.hospitals));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        this.mFirebaseFirestore = FirebaseFirestore.getInstance();
+        this.firebaseFirestore = FirebaseFirestore.getInstance();
 
         this.locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
@@ -151,7 +151,7 @@ public class HospitalActivity extends AppCompatActivity {
      */
     private void createMarkersFromDB() {
 
-        this.mFirebaseFirestore.collection("hospitals").get().addOnCompleteListener(task -> {
+        this.firebaseFirestore.collection("hospitals").get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 for (QueryDocumentSnapshot document : task.getResult()) {
                     Hospitals u = document.toObject(Hospitals.class);

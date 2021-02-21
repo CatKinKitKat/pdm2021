@@ -1,4 +1,4 @@
-package com.ipbeja.easymed.Tools;
+package com.ipbeja.easymed.Alarm.Tools;
 
 
 /**

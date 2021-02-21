@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.ipbeja.easymed.Activities.Popout.PopupMeds;
+import com.ipbeja.easymed.Activities.Popout.PopupPharmacies;
 import com.ipbeja.easymed.FireStore.Pharmacy;
 import com.ipbeja.easymed.R;
 
@@ -71,15 +71,17 @@ public class PharmacyRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
         if (pharmacy.getFurl() != null) {
 
             StorageReference picturePath = storageRef.child(pharmacy.getFurl());
-            picturePath.getBytes(Long.MAX_VALUE).addOnSuccessListener(bytes -> {
-                ((PharmacyRecyclerViewAdapter.viewHolderClass) holder).img.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
-            });
+            picturePath.getBytes(Long.MAX_VALUE).addOnSuccessListener(bytes -> (
+                    (viewHolderClass) holder
+            ).img.setImageBitmap(
+                    BitmapFactory.decodeByteArray(bytes, 0, bytes.length)
+            ));
 
         }
 
         ((PharmacyRecyclerViewAdapter.viewHolderClass) holder).img.setOnClickListener(v -> {
 
-            Intent i = new Intent(v.getContext(), PopupMeds.class);
+            Intent i = new Intent(v.getContext(), PopupPharmacies.class);
             i.putExtra("url", pharmacy.getUrl());
             v.getContext().startActivity(i);
 
@@ -101,7 +103,7 @@ public class PharmacyRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
     /**
      * The type View holder class.
      */
-    public class viewHolderClass extends RecyclerView.ViewHolder {
+    public static class viewHolderClass extends RecyclerView.ViewHolder {
 
         /**
          * The Name.

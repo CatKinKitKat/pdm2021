@@ -95,34 +95,26 @@ public class DoctorRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
         if (doctors.getFurl() != null) {
 
             StorageReference picturePath = storageRef.child(doctors.getFurl());
-            picturePath.getBytes(Long.MAX_VALUE).addOnSuccessListener(bytes -> {
-                ((DoctorRecyclerViewAdapter.viewHolderClass) holder).img.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
-            });
+            picturePath.getBytes(Long.MAX_VALUE).addOnSuccessListener(bytes -> (
+                    (viewHolderClass) holder
+            ).img.setImageBitmap(
+                    BitmapFactory.decodeByteArray(bytes, 0, bytes.length)
+            ));
 
         }
 
 
-        ((DoctorRecyclerViewAdapter.viewHolderClass) holder).img.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        ((DoctorRecyclerViewAdapter.viewHolderClass) holder).img.setOnClickListener(v -> {
 
+            ((viewHolderClass) holder).img.buildDrawingCache();
+            setBitmap_transfer(((viewHolderClass) holder).img.getDrawingCache());
 
-                ((DoctorRecyclerViewAdapter.viewHolderClass) holder).img.buildDrawingCache();
-                setBitmap_transfer(((DoctorRecyclerViewAdapter.viewHolderClass) holder).img.getDrawingCache());
-
-
-                Intent i = new Intent(v.getContext(), PopupDoctors.class);
-                i.putExtra("name", doctors.getName());
-                i.putExtra("speciality", doctors.getSpeciality());
-                i.putExtra("phoneNumber", doctors.getPhoneNumb());
-                i.putExtra("email", doctors.getEmail());
-                v.getContext().startActivity(i);
-
-                /*
-                AppCompatActivity activity = (AppCompatActivity)v.getContext();
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper, new DescFragment(doctors.getName(), doctors.getSpeciality(), doctors.getFurl(), doctors.getPhoneNumb(), doctors.getEmail())).addToBackStack(null).commit();
-                */
-            }
+            Intent i = new Intent(v.getContext(), PopupDoctors.class);
+            i.putExtra("name", doctors.getName());
+            i.putExtra("speciality", doctors.getSpeciality());
+            i.putExtra("phoneNumber", doctors.getPhoneNumb());
+            i.putExtra("email", doctors.getEmail());
+            v.getContext().startActivity(i);
         });
 
 
@@ -141,7 +133,7 @@ public class DoctorRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
     /**
      * The type View holder class.
      */
-    public class viewHolderClass extends RecyclerView.ViewHolder {
+    public static class viewHolderClass extends RecyclerView.ViewHolder {
 
         /**
          * The Name.

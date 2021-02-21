@@ -162,7 +162,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         this.verifyEmailBtn.setOnClickListener(v -> {
 
-            //send verification email
+
             this.fAuth.getCurrentUser().sendEmailVerification().addOnSuccessListener(aVoid -> {
 
                 Toast.makeText(

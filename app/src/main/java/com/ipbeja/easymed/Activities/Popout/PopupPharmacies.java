@@ -13,7 +13,7 @@ import com.ipbeja.easymed.R;
 /**
  * The type Popup meds.
  */
-public class PopupMeds extends AppCompatActivity {
+public class PopupPharmacies extends AppCompatActivity {
 
     /**
      * On create.
@@ -39,6 +39,12 @@ public class PopupMeds extends AppCompatActivity {
 
     }
 
+    /**
+     * Config web view.
+     *
+     * @param webView the web view
+     * @param url     the url
+     */
     private void configWebView(WebView webView, String url) {
 
         webView.loadUrl(url);

@@ -14,6 +14,9 @@ public class Pharmacy {
     furl,
 
 
+    /**
+     * The Url.
+     */
     url;
     /**
      * The Fire store id.
@@ -32,6 +35,7 @@ public class Pharmacy {
      * @param name        the name
      * @param furl        the furl
      * @param fireStoreId the fire store id
+     * @param url         the url
      */
     public Pharmacy(String name, String furl, String fireStoreId, String url) {
         this.name = name;
@@ -77,6 +81,11 @@ public class Pharmacy {
         this.fireStoreId = fireStoreId;
     }
 
+    /**
+     * Gets url.
+     *
+     * @return the url
+     */
     public String getUrl() {
         return url;
     }

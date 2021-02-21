@@ -28,15 +28,16 @@ public class DoctorsActivity extends AppCompatActivity {
      * @param savedInstanceState the saved instance state
      */
     List<Doctors> doctorsData;
+
     /**
      * The Recycler view.
      */
     RecyclerView recyclerView;
+
     /**
      * The Helper adapter.
      */
     DoctorRecyclerViewAdapter doctorRecyclerViewAdapter;
-
 
     /**
      * On create.

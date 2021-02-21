@@ -84,21 +84,21 @@ public class LoginActivity extends AppCompatActivity {
         this.forget_password_btn = findViewById(R.id.forget_password_btn);
         this.forget_password_btn.setOnClickListener(v -> {
 
-            // start alertdialog
+
             View view = this.inflater.inflate(R.layout.reset_pop, null);
 
             this.reset_alert.setTitle(getString(R.string.reset_passwd))
                     .setMessage(getString(R.string.email_reset_passwd))
                     .setPositiveButton(getString(R.string.reset), (dialog, which) -> {
 
-                        //validate the email address
+
                         EditText email = view.findViewById(R.id.reset_email_pop);
                         if (email.getText().toString().isEmpty()) {
 
                             email.setError(getString(R.string.field_error));
                             return;
                         }
-                        //send the reset link
+
 
                         this.firebaseAuth.sendPasswordResetEmail(email.getText().toString())
                                 .addOnSuccessListener(aVoid -> Toast.makeText(
@@ -115,7 +115,7 @@ public class LoginActivity extends AppCompatActivity {
 
         this.loginBtn.setOnClickListener(v -> {
 
-            //extract and validate
+
             if (this.loginEmail.getText().toString().isEmpty()) {
 
                 this.loginEmail.setError(getString(R.string.email_login_missing));
@@ -128,14 +128,13 @@ public class LoginActivity extends AppCompatActivity {
                 return;
             }
 
-            //data is valid
-            //login user
+
             this.firebaseAuth.signInWithEmailAndPassword(
 
                     this.loginEmail.getText().toString(),
                     this.password.getText().toString()).addOnSuccessListener(authResult -> {
 
-                //login is successful
+
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
                 finish();
             }).addOnFailureListener(e -> Toast.makeText(

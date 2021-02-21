@@ -73,11 +73,6 @@ public class MainRecyclerViewAdapter extends
     @Override
     public void onBindViewHolder(@NonNull ImageViewHolder holder, int position) {
 
-        /**
-         * Use the GLIDE Library
-         *
-         * We'll use this library so our images load faster and safer
-         */
         Glide.with(mContext)
                 .load(mData.get(position).getImg())
                 .into(holder.img);
@@ -115,7 +110,7 @@ public class MainRecyclerViewAdapter extends
             super(itemView);
             img = itemView.findViewById(R.id.imageView);
 
-            //Click Listeners
+
             itemView.setOnClickListener(this);
         }
 

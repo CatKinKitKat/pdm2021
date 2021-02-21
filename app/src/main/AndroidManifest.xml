@@ -21,7 +21,8 @@
 
         <activity android:name=".Activities.ResetPasswordActivity" />
         <activity android:name=".Activities.ReminderActivity" />
-        <activity android:name=".Activities.AddReminderActivity" />
+        <activity android:name=".Activities.ReminderAddActivity" />
+        <activity android:name=".Activities.ReminderEditActivity" />
         <activity android:name=".Activities.PharmacyActivity" />
         <activity android:name=".Activities.HospitalActivity" />
         <activity android:name=".Activities.DoctorsActivity" />
@@ -30,7 +31,7 @@
         <activity android:name=".Activities.RegisterActivity" />
         <activity android:name=".Activities.ProfileActivity" />
         <activity android:name=".Activities.Popout.PopupDoctors" />
-        <activity android:name=".Activities.Popout.PopupMeds" />
+        <activity android:name=".Activities.Popout.PopupPharmacies" />
 
         <activity android:name=".Launcher.SplashScreen">
             <intent-filter>
@@ -40,14 +41,13 @@
             </intent-filter>
         </activity>
 
-        <provider
-            android:name=".Activities.AlarmPort.Database.AlarmProvider"
-            android:authorities="com.ipbeja.easymed.provider"
-            android:exported="false" />
+        <receiver android:name=".Alarm.Receivers.AlarmReceiver" />
 
-        <service
-            android:name=".Activities.AlarmPort.Services.AlarmService"
-            android:exported="false" />
+        <receiver android:name=".Alarm.Receivers.BootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
 
     </application>
 

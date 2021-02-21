@@ -71,29 +71,29 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Toolbar
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //Making the home button in toolbar
-        getSupportActionBar().setDisplayHomeAsUpEnabled(false); // Hide hamburger menu
 
-        //Initializing RecyclerView
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+
+
         this.recyclerView = findViewById(R.id.recyclerview);
         this.appList = new ArrayList<>();
 
-        //Adapter
+
         this.adapter = new MainRecyclerViewAdapter(this, this.appList);
         StaggeredGridLayoutManager manager =
                 new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
 
-        //Layout Manager
+
         this.recyclerView.setLayoutManager(manager);
 
-        //Adapter
+
         this.recyclerView.setAdapter(this.adapter);
 
-        //Putting Data into recyclerView
+
         InitializeDataIntoRecyclerView();
 
         this.imageSliderList = new ArrayList<>();
