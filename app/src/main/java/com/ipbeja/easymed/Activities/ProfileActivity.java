@@ -116,7 +116,13 @@ public class ProfileActivity extends AppCompatActivity {
         this.profileImage = findViewById(R.id.profileImage);
         Button changeProfile = findViewById(R.id.changeProfile);
         FirebaseStorage.getInstance().getReference();
-        String userID = Objects.requireNonNull(this.fAuth.getCurrentUser()).getUid();
+        String userID = this.fAuth.getCurrentUser().getUid();
+
+        if (userID == null) {
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+            finish();
+        }
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("users")
