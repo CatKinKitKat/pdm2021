@@ -548,10 +548,7 @@ public class AddReminderActivity extends AppCompatActivity implements LoaderMana
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(R.string.delete_prompt);
-        builder.setPositiveButton(R.string.yes, (dialog, id) -> {
-
-            deleteReminder();
-        });
+        builder.setPositiveButton(R.string.yes, (dialog, id) -> deleteReminder());
         builder.setNegativeButton(R.string.no, (dialog, id) -> {
 
 

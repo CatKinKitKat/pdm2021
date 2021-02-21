@@ -25,10 +25,6 @@ public class ReminderActivity extends AppCompatActivity {
      * The Reminder list view.
      */
     ListView reminderListView;
-    /**
-     * The M add reminder button.
-     */
-    private FloatingActionButton mAddReminderButton;
 
     /**
      * On create.
@@ -56,8 +52,7 @@ public class ReminderActivity extends AppCompatActivity {
 
         });
 
-
-        mAddReminderButton = findViewById(R.id.fab);
+        FloatingActionButton mAddReminderButton = findViewById(R.id.fab);
 
         mAddReminderButton.setOnClickListener(v -> {
             Intent intent = new Intent(v.getContext(), AddReminderActivity.class);
