@@ -108,8 +108,6 @@ public class HospitalActivity extends AppCompatActivity {
         if (mapFragment != null) {
             mapFragment.getMapAsync(this::loadMap);
         }
-
-        this.createMarkersFromDB();
     }
 
     /**
@@ -219,6 +217,7 @@ public class HospitalActivity extends AppCompatActivity {
         this.uiSettings.setZoomGesturesEnabled(true);
 
         this.centerMap();
+        this.createMarkersFromDB();
     }
 
     /**
