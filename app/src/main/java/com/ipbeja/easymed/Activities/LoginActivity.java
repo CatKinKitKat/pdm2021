@@ -20,7 +20,7 @@ import com.ipbeja.easymed.R;
 public class LoginActivity extends AppCompatActivity {
 
     /**
-     * The Create account, Login, passwd recover buttons.
+     * The Create account btn.
      */
     Button createAccountBtn,
     /**
@@ -33,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
     forget_password_btn;
 
     /**
-     * The Login email and passwd.
+     * The Login email.
      */
     EditText loginEmail,
     /**

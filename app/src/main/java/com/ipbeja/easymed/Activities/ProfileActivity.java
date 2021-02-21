@@ -39,7 +39,7 @@ import java.util.UUID;
 public class ProfileActivity extends AppCompatActivity {
 
     /**
-     * The Verify msg.
+     * The constant TAG.
      */
     public static final String TAG = "TAG";
 
@@ -54,7 +54,7 @@ public class ProfileActivity extends AppCompatActivity {
     private Users user;
 
     /**
-     * The Verify message, name email and phone.
+     * The Verify msg.
      */
     private TextView verifyMsg,
     /**
@@ -77,7 +77,7 @@ public class ProfileActivity extends AppCompatActivity {
 
 
     /**
-     * The Auth.
+     * The F auth.
      */
     private FirebaseAuth fAuth;
 
@@ -166,56 +166,50 @@ public class ProfileActivity extends AppCompatActivity {
             this.verifyMsg.setVisibility(View.VISIBLE);
         }
 
-        this.verifyEmailBtn.setOnClickListener(v -> {
+        this.verifyEmailBtn.setOnClickListener(v ->
+                this.fAuth.getCurrentUser().sendEmailVerification().addOnSuccessListener(aVoid -> {
 
+                    Toast.makeText(
+                            ProfileActivity.this, getString(R.string.email_verify), Toast.LENGTH_SHORT
+                    ).show();
 
-            this.fAuth.getCurrentUser().sendEmailVerification().addOnSuccessListener(aVoid -> {
+                    this.verifyEmailBtn.setVisibility(View.GONE);
+                    this.verifyMsg.setVisibility(View.GONE);
 
-                Toast.makeText(
-                        ProfileActivity.this, getString(R.string.email_verify), Toast.LENGTH_SHORT
-                ).show();
-
-                this.verifyEmailBtn.setVisibility(View.GONE);
-                this.verifyMsg.setVisibility(View.GONE);
-
-                FirebaseAuth.getInstance().signOut();
-                ProfileActivity.this.startActivity(new Intent(
-                        ProfileActivity.this.getApplicationContext(), LoginActivity.class)
-                );
-                ProfileActivity.this.finish();
-            });
-        });
+                    FirebaseAuth.getInstance().signOut();
+                    ProfileActivity.this.startActivity(new Intent(
+                            ProfileActivity.this.getApplicationContext(), LoginActivity.class)
+                    );
+                    ProfileActivity.this.finish();
+                }));
 
         resetBtn.setOnClickListener(v -> startActivity(
 
                 new Intent(getApplicationContext(), ResetPasswordActivity.class))
         );
 
-        deleteAccountBtn.setOnClickListener(v -> {
+        deleteAccountBtn.setOnClickListener(v -> this.reset_alert.setTitle(getString(R.string.del_acc_prompt))
+                .setMessage(getString(R.string.conf_prompt))
+                .setPositiveButton(getString(R.string.ok), (dialog, which) -> {
 
-            this.reset_alert.setTitle(getString(R.string.del_acc_prompt))
-                    .setMessage(getString(R.string.conf_prompt))
-                    .setPositiveButton(getString(R.string.ok), (dialog, which) -> {
+                    FirebaseUser user = this.fAuth.getCurrentUser();
+                    user.delete().addOnSuccessListener(aVoid -> {
 
-                        FirebaseUser user = this.fAuth.getCurrentUser();
-                        user.delete().addOnSuccessListener(aVoid -> {
+                        Toast.makeText(ProfileActivity.this,
+                                getString(R.string.acc_del),
+                                Toast.LENGTH_SHORT).show();
+                        db.collection("users").document(this.user.getFireStoreID())
+                                .delete()
+                                .addOnSuccessListener(aVoid1 -> Log.d(TAG, getString(R.string.del_acc_success)))
+                                .addOnFailureListener(e -> Log.w(TAG, getString(R.string.del_acc_error), e));
 
-                            Toast.makeText(ProfileActivity.this,
-                                    getString(R.string.acc_del),
-                                    Toast.LENGTH_SHORT).show();
-                            db.collection("users").document(this.user.getFireStoreID())
-                                    .delete()
-                                    .addOnSuccessListener(aVoid1 -> Log.d(TAG, getString(R.string.del_acc_success)))
-                                    .addOnFailureListener(e -> Log.w(TAG, getString(R.string.del_acc_error), e));
-
-                            this.fAuth.signOut();
-                            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-                            finish();
-                        }).addOnFailureListener(e -> Toast.makeText(
-                                ProfileActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show()
-                        );
-                    }).setNegativeButton(getString(R.string.cancel), null).create().show();
-        });
+                        this.fAuth.signOut();
+                        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                        finish();
+                    }).addOnFailureListener(e -> Toast.makeText(
+                            ProfileActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show()
+                    );
+                }).setNegativeButton(getString(R.string.cancel), null).create().show());
 
 
         changeProfile.setOnClickListener(v -> {

@@ -43,31 +43,31 @@ import java.util.List;
  */
 public class ReminderActivity extends AppCompatActivity {
     /**
-     * The Dmap.
+     * The Id map.
      */
     private final LinkedHashMap<Integer, Integer> idMap = new LinkedHashMap<>();
     /**
-     * The M multi selector.
+     * The Long press mode.
      */
     private final MultiSelector longPressMode = new MultiSelector();
     /**
-     * The M list.
+     * The Reminder list.
      */
     private RecyclerView reminderList;
     /**
-     * The M adapter.
+     * The Reminder recycle view adapter.
      */
     private ReminderRecycleViewAdapter reminderRecycleViewAdapter;
     /**
-     * The Rb.
+     * The Reminder database.
      */
     private ReminderDatabase reminderDatabase;
     /**
-     * The M alarm receiver.
+     * The Alarm receiver.
      */
     private AlarmReceiver alarmReceiver;
     /**
-     * The M delete mode.
+     * The Delete mode.
      */
     private final ActionMode.Callback deleteMode = new ModalMultiSelectorCallback(longPressMode) {
 
@@ -113,8 +113,7 @@ public class ReminderActivity extends AppCompatActivity {
         this.reminderDatabase = new ReminderDatabase(getApplicationContext());
 
 
-        Toolbar mToolbar = findViewById(R.id.toolbar);
-        FloatingActionButton mAddReminderButton = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton mAddReminderButton = findViewById(R.id.fab);
         this.reminderList = findViewById(R.id.alarm_list);
 
 
@@ -127,9 +126,11 @@ public class ReminderActivity extends AppCompatActivity {
         this.reminderRecycleViewAdapter.setItemCount(getDefaultItemCount());
         this.reminderList.setAdapter(this.reminderRecycleViewAdapter);
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
 
-        setSupportActionBar(mToolbar);
-        mToolbar.setTitle(R.string.app_name);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(getString(R.string.reminder_title));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
         mAddReminderButton.setOnClickListener(v -> {
@@ -226,16 +227,16 @@ public class ReminderActivity extends AppCompatActivity {
 
 
     /**
-     * The type Simple adapter.
+     * The type Reminder recycle view adapter.
      */
     public class ReminderRecycleViewAdapter extends RecyclerView.Adapter<ReminderRecycleViewAdapter.VerticalItemHolder> {
         /**
-         * The M items.
+         * The Reminder items.
          */
         private final ArrayList<ReminderItem> reminderItems;
 
         /**
-         * Instantiates a new Simple adapter.
+         * Instantiates a new Reminder recycle view adapter.
          */
         public ReminderRecycleViewAdapter() {
             this.reminderItems = new ArrayList<>();
@@ -386,27 +387,27 @@ public class ReminderActivity extends AppCompatActivity {
          */
         public class ReminderItem {
             /**
-             * The M title.
+             * The Reminder title.
              */
             public String reminderTitle;
             /**
-             * The M date time.
+             * The Date time.
              */
             public String dateTime;
             /**
-             * The M repeat.
+             * The Repeat.
              */
             public String repeat;
             /**
-             * The M repeat no.
+             * The Repeat no.
              */
             public String repeatNo;
             /**
-             * The M repeat type.
+             * The Repeat type.
              */
             public String repeatType;
             /**
-             * The M active.
+             * The Active image.
              */
             public String activeImage;
 
@@ -464,31 +465,31 @@ public class ReminderActivity extends AppCompatActivity {
         public class VerticalItemHolder extends SwappingHolder
                 implements View.OnClickListener, View.OnLongClickListener {
             /**
-             * The M title text.
+             * The Title text.
              */
             private final TextView titleText;
             /**
-             * The M date and time text.
+             * The Date and time text.
              */
             private final TextView dateAndTimeText;
             /**
-             * The M repeat info text.
+             * The Repeat info text.
              */
             private final TextView repeatInfoText;
             /**
-             * The M active image.
+             * The Active image.
              */
             private final ImageView activeImage;
             /**
-             * The M thumbnail image.
+             * The Thumbnail image.
              */
             private final ImageView thumbnailImage;
             /**
-             * The M color generator.
+             * The Color generator.
              */
             private final ColorGenerator colorGenerator = ColorGenerator.DEFAULT;
             /**
-             * The M adapter.
+             * The Recycle view adapter.
              */
             private final ReminderRecycleViewAdapter recycleViewAdapter;
 
@@ -508,11 +509,11 @@ public class ReminderActivity extends AppCompatActivity {
                 this.recycleViewAdapter = adapter;
 
 
-                this.titleText = (TextView) itemView.findViewById(R.id.recycle_title);
-                this.dateAndTimeText = (TextView) itemView.findViewById(R.id.recycle_date_time);
-                this.repeatInfoText = (TextView) itemView.findViewById(R.id.recycle_repeat_info);
-                this.activeImage = (ImageView) itemView.findViewById(R.id.active_image);
-                this.thumbnailImage = (ImageView) itemView.findViewById(R.id.thumbnail_image);
+                this.titleText = itemView.findViewById(R.id.recycle_title);
+                this.dateAndTimeText = itemView.findViewById(R.id.recycle_date_time);
+                this.repeatInfoText = itemView.findViewById(R.id.recycle_repeat_info);
+                this.activeImage = itemView.findViewById(R.id.active_image);
+                this.thumbnailImage = itemView.findViewById(R.id.thumbnail_image);
             }
 
 
@@ -599,7 +600,7 @@ public class ReminderActivity extends AppCompatActivity {
 
 
             /**
-             * Set active image.
+             * Sets active image.
              *
              * @param active the active
              */

@@ -21,7 +21,7 @@ import com.ipbeja.easymed.R;
 import java.util.List;
 
 /**
- * The type Recycler view adapter.
+ * The type Main recycler view adapter.
  */
 public class MainRecyclerViewAdapter extends
         RecyclerView.Adapter<MainRecyclerViewAdapter.ImageViewHolder> {
@@ -36,7 +36,7 @@ public class MainRecyclerViewAdapter extends
     List<Row> mData;
 
     /**
-     * Instantiates a new Recycler view adapter.
+     * Instantiates a new Main recycler view adapter.
      *
      * @param mContext the m context
      * @param mData    the m data

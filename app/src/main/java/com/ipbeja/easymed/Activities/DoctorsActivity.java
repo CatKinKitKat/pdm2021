@@ -18,14 +18,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The type Doctors layout.
+ * The type Doctors activity.
  */
 public class DoctorsActivity extends AppCompatActivity {
 
     /**
-     * On create.
-     *
-     * @param savedInstanceState the saved instance state
+     * The Doctors data.
      */
     List<Doctors> doctorsData;
 
@@ -35,7 +33,7 @@ public class DoctorsActivity extends AppCompatActivity {
     RecyclerView recyclerView;
 
     /**
-     * The Helper adapter.
+     * The Doctor recycler view adapter.
      */
     DoctorRecyclerViewAdapter doctorRecyclerViewAdapter;
 

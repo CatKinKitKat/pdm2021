@@ -28,12 +28,12 @@ import com.ipbeja.easymed.FireStore.Hospitals;
 import com.ipbeja.easymed.R;
 
 /**
- * The type Hospital layout.
+ * The type Hospital activity.
  */
 public class HospitalActivity extends AppCompatActivity {
 
     /**
-     * The M firebase firestore.
+     * The Firebase firestore.
      */
     FirebaseFirestore firebaseFirestore;
 
@@ -63,20 +63,17 @@ public class HospitalActivity extends AppCompatActivity {
     private LocationManager locationManager;
 
     /**
-     * The Medium distance.
-     * Default to: Null Island 0.0N 0.0E
+     * The Closest marker distance.
      */
     private float closestMarkerDistance = (float) 0.0;
 
     /**
      * The Closest marker latitude.
-     * Default to: Null Island 0.0N 0.0E
      */
     private float closestMarkerLatitude = (float) 0.0;
 
     /**
      * The Closest marker longitude.
-     * Default to: Null Island 0.0N 0.0E
      */
     private float closestMarkerLongitude = (float) 0.0;
 

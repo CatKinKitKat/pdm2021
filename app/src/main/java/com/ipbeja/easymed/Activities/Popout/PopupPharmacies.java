@@ -11,7 +11,7 @@ import androidx.appcompat.widget.Toolbar;
 import com.ipbeja.easymed.R;
 
 /**
- * The type Popup meds.
+ * The type Popup pharmacies.
  */
 public class PopupPharmacies extends AppCompatActivity {
 

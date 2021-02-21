@@ -18,12 +18,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The type Pharmacy layout.
+ * The type Pharmacy activity.
  */
 public class PharmacyActivity extends AppCompatActivity {
 
     /**
-     * The Med data.
+     * The Pharmacy data.
      */
     List<Pharmacy> pharmacyData;
     /**
@@ -31,7 +31,7 @@ public class PharmacyActivity extends AppCompatActivity {
      */
     RecyclerView recyclerView;
     /**
-     * The Helper adapter.
+     * The Pharmacy recycler view adapter.
      */
     PharmacyRecyclerViewAdapter pharmacyRecyclerViewAdapter;
 

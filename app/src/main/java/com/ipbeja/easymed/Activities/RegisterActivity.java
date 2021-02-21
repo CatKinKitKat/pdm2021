@@ -25,7 +25,7 @@ public class RegisterActivity extends AppCompatActivity {
     public static final String TAG = "TAG";
 
     /**
-     * The Register name, email, phone, passwd and confirmation fields
+     * The Register name.
      */
     EditText registerName, /**
      * The Register email.
@@ -42,7 +42,7 @@ public class RegisterActivity extends AppCompatActivity {
     phoneNumber;
 
     /**
-     * The Register user and go to login buttons
+     * The Register user btn.
      */
     Button registerUserBtn, /**
      * The Go to login.
@@ -50,7 +50,7 @@ public class RegisterActivity extends AppCompatActivity {
     goToLogin;
 
     /**
-     * Firebase objects.
+     * The F auth.
      */
     FirebaseAuth fAuth;
     /**

@@ -13,7 +13,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.ipbeja.easymed.R;
 
 /**
- * The type Reset password.
+ * The type Reset password activity.
  */
 public class ResetPasswordActivity extends AppCompatActivity {
     /**

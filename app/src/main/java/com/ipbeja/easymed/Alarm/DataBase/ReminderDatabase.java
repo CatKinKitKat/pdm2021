@@ -143,7 +143,7 @@ public class ReminderDatabase extends SQLiteOpenHelper {
 
 
     /**
-     * Get reminder reminder.
+     * Gets reminder.
      *
      * @param id the id
      * @return the reminder
@@ -177,9 +177,9 @@ public class ReminderDatabase extends SQLiteOpenHelper {
 
 
     /**
-     * Get all reminders list.
+     * Gets all reminders.
      *
-     * @return the list
+     * @return the all reminders
      */
     public List<Reminder> getAllReminders() {
         List<Reminder> reminderList = new ArrayList<>();
@@ -212,9 +212,9 @@ public class ReminderDatabase extends SQLiteOpenHelper {
 
 
     /**
-     * Get reminders count int.
+     * Gets reminders count.
      *
-     * @return the int
+     * @return the reminders count
      */
     public int getRemindersCount() {
         String countQuery = "SELECT * FROM " + TABLE_REMINDERS;

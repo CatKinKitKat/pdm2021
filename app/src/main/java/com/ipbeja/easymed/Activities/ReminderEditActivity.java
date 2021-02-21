@@ -2,7 +2,6 @@ package com.ipbeja.easymed.Activities;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -87,117 +86,101 @@ public class ReminderEditActivity extends AppCompatActivity {
      */
     private static final long milMonth = 2592000000L;
     /**
-     * The M toolbar.
+     * The Title text.
      */
-    private Toolbar mToolbar;
+    private EditText titleText;
     /**
-     * The M title text.
+     * The Date text.
      */
-    private EditText mTitleText;
+    private TextView dateText, /**
+     * The Time text.
+     */
+    timeText, /**
+     * The Repeat text.
+     */
+    repeatText, /**
+     * The Repeat no text.
+     */
+    repeatNoText, /**
+     * The Repeat type text.
+     */
+    repeatTypeText;
     /**
-     * The M date text.
+     * The Mute btn.
      */
-    private TextView mDateText, /**
-     * The M time text.
-     */
-    mTimeText, /**
-     * The M repeat text.
-     */
-    mRepeatText, /**
-     * The M repeat no text.
-     */
-    mRepeatNoText, /**
-     * The M repeat type text.
-     */
-    mRepeatTypeText;
+    private FloatingActionButton muteBtn;
     /**
-     * The M fab 1.
+     * The Notificate btn.
      */
-    private FloatingActionButton mFAB1;
+    private FloatingActionButton notificateBtn;
     /**
-     * The M fab 2.
+     * The Title.
      */
-    private FloatingActionButton mFAB2;
+    private String title;
     /**
-     * The M repeat switch.
+     * The Time.
      */
-    private SwitchCompat mRepeatSwitch;
+    private String time;
     /**
-     * The M title.
+     * The Date.
      */
-    private String mTitle;
+    private String date;
     /**
-     * The M time.
+     * The Repeat no.
      */
-    private String mTime;
+    private String repeatNo;
     /**
-     * The M date.
+     * The Repeat type.
      */
-    private String mDate;
+    private String repeatType;
     /**
-     * The M repeat no.
+     * The Active.
      */
-    private String mRepeatNo;
+    private String active;
     /**
-     * The M repeat type.
+     * The Repeat.
      */
-    private String mRepeatType;
+    private String repeat;
     /**
-     * The M active.
+     * The Received id.
      */
-    private String mActive;
+    private int receivedID;
     /**
-     * The M repeat.
+     * The Year.
      */
-    private String mRepeat;
+    private int year, /**
+     * The Month.
+     */
+    month, /**
+     * The Hour.
+     */
+    hour, /**
+     * The Minute.
+     */
+    minute, /**
+     * The Day.
+     */
+    day;
     /**
-     * The M date split.
+     * The Repeat time.
      */
-    private String[] mDateSplit;
+    private long repeatTime;
     /**
-     * The M time split.
+     * The Calendar.
      */
-    private String[] mTimeSplit;
+    private Calendar calendar;
     /**
-     * The M received id.
+     * The Received reminder.
      */
-    private int mReceivedID;
+    private Reminder receivedReminder;
     /**
-     * The M year.
+     * The Reminder database.
      */
-    private int mYear, /**
-     * The M month.
-     */
-    mMonth, /**
-     * The M hour.
-     */
-    mHour, /**
-     * The M minute.
-     */
-    mMinute, /**
-     * The M day.
-     */
-    mDay;
+    private ReminderDatabase reminderDatabase;
     /**
-     * The M repeat time.
+     * The Alarm receiver.
      */
-    private long mRepeatTime;
-    /**
-     * The M calendar.
-     */
-    private Calendar mCalendar;
-    /**
-     * The M received reminder.
-     */
-    private Reminder mReceivedReminder;
-    /**
-     * The Rb.
-     */
-    private ReminderDatabase rb;
-    /**
-     * The M alarm receiver.
-     */
-    private AlarmReceiver mAlarmReceiver;
+    private AlarmReceiver alarmReceiver;
 
     /**
      * On create.
@@ -210,33 +193,32 @@ public class ReminderEditActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_reminder);
 
 
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        mTitleText = (EditText) findViewById(R.id.reminder_title);
-        mDateText = (TextView) findViewById(R.id.set_date);
-        mTimeText = (TextView) findViewById(R.id.set_time);
-        mRepeatText = (TextView) findViewById(R.id.set_repeat);
-        mRepeatNoText = (TextView) findViewById(R.id.set_repeat_no);
-        mRepeatTypeText = (TextView) findViewById(R.id.set_repeat_type);
-        mFAB1 = (FloatingActionButton) findViewById(R.id.starred1);
-        mFAB2 = (FloatingActionButton) findViewById(R.id.starred2);
-        mRepeatSwitch = (SwitchCompat) findViewById(R.id.repeat_switch);
+        this.titleText = findViewById(R.id.reminder_title);
+        this.dateText = findViewById(R.id.set_date);
+        this.timeText = findViewById(R.id.set_time);
+        this.repeatText = findViewById(R.id.set_repeat);
+        this.repeatNoText = findViewById(R.id.set_repeat_no);
+        this.repeatTypeText = findViewById(R.id.set_repeat_type);
+        this.muteBtn = findViewById(R.id.starred1);
+        this.notificateBtn = findViewById(R.id.starred2);
+        SwitchCompat mRepeatSwitch = findViewById(R.id.repeat_switch);
 
 
-        setSupportActionBar(mToolbar);
-        getSupportActionBar().setTitle(R.string.add_reminder);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(getString(R.string.edit_reminder_title));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
 
 
-        mTitleText.addTextChangedListener(new TextWatcher() {
+        this.titleText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                mTitle = s.toString().trim();
-                mTitleText.setError(null);
+                title = s.toString().trim();
+                titleText.setError(null);
             }
 
             @Override
@@ -245,89 +227,89 @@ public class ReminderEditActivity extends AppCompatActivity {
         });
 
 
-        mReceivedID = Integer.parseInt(getIntent().getStringExtra(EXTRA_REMINDER_ID));
+        this.receivedID = Integer.parseInt(getIntent().getStringExtra(EXTRA_REMINDER_ID));
 
 
-        rb = new ReminderDatabase(this);
-        mReceivedReminder = rb.getReminder(mReceivedID);
+        this.reminderDatabase = new ReminderDatabase(this);
+        this.receivedReminder = reminderDatabase.getReminder(receivedID);
 
 
-        mTitle = mReceivedReminder.getTitle();
-        mDate = mReceivedReminder.getDate();
-        mTime = mReceivedReminder.getTime();
-        mRepeat = mReceivedReminder.getRepeat();
-        mRepeatNo = mReceivedReminder.getRepeatNo();
-        mRepeatType = mReceivedReminder.getRepeatType();
-        mActive = mReceivedReminder.getActive();
+        this.title = receivedReminder.getTitle();
+        this.date = receivedReminder.getDate();
+        this.time = receivedReminder.getTime();
+        this.repeat = receivedReminder.getRepeat();
+        this.repeatNo = receivedReminder.getRepeatNo();
+        this.repeatType = receivedReminder.getRepeatType();
+        this.active = receivedReminder.getActive();
 
 
-        mTitleText.setText(mTitle);
-        mDateText.setText(mDate);
-        mTimeText.setText(mTime);
-        mRepeatNoText.setText(mRepeatNo);
-        mRepeatTypeText.setText(mRepeatType);
-        mRepeatText.setText("Every " + mRepeatNo + " " + mRepeatType + "(s)");
+        this.titleText.setText(title);
+        this.dateText.setText(date);
+        this.timeText.setText(time);
+        this.repeatNoText.setText(repeatNo);
+        this.repeatTypeText.setText(repeatType);
+        this.repeatText.setText("Every " + repeatNo + " " + repeatType + "(s)");
 
 
         if (savedInstanceState != null) {
             String savedTitle = savedInstanceState.getString(KEY_TITLE);
-            mTitleText.setText(savedTitle);
-            mTitle = savedTitle;
+            this.titleText.setText(savedTitle);
+            this.title = savedTitle;
 
             String savedTime = savedInstanceState.getString(KEY_TIME);
-            mTimeText.setText(savedTime);
-            mTime = savedTime;
+            this.timeText.setText(savedTime);
+            this.time = savedTime;
 
             String savedDate = savedInstanceState.getString(KEY_DATE);
-            mDateText.setText(savedDate);
-            mDate = savedDate;
+            this.dateText.setText(savedDate);
+            this.date = savedDate;
 
             String saveRepeat = savedInstanceState.getString(KEY_REPEAT);
-            mRepeatText.setText(saveRepeat);
-            mRepeat = saveRepeat;
+            this.repeatText.setText(saveRepeat);
+            this.repeat = saveRepeat;
 
             String savedRepeatNo = savedInstanceState.getString(KEY_REPEAT_NO);
-            mRepeatNoText.setText(savedRepeatNo);
-            mRepeatNo = savedRepeatNo;
+            this.repeatNoText.setText(savedRepeatNo);
+            this.repeatNo = savedRepeatNo;
 
             String savedRepeatType = savedInstanceState.getString(KEY_REPEAT_TYPE);
-            mRepeatTypeText.setText(savedRepeatType);
-            mRepeatType = savedRepeatType;
+            this.repeatTypeText.setText(savedRepeatType);
+            this.repeatType = savedRepeatType;
 
-            mActive = savedInstanceState.getString(KEY_ACTIVE);
+            this.active = savedInstanceState.getString(KEY_ACTIVE);
         }
 
 
-        if (mActive.equals("false")) {
-            mFAB1.setVisibility(View.VISIBLE);
-            mFAB2.setVisibility(View.GONE);
+        if (active.equals("false")) {
+            this.muteBtn.setVisibility(View.VISIBLE);
+            this.notificateBtn.setVisibility(View.GONE);
 
-        } else if (mActive.equals("true")) {
-            mFAB1.setVisibility(View.GONE);
-            mFAB2.setVisibility(View.VISIBLE);
+        } else if (active.equals("true")) {
+            this.muteBtn.setVisibility(View.GONE);
+            this.notificateBtn.setVisibility(View.VISIBLE);
         }
 
 
-        if (mRepeat.equals("false")) {
+        if (repeat.equals("false")) {
             mRepeatSwitch.setChecked(false);
-            mRepeatText.setText(R.string.repeat_off);
+            this.repeatText.setText(R.string.repeat_off);
 
-        } else if (mRepeat.equals("true")) {
+        } else if (repeat.equals("true")) {
             mRepeatSwitch.setChecked(true);
         }
 
 
-        mCalendar = Calendar.getInstance();
-        mAlarmReceiver = new AlarmReceiver();
+        this.calendar = Calendar.getInstance();
+        this.alarmReceiver = new AlarmReceiver();
 
-        mDateSplit = mDate.split("/");
-        mTimeSplit = mTime.split(":");
+        String[] mDateSplit = date.split("/");
+        String[] mTimeSplit = time.split(":");
 
-        mDay = Integer.parseInt(mDateSplit[0]);
-        mMonth = Integer.parseInt(mDateSplit[1]);
-        mYear = Integer.parseInt(mDateSplit[2]);
-        mHour = Integer.parseInt(mTimeSplit[0]);
-        mMinute = Integer.parseInt(mTimeSplit[1]);
+        this.day = Integer.parseInt(mDateSplit[0]);
+        this.month = Integer.parseInt(mDateSplit[1]);
+        this.year = Integer.parseInt(mDateSplit[2]);
+        this.hour = Integer.parseInt(mTimeSplit[0]);
+        this.minute = Integer.parseInt(mTimeSplit[1]);
     }
 
 
@@ -340,13 +322,13 @@ public class ReminderEditActivity extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
-        outState.putCharSequence(KEY_TITLE, mTitleText.getText());
-        outState.putCharSequence(KEY_TIME, mTimeText.getText());
-        outState.putCharSequence(KEY_DATE, mDateText.getText());
-        outState.putCharSequence(KEY_REPEAT, mRepeatText.getText());
-        outState.putCharSequence(KEY_REPEAT_NO, mRepeatNoText.getText());
-        outState.putCharSequence(KEY_REPEAT_TYPE, mRepeatTypeText.getText());
-        outState.putCharSequence(KEY_ACTIVE, mActive);
+        outState.putCharSequence(KEY_TITLE, titleText.getText());
+        outState.putCharSequence(KEY_TIME, timeText.getText());
+        outState.putCharSequence(KEY_DATE, dateText.getText());
+        outState.putCharSequence(KEY_REPEAT, repeatText.getText());
+        outState.putCharSequence(KEY_REPEAT_NO, repeatNoText.getText());
+        outState.putCharSequence(KEY_REPEAT_TYPE, repeatTypeText.getText());
+        outState.putCharSequence(KEY_ACTIVE, active);
     }
 
     /**
@@ -368,19 +350,19 @@ public class ReminderEditActivity extends AppCompatActivity {
      */
     public void setTime(View v) {
         Calendar now = Calendar.getInstance();
-        this.mHour = now.get(Calendar.HOUR_OF_DAY);
-        this.mMinute = now.get(Calendar.MINUTE);
+        this.hour = now.get(Calendar.HOUR_OF_DAY);
+        this.minute = now.get(Calendar.MINUTE);
         TimePickerDialog tpd = new TimePickerDialog(
                 this, (view, hourOfDay, minute) -> {
-            this.mHour = hourOfDay;
-            this.mMinute = minute;
+            this.hour = hourOfDay;
+            this.minute = minute;
             if (minute < 10) {
-                this.mTime = hourOfDay + ":" + "0" + minute;
+                this.time = hourOfDay + ":" + "0" + minute;
             } else {
-                this.mTime = hourOfDay + ":" + minute;
+                this.time = hourOfDay + ":" + minute;
             }
-            this.mTimeText.setText(this.mTime);
-        }, this.mHour, this.mMinute, false);
+            this.timeText.setText(this.time);
+        }, this.hour, this.minute, false);
         tpd.show();
     }
 
@@ -396,13 +378,13 @@ public class ReminderEditActivity extends AppCompatActivity {
         now.get(Calendar.DAY_OF_MONTH);
         DatePickerDialog dpd = new DatePickerDialog(
                 this, (view, year, month, dayOfMonth) -> {
-            this.mMonth++;
-            this.mDay = dayOfMonth;
-            this.mMonth = month;
-            this.mYear = year;
-            this.mDate = dayOfMonth + "/" + month + "/" + year;
-            this.mDateText.setText(this.mDate);
-        }, this.mYear, this.mMonth, this.mDay);
+            this.month++;
+            this.day = dayOfMonth;
+            this.month = month;
+            this.year = year;
+            this.date = dayOfMonth + "/" + month + "/" + year;
+            this.dateText.setText(this.date);
+        }, this.year, this.month, this.day);
         dpd.show();
     }
 
@@ -413,11 +395,11 @@ public class ReminderEditActivity extends AppCompatActivity {
      * @param v the v
      */
     public void selectFab1(View v) {
-        mFAB1 = (FloatingActionButton) findViewById(R.id.starred1);
-        mFAB1.setVisibility(View.GONE);
-        mFAB2 = (FloatingActionButton) findViewById(R.id.starred2);
-        mFAB2.setVisibility(View.VISIBLE);
-        mActive = "true";
+        this.muteBtn = findViewById(R.id.starred1);
+        this.muteBtn.setVisibility(View.GONE);
+        this.notificateBtn = findViewById(R.id.starred2);
+        this.notificateBtn.setVisibility(View.VISIBLE);
+        this.active = "true";
     }
 
 
@@ -427,11 +409,11 @@ public class ReminderEditActivity extends AppCompatActivity {
      * @param v the v
      */
     public void selectFab2(View v) {
-        mFAB2 = (FloatingActionButton) findViewById(R.id.starred2);
-        mFAB2.setVisibility(View.GONE);
-        mFAB1 = (FloatingActionButton) findViewById(R.id.starred1);
-        mFAB1.setVisibility(View.VISIBLE);
-        mActive = "false";
+        this.notificateBtn = findViewById(R.id.starred2);
+        this.notificateBtn.setVisibility(View.GONE);
+        this.muteBtn = findViewById(R.id.starred1);
+        this.muteBtn.setVisibility(View.VISIBLE);
+        this.active = "false";
     }
 
 
@@ -443,12 +425,12 @@ public class ReminderEditActivity extends AppCompatActivity {
     public void onSwitchRepeat(View view) {
         boolean on = ((Switch) view).isChecked();
         if (on) {
-            mRepeat = "true";
-            mRepeatText.setText("Every " + mRepeatNo + " " + mRepeatType + "(s)");
+            this.repeat = "true";
+            this.repeatText.setText("Every " + repeatNo + " " + repeatType + "(s)");
 
         } else {
-            mRepeat = "false";
-            mRepeatText.setText(R.string.repeat_off);
+            this.repeat = "false";
+            this.repeatText.setText(R.string.repeat_off);
         }
     }
 
@@ -470,14 +452,11 @@ public class ReminderEditActivity extends AppCompatActivity {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Select Type");
-        builder.setItems(items, new DialogInterface.OnClickListener() {
+        builder.setItems(items, (dialog, item) -> {
 
-            public void onClick(DialogInterface dialog, int item) {
-
-                mRepeatType = items[item];
-                mRepeatTypeText.setText(mRepeatType);
-                mRepeatText.setText("Every " + mRepeatNo + " " + mRepeatType + "(s)");
-            }
+            repeatType = items[item];
+            repeatTypeText.setText(repeatType);
+            repeatText.setText("Every " + repeatNo + " " + repeatType + "(s)");
         });
         AlertDialog alert = builder.create();
         alert.show();
@@ -485,7 +464,7 @@ public class ReminderEditActivity extends AppCompatActivity {
 
 
     /**
-     * Set repeat no.
+     * Sets repeat no.
      *
      * @param v the v
      */
@@ -498,24 +477,18 @@ public class ReminderEditActivity extends AppCompatActivity {
         input.setInputType(InputType.TYPE_CLASS_NUMBER);
         alert.setView(input);
         alert.setPositiveButton("Ok",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
+                (dialog, whichButton) -> {
 
-                        if (input.getText().toString().length() == 0) {
-                            mRepeatNo = Integer.toString(1);
-                            mRepeatNoText.setText(mRepeatNo);
-                            mRepeatText.setText("Every " + mRepeatNo + " " + mRepeatType + "(s)");
-                        } else {
-                            mRepeatNo = input.getText().toString().trim();
-                            mRepeatNoText.setText(mRepeatNo);
-                            mRepeatText.setText("Every " + mRepeatNo + " " + mRepeatType + "(s)");
-                        }
+                    if (input.getText().toString().length() == 0) {
+                        repeatNo = Integer.toString(1);
+                    } else {
+                        repeatNo = input.getText().toString().trim();
                     }
+                    repeatNoText.setText(repeatNo);
+                    repeatText.setText("Every " + repeatNo + " " + repeatType + "(s)");
                 });
-        alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int whichButton) {
+        alert.setNegativeButton("Cancel", (dialog, whichButton) -> {
 
-            }
         });
         alert.show();
     }
@@ -526,47 +499,53 @@ public class ReminderEditActivity extends AppCompatActivity {
      */
     public void updateReminder() {
 
-        mReceivedReminder.setTitle(mTitle);
-        mReceivedReminder.setDate(mDate);
-        mReceivedReminder.setTime(mTime);
-        mReceivedReminder.setRepeat(mRepeat);
-        mReceivedReminder.setRepeatNo(mRepeatNo);
-        mReceivedReminder.setRepeatType(mRepeatType);
-        mReceivedReminder.setActive(mActive);
+        this.receivedReminder.setTitle(title);
+        this.receivedReminder.setDate(date);
+        this.receivedReminder.setTime(time);
+        this.receivedReminder.setRepeat(repeat);
+        this.receivedReminder.setRepeatNo(repeatNo);
+        this.receivedReminder.setRepeatType(repeatType);
+        this.receivedReminder.setActive(active);
 
 
-        rb.updateReminder(mReceivedReminder);
+        reminderDatabase.updateReminder(receivedReminder);
 
 
-        mCalendar.set(Calendar.MONTH, --mMonth);
-        mCalendar.set(Calendar.YEAR, mYear);
-        mCalendar.set(Calendar.DAY_OF_MONTH, mDay);
-        mCalendar.set(Calendar.HOUR_OF_DAY, mHour);
-        mCalendar.set(Calendar.MINUTE, mMinute);
-        mCalendar.set(Calendar.SECOND, 0);
+        this.calendar.set(Calendar.MONTH, --month);
+        this.calendar.set(Calendar.YEAR, year);
+        this.calendar.set(Calendar.DAY_OF_MONTH, day);
+        this.calendar.set(Calendar.HOUR_OF_DAY, hour);
+        this.calendar.set(Calendar.MINUTE, minute);
+        this.calendar.set(Calendar.SECOND, 0);
 
 
-        mAlarmReceiver.cancelAlarm(getApplicationContext(), mReceivedID);
+        this.alarmReceiver.cancelAlarm(getApplicationContext(), receivedID);
 
 
-        if (mRepeatType.equals("Minute")) {
-            mRepeatTime = Integer.parseInt(mRepeatNo) * milMinute;
-        } else if (mRepeatType.equals("Hour")) {
-            mRepeatTime = Integer.parseInt(mRepeatNo) * milHour;
-        } else if (mRepeatType.equals("Day")) {
-            mRepeatTime = Integer.parseInt(mRepeatNo) * milDay;
-        } else if (mRepeatType.equals("Week")) {
-            mRepeatTime = Integer.parseInt(mRepeatNo) * milWeek;
-        } else if (mRepeatType.equals("Month")) {
-            mRepeatTime = Integer.parseInt(mRepeatNo) * milMonth;
+        switch (repeatType) {
+            case "Minute":
+                this.repeatTime = Integer.parseInt(repeatNo) * milMinute;
+                break;
+            case "Hour":
+                this.repeatTime = Integer.parseInt(repeatNo) * milHour;
+                break;
+            case "Day":
+                this.repeatTime = Integer.parseInt(repeatNo) * milDay;
+                break;
+            case "Week":
+                this.repeatTime = Integer.parseInt(repeatNo) * milWeek;
+                break;
+            case "Month":
+                this.repeatTime = Integer.parseInt(repeatNo) * milMonth;
+                break;
         }
 
 
-        if (mActive.equals("true")) {
-            if (mRepeat.equals("true")) {
-                mAlarmReceiver.setRepeatAlarm(getApplicationContext(), mCalendar, mReceivedID, mRepeatTime);
-            } else if (mRepeat.equals("false")) {
-                mAlarmReceiver.setAlarm(getApplicationContext(), mCalendar, mReceivedID);
+        if (active.equals("true")) {
+            if (repeat.equals("true")) {
+                this.alarmReceiver.setRepeatAlarm(getApplicationContext(), calendar, receivedID, repeatTime);
+            } else if (repeat.equals("false")) {
+                this.alarmReceiver.setAlarm(getApplicationContext(), calendar, receivedID);
             }
         }
 
@@ -616,10 +595,10 @@ public class ReminderEditActivity extends AppCompatActivity {
 
 
             case R.id.save_reminder:
-                mTitleText.setText(mTitle);
+                this.titleText.setText(title);
 
-                if (mTitleText.getText().toString().length() == 0)
-                    mTitleText.setError("Reminder Title cannot be blank!");
+                if (titleText.getText().toString().length() == 0)
+                    this.titleText.setError("Reminder Title cannot be blank!");
 
                 else {
                     updateReminder();

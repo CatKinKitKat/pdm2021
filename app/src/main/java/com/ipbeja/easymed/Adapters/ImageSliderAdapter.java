@@ -22,7 +22,7 @@ public class ImageSliderAdapter extends SliderViewAdapter<SliderViewHolder> {
      */
     Context context;
     /**
-     * The Image slider model list.
+     * The Image slider list.
      */
     List<ImageSlider> imageSliderList;
 
@@ -30,7 +30,7 @@ public class ImageSliderAdapter extends SliderViewAdapter<SliderViewHolder> {
      * Instantiates a new Image slider adapter.
      *
      * @param context         the context
-     * @param imageSliderList the image slider model list
+     * @param imageSliderList the image slider list
      */
     public ImageSliderAdapter(Context context, List<ImageSlider> imageSliderList) {
         this.context = context;

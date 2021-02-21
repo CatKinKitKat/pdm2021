@@ -1,7 +1,7 @@
 package com.ipbeja.easymed.Objects;
 
 /**
- * The type Image slider model.
+ * The type Image slider.
  */
 public class ImageSlider {
 
@@ -11,13 +11,13 @@ public class ImageSlider {
     int Image;
 
     /**
-     * Instantiates a new Image slider model.
+     * Instantiates a new Image slider.
      */
     public ImageSlider() {
     }
 
     /**
-     * Instantiates a new Image slider model.
+     * Instantiates a new Image slider.
      *
      * @param image the image
      */

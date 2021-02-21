@@ -39,7 +39,7 @@ public class Users {
      * Instantiates a new Users.
      *
      * @param email            the email
-     * @param fName            the name
+     * @param fName            the f name
      * @param phone            the phone
      * @param profileImagePath the profile image path
      * @param authID           the auth id

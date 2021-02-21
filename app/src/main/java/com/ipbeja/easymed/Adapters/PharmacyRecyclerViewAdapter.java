@@ -20,7 +20,7 @@ import com.ipbeja.easymed.R;
 import java.util.List;
 
 /**
- * The type Meds recycler view adapter.
+ * The type Pharmacy recycler view adapter.
  */
 public class PharmacyRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -30,7 +30,7 @@ public class PharmacyRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
     private final List<Pharmacy> medList;
 
     /**
-     * Instantiates a new Meds recycler view adapter.
+     * Instantiates a new Pharmacy recycler view adapter.
      *
      * @param medList the med list
      */

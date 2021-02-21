@@ -1,7 +1,7 @@
 package com.ipbeja.easymed.FireStore;
 
 /**
- * The type Meds.
+ * The type Pharmacy.
  */
 public class Pharmacy {
 
@@ -24,13 +24,13 @@ public class Pharmacy {
     String fireStoreId;
 
     /**
-     * Instantiates a new Meds.
+     * Instantiates a new Pharmacy.
      */
     public Pharmacy() {
     }
 
     /**
-     * Instantiates a new Meds.
+     * Instantiates a new Pharmacy.
      *
      * @param name        the name
      * @param furl        the furl

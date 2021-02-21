@@ -22,7 +22,7 @@ import java.util.List;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
- * The type Helper adapter.
+ * The type Doctor recycler view adapter.
  */
 public class DoctorRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     /**

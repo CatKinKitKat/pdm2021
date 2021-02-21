@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     SliderView sliderView;
 
     /**
-     * The Image slider model list.
+     * The Image slider list.
      */
     List<ImageSlider> imageSliderList;
 
