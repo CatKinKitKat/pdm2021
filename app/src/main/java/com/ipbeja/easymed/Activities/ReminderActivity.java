@@ -73,7 +73,7 @@ public class ReminderActivity extends AppCompatActivity {
 
         @Override
         public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
-            getMenuInflater().inflate(R.menu.menu_add_reminder, menu);
+            getMenuInflater().inflate(R.menu.menu_rem_reminder, menu);
             return true;
         }
 
