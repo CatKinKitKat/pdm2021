@@ -65,7 +65,7 @@ public class MainRecyclerViewAdapter extends
     @Override
     public ImageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(mContext).inflate(
+        View view = LayoutInflater.from(this.mContext).inflate(
                 R.layout.recyclerview_item, parent, false);
 
         return new ImageViewHolder(view);
@@ -79,10 +79,10 @@ public class MainRecyclerViewAdapter extends
      */
     @Override
     public void onBindViewHolder(@NonNull ImageViewHolder holder, int position) {
-        holder.textView.setText(mTxts.get(position));
+        holder.textView.setText(this.mTxts.get(position));
 
-        Glide.with(mContext)
-                .load(mImgs.get(position).getImg())
+        Glide.with(this.mContext)
+                .load(this.mImgs.get(position).getImg())
                 .into(holder.imageView);
     }
 
@@ -117,8 +117,8 @@ public class MainRecyclerViewAdapter extends
         public ImageViewHolder(@NonNull View itemView) {
 
             super(itemView);
-            textView = itemView.findViewById(R.id.textImgView);
-            imageView = itemView.findViewById(R.id.imageView);
+            this.textView = itemView.findViewById(R.id.textImgView);
+            this.imageView = itemView.findViewById(R.id.imageView);
 
             itemView.setOnClickListener(this);
         }
@@ -131,11 +131,8 @@ public class MainRecyclerViewAdapter extends
         @Override
         public void onClick(View view) {
 
-            try {
-                Intent intent = this.setIntent(getLayoutPosition());
-                mContext.startActivity(intent);
-            } catch (Exception ignore) {
-            }
+            Intent intent = this.setIntent(getLayoutPosition());
+            mContext.startActivity(intent);
         }
 
         /**

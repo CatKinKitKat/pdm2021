@@ -50,7 +50,7 @@
     <string name="proceed">Proceed Purchase</string>
     <string name="kart">My Kart</string>
     <string name="mbway_error">There seems to be problems in the banking system. Please try again later.</string>
-    <string name="enable_gps">Enable GPS</string>
+    <string name="enable_gps">Habilitar GPS</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="closest_hospital">Find Closest Hospital</string>

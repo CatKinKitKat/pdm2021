@@ -322,15 +322,6 @@ public class ReminderActivity extends AppCompatActivity {
         }
 
         /**
-         * Generate dummy data reminder item.
-         *
-         * @return the reminder item
-         */
-        public ReminderItem generateDummyData() {
-            return new ReminderItem("1", "2", "3", "4", "5", "6");
-        }
-
-        /**
          * Generate data list.
          *
          * @param count the count
