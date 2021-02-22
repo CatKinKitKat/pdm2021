@@ -2,6 +2,7 @@ package com.ipbeja.easymed.Activities.Popout;
 
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -67,8 +68,21 @@ public class PopupDoctors extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Doctors");
+        getSupportActionBar().setTitle(getString(R.string.doctor_info));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        this.phoneNumberHolder.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_DIAL);
+            intent.setData(Uri.parse("tel:" + this.phoneNumberHolder.getText()));
+            startActivity(intent);
+        });
+
+        this.emailHolder.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_SENDTO);
+            intent.setType("text/plain");
+            intent.setData(Uri.parse("mailto:" + this.emailHolder.getText()));
+            startActivity(intent);
+        });
 
     }
 

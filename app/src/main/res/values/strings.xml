@@ -85,4 +85,5 @@
     <string name="alarm_face_img_context" translatable="false">alarm_face_img_context</string>
     <string name="discard_prompt">Discard changes?</string>
     <string name="delete_prompt">Delete?</string>
+    <string name="doctor_info">Doctor Info</string>
 </resources>
