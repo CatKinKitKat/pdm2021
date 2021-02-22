@@ -222,6 +222,12 @@ public class ReminderActivity extends AppCompatActivity {
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            finish();
+        }
         return super.onOptionsItemSelected(item);
     }
 
