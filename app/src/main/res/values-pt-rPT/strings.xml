@@ -70,6 +70,5 @@
     <string name="discard_prompt">Descartar mudanças?</string>
     <string name="delete_prompt">Apagar?</string>
     <string name="doctor_info">Doctor Info</string>
-    <string name="time">Tempo</string>
     <string name="verify_now_logout">Verifique agora e faça logout</string>
 </resources>
