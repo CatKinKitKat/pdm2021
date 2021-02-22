@@ -32,16 +32,6 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
 
     /**
-     * The Covers.
-     */
-    int[] covers = new int[]{
-            R.drawable.aaa,
-            R.drawable.bbb,
-            R.drawable.ccc,
-            R.drawable.ddd
-    };
-
-    /**
      * The Slider view.
      */
     SliderView sliderView;
@@ -60,6 +50,10 @@ public class MainActivity extends AppCompatActivity {
      * The App list.
      */
     private List<Row> appList;
+    /**
+     * The App list text.
+     */
+    private List<String> appListText;
 
     /**
      * On create.
@@ -74,27 +68,35 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
 
         this.recyclerView = findViewById(R.id.recyclerview);
         this.appList = new ArrayList<>();
+        this.appListText = new ArrayList<>();
 
 
-        this.adapter = new MainRecyclerViewAdapter(this, this.appList);
+        this.adapter = new MainRecyclerViewAdapter(this, this.appList, this.appListText);
         StaggeredGridLayoutManager manager =
                 new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
 
+        int[] covers = new int[]{
+                R.drawable.aaa,
+                R.drawable.bbb,
+                R.drawable.ccc,
+                R.drawable.ddd
+        };
 
+        String[] txts = new String[]{
+                getString(R.string.reminder_title),
+                getString(R.string.easy_med_order),
+                getString(R.string.hospitals),
+                getString(R.string.find_doctors)
+        };
+
+        InitializeDataIntoRecyclerView(covers, txts);
         this.recyclerView.setLayoutManager(manager);
-
-
         this.recyclerView.setAdapter(this.adapter);
-
-
-        InitializeDataIntoRecyclerView();
 
         this.imageSliderList = new ArrayList<>();
         this.sliderView = findViewById(R.id.imageSlider);
@@ -109,14 +111,19 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Initialize data into recycler view.
      */
-    private void InitializeDataIntoRecyclerView() {
+    private void InitializeDataIntoRecyclerView(int[] covers, String[] txts) {
 
-        int[] covers = this.covers;
         Row a;
+        String b;
 
         for (int cover : covers) {
             a = new Row(cover);
             this.appList.add(a);
+        }
+
+        for (String txt : txts) {
+            b = String.valueOf(txt);
+            this.appListText.add(b);
         }
 
         this.adapter.notifyDataSetChanged();

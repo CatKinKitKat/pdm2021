@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,20 +32,26 @@ public class MainRecyclerViewAdapter extends
      */
     Context mContext;
     /**
-     * The M data.
+     * The M imgs.
      */
-    List<Row> mData;
+    List<Row> mImgs;
+    /**
+     * The M txts.
+     */
+    List<String> mTxts;
 
     /**
      * Instantiates a new Main recycler view adapter.
      *
      * @param mContext the m context
-     * @param mData    the m data
+     * @param mImgs    the m imgs
+     * @param mTxts    the m txts
      */
-    public MainRecyclerViewAdapter(Context mContext, List<Row> mData) {
+    public MainRecyclerViewAdapter(Context mContext, List<Row> mImgs, List<String> mTxts) {
 
         this.mContext = mContext;
-        this.mData = mData;
+        this.mImgs = mImgs;
+        this.mTxts = mTxts;
     }
 
     /**
@@ -72,10 +79,11 @@ public class MainRecyclerViewAdapter extends
      */
     @Override
     public void onBindViewHolder(@NonNull ImageViewHolder holder, int position) {
+        holder.textView.setText(mTxts.get(position));
 
         Glide.with(mContext)
-                .load(mData.get(position).getImg())
-                .into(holder.img);
+                .load(mImgs.get(position).getImg())
+                .into(holder.imageView);
     }
 
     /**
@@ -85,7 +93,7 @@ public class MainRecyclerViewAdapter extends
      */
     @Override
     public int getItemCount() {
-        return mData.size();
+        return mImgs.size();
     }
 
 
@@ -98,7 +106,8 @@ public class MainRecyclerViewAdapter extends
         /**
          * The Img.
          */
-        ImageView img;
+        ImageView imageView;
+        TextView textView;
 
         /**
          * Instantiates a new Image view holder.
@@ -108,8 +117,8 @@ public class MainRecyclerViewAdapter extends
         public ImageViewHolder(@NonNull View itemView) {
 
             super(itemView);
-            img = itemView.findViewById(R.id.imageView);
-
+            textView = itemView.findViewById(R.id.textImgView);
+            imageView = itemView.findViewById(R.id.imageView);
 
             itemView.setOnClickListener(this);
         }
