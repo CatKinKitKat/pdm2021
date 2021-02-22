@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:contentDescription="TODO"
-        app:backgroundTint="@color/colorPrimary"
+        app:backgroundTint="@color/primary"
         app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

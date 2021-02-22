@@ -123,7 +123,6 @@ public class MainRecyclerViewAdapter extends
         public void onClick(View view) {
 
             try {
-
                 Intent intent = this.setIntent(getLayoutPosition());
                 mContext.startActivity(intent);
             } catch (Exception ignore) {
