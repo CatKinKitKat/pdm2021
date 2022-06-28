@@ -1,0 +1,7 @@
+= EasyMed
+
+Another graded project for my degree, this one is from the PDM (Mobile Apps Development) course.
+
+== Description
+
+This is an Android SDK application, written in Java, because Kotlin broke my heart. This mobile app's objective is assiting people with their health managment. With accounts to save data, google maps fragment with clinics and hospitals, med alarms, doctor contacts and calling and access to webviews with the most common portuguese online pharmacies.
